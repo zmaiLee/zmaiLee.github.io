@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="智能计算系统">智能计算系统</h1>
+<h2 id="第一章概述">第一章概述</h2>
+]]></content>
+  </entry>
+  <entry>
     <title>Git</title>
     <url>/2022/10/19/Git/</url>
     <content><![CDATA[<h1 id="git">Git</h1>
@@ -46,13 +53,6 @@ href="https://hexo.io/docs/generating.html">Generating</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
 <p>More info: <a
 href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="智能计算系统">智能计算系统</h1>
-<h2 id="第一章概述">第一章概述</h2>
 ]]></content>
   </entry>
 </search>
