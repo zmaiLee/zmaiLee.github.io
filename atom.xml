@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mai&#39;s blog</title>
+  
+  <subtitle>try my best</subtitle>
+  <link href="https://zmailee.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://zmailee.github.io/"/>
+  <updated>2022-10-19T07:26:50.446Z</updated>
+  <id>https://zmailee.github.io/</id>
+  
+  <author>
+    <name>zmaiLee</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>智能计算系统</title>
+    <link href="https://zmailee.github.io/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://zmailee.github.io/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</id>
+    <published>2022-10-19T12:40:32.173Z</published>
+    <updated>2022-10-19T07:26:50.446Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="智能计算系统">智能计算系统</h1><h2 id="第一章概述">第一章概述</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;智能计算系统&quot;&gt;智能计算系统&lt;/h1&gt;
+&lt;h2 id=&quot;第一章概述&quot;&gt;第一章概述&lt;/h2&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git</title>
+    <link href="https://zmailee.github.io/2022/10/19/Git/"/>
+    <id>https://zmailee.github.io/2022/10/19/Git/</id>
+    <published>2022-10-19T12:40:32.168Z</published>
+    <updated>2022-10-19T07:26:19.956Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="git">Git</h1><p>用git提交项目到gitee上时，执行下面语句时报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push -u origin master<br></code></pre></td></tr></table></figure><p>error: failed to push some refs to ‘xxxxx’ hint: Updates wererejected because the tip of your current branch is behind hint: itsremote counterpart. Integrate the remote changes (e.g. hint: ‘git pull…’) before pushing again. hint: See the ‘Note about fast-forwards’ in‘git push --help’ for details.</p><p>其实是Github端已经产生了commit没有同步到本地端</p><p>1.使用强制push的方法： git push -u origin master -f//但这样会使远程修改丢失。 2。push前先将远程repository修改pull下来 gitpull origin master git push -u origin master</p><p>结果又报refusing to merge unrelated histories这个错，我······</p><p>解决方案 执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;git&quot;&gt;Git&lt;/h1&gt;
+&lt;p&gt;用git提交项目到gitee上时，执行下面语句时报错&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://zmailee.github.io/2022/10/19/hello-world/"/>
+    <id>https://zmailee.github.io/2022/10/19/hello-world/</id>
+    <published>2022-10-19T12:40:32.168Z</published>
+    <updated>2022-10-17T12:25:51.594Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
+first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; fo</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
