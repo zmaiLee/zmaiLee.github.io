@@ -6,7 +6,7 @@
   <link href="https://zmailee.github.io/atom.xml" rel="self"/>
   
   <link href="https://zmailee.github.io/"/>
-  <updated>2022-10-19T07:26:50.446Z</updated>
+  <updated>2022-10-28T04:18:36.045Z</updated>
   <id>https://zmailee.github.io/</id>
   
   <author>
@@ -21,16 +21,45 @@
     <link href="https://zmailee.github.io/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/"/>
     <id>https://zmailee.github.io/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</id>
     <published>2022-10-19T12:40:32.173Z</published>
-    <updated>2022-10-19T07:26:50.446Z</updated>
+    <updated>2022-10-28T04:18:36.045Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="智能计算系统">智能计算系统</h1><h2 id="第一章概述">第一章概述</h2>]]></content>
+    <content type="html"><![CDATA[<h1 id="第一章概述">第一章：概述</h1><p><strong>智能计算系统是智能的物质载体</strong></p><p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p><h2 id="人工智能三个流派">人工智能三个流派</h2><p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p><h2 id="深度学习的局限性">深度学习的局限性</h2><p>深度学习是一把梯子，而不是火箭</p><ul><li>泛化能力有限</li><li>缺乏推理能力</li><li>缺乏可解释性</li><li>鲁棒性欠佳</li></ul><h2 id="异构智能计算系统">异构智能计算系统</h2><p>满足智能计算的算力增长需求，降低能耗比</p><h1 id="第二章神经网络基础">第二章：神经网络基础</h1>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;智能计算系统&quot;&gt;智能计算系统&lt;/h1&gt;
-&lt;h2 id=&quot;第一章概述&quot;&gt;第一章概述&lt;/h2&gt;
-</summary>
+    <summary type="html">&lt;h1 id=&quot;第一章概述&quot;&gt;第一章：概述&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;智能计算系统是智能的物质载体&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。&lt;/p&gt;
+&lt;h2 id=&quot;人工智能三个流派&quot;&gt;人工智能三个流派</summary>
+      
+    
+    
+    
+    <category term="基础课程" scheme="https://zmailee.github.io/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"/>
+    
+    
+    <category term="人工智能" scheme="https://zmailee.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="计算机体系结构" scheme="https://zmailee.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git</title>
+    <link href="https://zmailee.github.io/2022/10/19/Git/"/>
+    <id>https://zmailee.github.io/2022/10/19/Git/</id>
+    <published>2022-10-19T12:40:32.168Z</published>
+    <updated>2022-10-19T07:26:19.956Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="git">Git</h1><p>用git提交项目到gitee上时，执行下面语句时报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push -u origin master<br></code></pre></td></tr></table></figure><p>error: failed to push some refs to ‘xxxxx’ hint: Updates wererejected because the tip of your current branch is behind hint: itsremote counterpart. Integrate the remote changes (e.g. hint: ‘git pull…’) before pushing again. hint: See the ‘Note about fast-forwards’ in‘git push --help’ for details.</p><p>其实是Github端已经产生了commit没有同步到本地端</p><p>1.使用强制push的方法： git push -u origin master -f//但这样会使远程修改丢失。 2。push前先将远程repository修改pull下来 gitpull origin master git push -u origin master</p><p>结果又报refusing to merge unrelated histories这个错，我······</p><p>解决方案 执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;git&quot;&gt;Git&lt;/h1&gt;
+&lt;p&gt;用git提交项目到gitee上时，执行下面语句时报错&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
       
     
     
@@ -52,28 +81,6 @@
       
     <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
 first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; fo</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git</title>
-    <link href="https://zmailee.github.io/2022/10/19/Git/"/>
-    <id>https://zmailee.github.io/2022/10/19/Git/</id>
-    <published>2022-10-19T12:40:32.168Z</published>
-    <updated>2022-10-19T07:26:19.956Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="git">Git</h1><p>用git提交项目到gitee上时，执行下面语句时报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push -u origin master<br></code></pre></td></tr></table></figure><p>error: failed to push some refs to ‘xxxxx’ hint: Updates wererejected because the tip of your current branch is behind hint: itsremote counterpart. Integrate the remote changes (e.g. hint: ‘git pull…’) before pushing again. hint: See the ‘Note about fast-forwards’ in‘git push --help’ for details.</p><p>其实是Github端已经产生了commit没有同步到本地端</p><p>1.使用强制push的方法： git push -u origin master -f//但这样会使远程修改丢失。 2。push前先将远程repository修改pull下来 gitpull origin master git push -u origin master</p><p>结果又报refusing to merge unrelated histories这个错，我······</p><p>解决方案 执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;git&quot;&gt;Git&lt;/h1&gt;
-&lt;p&gt;用git提交项目到gitee上时，执行下面语句时报错&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
       
     
     
