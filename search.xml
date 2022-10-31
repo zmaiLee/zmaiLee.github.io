@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git</title>
+    <url>/2022/10/19/Git/</url>
+    <content><![CDATA[<h1 id="git">Git</h1>
+<p>用git执行下面语句时报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
+<span id="more"></span>
+<p>1.使用强制push的方法，这样会使远程修改丢失</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
+<p>2.先将远程repository修改pull下来再push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p>结果又报refusing to merge unrelated histories</p>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
     <title>智能计算系统</title>
     <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
@@ -452,14 +472,137 @@ SV上的名称相同，但在C上，使用别名C_task1和C_task2执行链接。
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">// SV<br>`define BIT_ARRAY_SIZE 16<br>typedef struct &#123;<br>	byte aByte;<br>	int anInt;<br>	bit aBit;<br>	longint aLongInt;<br>	bit[`BIT_ARRAY_SIZE-1:0] aBitVector;<br>&#125; dpi_c_ex_s;<br>import &quot;DPI-C&quot; function void compute_struct(input dpi_c_ex_s i_value, output dpi_c_ex_s result);<br></code></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dpi_c_ex_s</span> &#123;</span><br>	<span class="hljs-type">char</span> aChar;<br>	<span class="hljs-type">int</span> anInt;<br>	svBit aBit;<br>	<span class="hljs-type">long</span> <span class="hljs-type">int</span> aLongInt;<br>	svBitVecVal aBitVector;<br>&#125; dpi_c_ex_s;<br><span class="hljs-type">void</span> <span class="hljs-title function_">compute_struct</span><span class="hljs-params">(<span class="hljs-type">const</span> dpi_c_ex_s* i_value, dpi_c_ex_s* output)</span>;<br></code></pre></td></tr></table></figure>
 <h2 id="五dpi进阶">五、DPI进阶</h2>
-<h4 id="压缩数组packed-arrays">压缩数组（Packed arrays）</h4>
-<p>对于某些数据类型，你可能希望既可以访问整个值，也可以将其分成更小的元素。</p>
-<p>例如，有一个32位寄存器，有时你希望将其视为四个8位值，而在其他时候则视为单个无符号值。
-压缩数组被视为数组和单个值。
-与非压缩的数组不同，它存储为一组连续的没有未使用空间的位。可以方便地将其作为数组元素进行访问。</p>
-<p>压缩数组：在数据类型标识符名称之前声明的维度 bit [7：0] p; // packed
-array of scalar bit types bit [3:0] [7:0] bytes // 4 bytes packed into
-32-bits</p>
+<h4 id="压缩数组packed-arrays">5.1压缩数组（Packed arrays）</h4>
+<p>压缩数组被视为数组和单个值，既可以访问整个值，也可以将其分成更小的元素。与非压缩的数组不同，它存储为一组连续的没有未使用空间的位。可以方便地将其作为数组元素进行访问。</p>
+<p><strong>压缩数组：在数据类型标识符名称之前声明的维度</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">bit [7:0] p; // packed array of scalar bit types<br>bit [3:0][7:0] bytes // 4 bytes packed into 32-bits<br></code></pre></td></tr></table></figure>
+<p>具有预定义宽度的整数类型不能声明为带维度的压缩数组。
+这些类型是byte，shortint，int，longint，integer和time。
+虽然是具有预定义宽度n的整数类型，它不是一个打包数组，但其自身是可以分解为子字段的，可以理解为一个具有单个[n-1:0]维度的压缩数组类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">byte c2; // same as bit signed [7:0] c2;`<br>integer i1; // same as logic signed [31:0] i1;<br></code></pre></td></tr></table></figure>
+<h4 id="非压缩数组unpacked-arrays">5.2非压缩数组（Unpacked arrays）</h4>
+<p>非压缩数组可以由任何数据类型组成。每个固定大小的维度应由地址范围[0:size-1]或单个正数[size]表示，以指定固定大小的非压缩数组的大小。</p>
+<p><strong>非压缩数组：在数据类型标识符名称后声明的维度</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">bit u [7:0];<br>int Array[0:7][0:31]; // array declaration using ranges<br>int Array[8][32]; // array declaration using sizes<br></code></pre></td></tr></table></figure>
+<p>SV 索引 [min：max] -&gt; C端数组索引从0开始</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">SV: a[1:7] -&gt; C: a[7]<br>SV: a[1] -&gt; C: a[0], SV a[7] -&gt; C: a[6]<br></code></pre></td></tr></table></figure>
+<p>SV压缩数组被当做一维数组对待</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">//SV: a[l][m][n] -&gt; C: a[n+m*k+l*j*k]<br>bit[5:2]a; a[5]=1 a[4]=0 a[3]=1 a[2]=0; -&gt; C: a=10<br></code></pre></td></tr></table></figure>
+<p><strong>所有数据类型最终都等同于最多32位的压缩数组</strong> SV byte
+-&gt; C int，只使用低8位 <strong>C char数组无法映射到SV
+byte类型的非压缩数组</strong></p>
+<h4 id="混合压缩和非压缩的数组">5.3混合压缩和非压缩的数组</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">bit [3:0] Bytes [0:2] [0:5]<br></code></pre></td></tr></table></figure>
+<figure>
+<img src="DPI.assets/bfa1d0786bdd9d9435609c5734afe49a.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h4
+id="sv_packed_data_nelemswidth">5.4SV_PACKED_DATA_NELEMS（width）</h4>
+<p>该宏将位转换为元素数，在bit和word之间转换</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">include <span class="hljs-string">&quot;svdpi.h&quot;</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">packet_C</span><span class="hljs-params">(<span class="hljs-type">const</span> svLogicVecVal* packet)</span> &#123;<br>   <span class="hljs-type">const</span> <span class="hljs-type">unsigned</span>  elements=SV_PACKED_DATA_NELEMS(<span class="hljs-number">128</span>);<br>   svLogicVecVal mem[elements];<br><br>   <span class="hljs-built_in">memcpy</span>(mem,packet,<span class="hljs-keyword">sizeof</span>(mem));<br>   io_printf(“C: data from SV side\n<span class="hljs-string">&quot;);</span><br><span class="hljs-string">   for (unsigned i=0;i&lt; elements;i++)&#123;</span><br><span class="hljs-string">      io_printf(&quot;</span>mem[%<span class="hljs-number">2</span>d]=&#123;%<span class="hljs-number">4</span>x,%<span class="hljs-number">4</span>x&#125;\n<span class="hljs-string">&quot;,i,mem[i].aval,mem[i].bval);</span><br><span class="hljs-string">   &#125;    </span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">module test;<br>import &quot;DPI-C&quot; function void packet_C( input logic [127:0]);<br><br>   logic [127:0] packet;<br>   initial　begin<br>      packet=128&#x27;h1234_5678_aaaa_bbbb_cccc_dddd_eeee_ffff;<br>      $display(“SV: data sent to C side: %x&quot;,packet);<br>      packet_C(packet);<br>   end<br><br>endmodule<br></code></pre></td></tr></table></figure>
+<h4 id="bit和logic标量和矢量的使用">5.5bit和logic标量和矢量的使用</h4>
+<p>在svdpi.h的头文件中，有如下自定义类型声明：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">uint8_t</span> svScalar;<br><span class="hljs-keyword">typedef</span> svScalar svBit; <span class="hljs-comment">/* scalar */</span><br><span class="hljs-keyword">typedef</span> svScalar svLogic; <span class="hljs-comment">/* scalar */</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> svBitVecVal;<br><br>Typedef <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>     <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> aval;<br>     <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> bval;<br>&#125; svLogicVecVal;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;svdpi.h&gt;</span> </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">(svLogic a)</span>&#123; <br>	<span class="hljs-keyword">if</span>(a == <span class="hljs-number">0</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; a is 0 \n&quot;</span>);<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a == <span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; a is 1 \n&quot;</span>);<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a == <span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; a is x \n&quot;</span>);<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a == <span class="hljs-number">3</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; a is z \n&quot;</span>);<br>&#125; <br><span class="hljs-type">void</span>  <span class="hljs-title function_">displaylogicvec</span><span class="hljs-params">(svLogicVecVal *n)</span> &#123;<br>       <span class="hljs-built_in">printf</span> (<span class="hljs-string">&quot; data = %d control = %d\n&quot;</span>, n-&gt;aval, n-&gt;bval) ; <br>&#125;<br><br><span class="hljs-type">void</span>  <span class="hljs-title function_">displaybitvec</span><span class="hljs-params">(<span class="hljs-type">const</span> svBitVecVal *k)</span> &#123; <br>       <span class="hljs-built_in">printf</span> (<span class="hljs-string">&quot; data = %d\n &quot;</span>, k) ; <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="在dpi中使用压缩数组packed-arrays">5.6在DPI中使用压缩数组（Packed
+Arrays）</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;svdpi.h&quot;</span></span><br><span class="hljs-type">void</span> <span class="hljs-title function_">get_nums</span> <span class="hljs-params">(svLogicVecVal nums[<span class="hljs-number">10</span>])</span>&#123;<br>  <span class="hljs-type">int</span> i;<br>  <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++) &#123;<br>    nums[i] = i ;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">program main; <br>import &quot;DPI-C&quot; function void get_nums(output logic [15:0] nums[10]); <br>logic [15:0] nums[10]; <br><br>initial begin <br>	get_nums(nums); <br>	foreach (nums[i]) <br>		$display(i,nums[i]); <br>end <br>  <br>endprogram <br></code></pre></td></tr></table></figure>
+<h4 id="dpi中使用开放数组open-arrays">5.7DPI中使用开放数组（Open
+arrays）</h4>
+<p>压缩数组维度，非压缩维度或两个维度的大小可以保持未指定，这种情况称为开放数组（或未定义大小的数组）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">include &lt;stdio.h&gt;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;svdpi.h&gt;</span> </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">pass_array</span><span class="hljs-params">(<span class="hljs-type">const</span> svOpenArrayHandle dy_ar )</span> &#123; <br>  <span class="hljs-type">int</span> i; <br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Array Pointer is %x \n&quot;</span>, svGetArrayPtr(dyn_arr) ); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Lower index %d \n&quot;</span>, svLow(dyn_arr,<span class="hljs-number">1</span>)); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Higher index %d \n&quot;</span>, svHigh(dyn_arr, <span class="hljs-number">1</span>) ); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Left index %d \n&quot;</span>, svLeft(dyn_arr,<span class="hljs-number">1</span>)); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Right index %d \n&quot;</span>, svRight(dyn_arr, <span class="hljs-number">1</span>) ); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Length of array %d \n&quot;</span>, svLength(dyn_arr,<span class="hljs-number">1</span>) ); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Incremental %d \n&quot;</span>,svIncrement(dyn_arr,<span class="hljs-number">1</span>)); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Dimentions of Array %d \n&quot;</span>, svDimensions(dyn_arr )); <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; Size of Array in bytes %d \n&quot;</span>, svSizeOfArray(dyn_arr) ); <br>  <span class="hljs-keyword">for</span> (i= svRight(dy_ar,<span class="hljs-number">1</span>); i &lt;= svLeft(dy_ar,<span class="hljs-number">1</span>); i++) &#123; <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;C: %d %d \n&quot;</span>, i, *(<span class="hljs-type">int</span>*)svGetArrElemPtr1(dy_ar, i) ); <br>  &#125; <br>&#125; <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">program main; <br>int fxd_arr_1[8:3]; <br>int fxd_arr_2[12:1]; <br>import &quot;DPI-C&quot; context function void pass_array(input int dyn_arr[] ); <br><br>initial begin <br>	for (int i = 3; i&lt;=8 ; i++) begin <br>		fxd_arr_1[i] = $random(); <br>		$display(&quot;SV:fxd_arr_1 %0d %d &quot;,i, fxd_arr_1[i] ); <br>	end <br>	pass_array( fxd_arr_1 ); <br><br>	for (int i = 1; i&lt;=12 ; i++) begin <br>		fxd_arr_2[i] = $random() ; <br>		$display(&quot;SV: fxd_arr_2 %0d %d &quot;,i, fxd_arr_2[i] ); <br>	end <br>	pass_array( fxd_arr_2 ); <br><br>end <br>endprogram<br></code></pre></td></tr></table></figure>
+<ul>
+<li>Passing fxd_arr_1 to C Array Pointer is 80fdc58 Lower index 3 Higher
+index 8 Left index 8 Right index 3 Length of array 6 Incremental 1
+Dimentions of Array 1 Size of Array in bytes 24</li>
+<li>Passing fxd_arr_2 to C Array Pointer is 80fdc70 Lower index 1 Higher
+index 13 Left index 1 Right index 13 Length of array 13 Incremental -1
+Dimentions of Array 1 Size of Array in bytes 52</li>
+</ul>
+<p><strong>开放数组提供了一系列查询和访问数组的方法</strong></p>
+<table>
+<colgroup>
+<col style="width: 54%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>int svLeft(const svOpenArrayHandle h, int d);</td>
+<td>Left bound for dimension d</td>
+</tr>
+<tr class="even">
+<td>int svRight(h, d)</td>
+<td>Right bound for dimension d</td>
+</tr>
+<tr class="odd">
+<td>int svLow(h, d)</td>
+<td>Low bound for dimension d</td>
+</tr>
+<tr class="even">
+<td>int svHigh(h, d)</td>
+<td>High bound for dimension d</td>
+</tr>
+<tr class="odd">
+<td>int svIncrement(h, d)</td>
+<td>If left &gt;= right 1 else -1</td>
+</tr>
+<tr class="even">
+<td>int svSize(h, d)</td>
+<td>Number of elements in dimension d: svHigh−svLow+1</td>
+</tr>
+<tr class="odd">
+<td>int svDimensions(h)</td>
+<td>Number of dimensions in open array</td>
+</tr>
+<tr class="even">
+<td>int svSizeOfArray(h)</td>
+<td>Total size of array in bytes</td>
+</tr>
+<tr class="odd">
+<td>void *svGetArrayPtr(const svOpenArrayHandle h)</td>
+<td>storage for the entire array</td>
+</tr>
+<tr class="even">
+<td>void svGetArrElemPtr(const svOpenArrayHandle h, int i1, …)</td>
+<td>an element in the array</td>
+</tr>
+<tr class="odd">
+<td>void *svGetArrElemPtr1(h, i1)</td>
+<td>an element in a 1-D array</td>
+</tr>
+<tr class="even">
+<td>void *svGetArrElemPtr2(h, i1, i2)</td>
+<td>an element in a 2-D array</td>
+</tr>
+<tr class="odd">
+<td>void *svGetArrElemPtr3(h, i1, i2, i3)</td>
+<td>an element in a 3-D array</td>
+</tr>
+</tbody>
+</table>
+<h4 id="在dpi中使用结构体">5.8在DPI中使用结构体</h4>
+<p>在传递<code>struct</code>数据类型时，数据被打包到数组中并从SV传递到C，然后数组被解码回到C中的<code>struct</code>中</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdio.h&quot;</span> </span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;svdpi.h&quot;</span> </span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123; <br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span> <br>  <span class="hljs-type">int</span> a; <br>  <span class="hljs-type">int</span> b; <br>  <span class="hljs-type">char</span> c; <br>&#125; C_struct; <br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">void</span> <span class="hljs-title function_">export_func</span><span class="hljs-params">(svBitVecVal x[<span class="hljs-number">3</span>])</span>; <br><span class="hljs-type">void</span> <span class="hljs-title function_">import_func</span><span class="hljs-params">()</span> &#123; <br>  C_struct s_data; <br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> arr[<span class="hljs-number">3</span>]; <br><br>  s_data.a = <span class="hljs-number">51</span>; <br>  s_data.b = <span class="hljs-number">242</span>; <br>  s_data.c = <span class="hljs-number">35</span>; <br>  <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;C : s_data.a = %d\n&quot;</span>, s_data.a ); <br>  <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;C : s_data.b = %d\n&quot;</span>, s_data.b ); <br>  <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;C : s_data.c = %d\n&quot;</span>, s_data.c ); <br><br>  arr[<span class="hljs-number">0</span>] = s_data.a ; <br>  arr[<span class="hljs-number">1</span>] = s_data.b ; <br>  arr[<span class="hljs-number">2</span>] = s_data.c ; <br>  export_func(arr); <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">program main; <br><br>export &quot;DPI-C&quot; function export_func; <br>import &quot;DPI-C&quot; function void import_func(); <br><br>typedef struct packed&#123; <br>  int a; <br>  int b; <br>  byte c; <br>&#125; SV_struct; <br><br>function void export_func(input int arr[3]); <br>	SV_struct s_data; <br><br>  s_data.a = arr[0]; <br>  s_data.b = arr[1]; <br>  s_data.c = arr[2]; <br>  $display(&quot; SV: s_data.a = %0d&quot;, s_data.a ); <br>  $display(&quot; SV: s_data.b = %0d&quot;, s_data.b ); <br>  $display(&quot; SV: s_data.c = %0d \n&quot;, s_data.c ); <br>endfunction <br><br>initial begin <br>	import_func(); <br>end <br><br>endprogram<br></code></pre></td></tr></table></figure>
+<p>在SV和C/C++代码使用定义的未压缩的结构体数据类型</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdio.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;svdpi.h&quot;</span></span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br><br>	<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>		<span class="hljs-type">int</span> a;<br>		<span class="hljs-type">int</span> b;<br>	&#125;mystruct;<br>	<br>	<span class="hljs-type">void</span> <span class="hljs-title function_">mydisplay</span><span class="hljs-params">(mystruct *s1)</span>&#123;<br>		<span class="hljs-type">int</span> s2;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;C: gets values from SV, s1.a=%d, s1.b=%d\\\\\\\\\\\\\\\\n&quot;</span>,s1-&gt;a,s1-&gt;b);<br>		s1-&gt;a = <span class="hljs-number">100</span>;<br>		s1-&gt;b = <span class="hljs-number">200</span>;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;C: set values,  s1.a=%d, s1.b=%d\\\\\\\\\\\\\\\\n&quot;</span>,s1-&gt;a,s1-&gt;b);<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">program p1;<br>	typedef struct &#123;<br>		int a;<br>		int b;<br>	&#125; mystruct;<br><br>	import &quot;DPI-C&quot; function void mydisplay(inout mystruct s1);<br>	mystruct s1;<br>	initial begin<br>		s1.a =10;<br>		s1.b =20;<br>		$display(&quot;SV: s1.a=%0d,s1.b=%0d&quot;,s1.a,s1.b);<br>	<br>		mydisplay(s1);<br>		$display(&quot;SV after DPI call: s1.a=%0d,s1.b=%0d&quot;,s1.a,s1.b);<br>	end <br><br>endprogram<br></code></pre></td></tr></table></figure>
+<p>试着将上面例子中sv端结构体，改为packed类型，试试看C端打印信息会是什么样的？</p>
+<p>压缩的结构体是包含packed保留字的结构体。 在结构内，保证了位连续性。
+因此，成员也必须是矢量类型。 （不要混合real /
+shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局方面生成4个值，因此不要混用它们。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;svdpi.h&quot;</span></span><br><span class="hljs-keyword">extern</span> <span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(svBitVecVal*)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">struct_operation</span><span class="hljs-params">()</span>&#123;<br>   svBitVecVal rgb;<br>   svPutPartselBit(&amp;rgb,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">8</span>);<span class="hljs-comment">//b</span><br>   svPutPartselBit(&amp;rgb,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">8</span>);<span class="hljs-comment">//g</span><br>   svPutPartselBit(&amp;rgb,<span class="hljs-number">3</span>,<span class="hljs-number">16</span>,<span class="hljs-number">8</span>);<span class="hljs-comment">//r</span><br>   func(&amp;rgb);<br>   svBitVecVal blue=<span class="hljs-number">0</span>;<br>   svBitVecVal red=<span class="hljs-number">0</span>;<br>   svBitVecVal green=<span class="hljs-number">0</span>;<br>   svGetPartselBit(&amp;blue,&amp;rgb,<span class="hljs-number">0</span>,<span class="hljs-number">8</span>);<br>   svGetPartselBit(&amp;green,&amp;rgb,<span class="hljs-number">8</span>,<span class="hljs-number">8</span>);<br>   svGetPartselBit(&amp;red,&amp;rgb,<span class="hljs-number">16</span>,<span class="hljs-number">8</span>);<br><br>   io_printf(<span class="hljs-string">&quot;C: data from SV side. red %3d green %3d blue %3d.\\\\\\\\\\\\\\\\n&quot;</span>,red,green,blue);<br><br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">module root_scope;<br>    export &quot;DPI-C&quot; function func;<br>    import &quot;DPI-C&quot; context task struct_operation();<br><br>   typedef struct packed &#123;<br>      byte red;//MSB<br>      byte green;<br>      byte blue;//LSB ↑<br>   &#125; RGB_TYPE;<br><br>   function void func(inout RGB_TYPE A);<br>      $display(&quot;SV: data from C side. red=%3d blue=%3d green=%3d.&quot;,A.red,A.green,A.blue);<br>      A.blue=101;<br>      A.green=102;<br>      A.red=103;<br>      $display(&quot;SV: data change for C side read.&quot;);<br>          <br>   endfunction<br><br>   initial begin<br>      struct_operation();<br>   end<br><br>endmodule<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>基础课程</category>
