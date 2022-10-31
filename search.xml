@@ -9,15 +9,14 @@
 <ul>
 <li><p>用户如何获得Verilog描述的电路的内部<strong>数据结构信息</strong>?</p></li>
 <li><p>EDA仿真器在仿真verilog的tb时，FSDB波形是如何生成的？</p></li>
-<li><p><span
-class="math inline">\(display，\)</span>stop，$finish等系统函数,如何被不同EDA仿真器识别?</p></li>
+<li><p>$display，$stop，$finish等系统函数,如何被不同EDA仿真器识别?</p></li>
 </ul>
 <p>除了底层描述硬件的能力，Verilog同样应该具有与上层交互的能力，基于此<strong>Verilog
 PLI</strong>(Programming Language
 Interface)应运而生，它是一种从Verilog代码调用C/C++函数的机制。可以说PLI的出现是Verilog语言在硬件设计方面如此成功的原因之一。
-使用PLI，第三方公司和最终用户可以扩展商业Verilog仿真器的功能。在Verilog代码中调用的函数称为<strong>系统调用</strong>。内置系统函数的一个示例是<span
-class="math inline">\(display，\)</span>stop，$finish等。
+使用PLI，第三方公司和最终用户可以扩展商业Verilog仿真器的功能。在Verilog代码中调用的函数称为<strong>系统调用</strong>。内置系统函数的一个示例是$display，$stop，$finish等。
 PLI允许用户创建自定义系统调用，这是Verilog语法不允许我们做的事情。基于PLI其实我们可以做的更多：</p>
+<span id="more"></span>
 <ul>
 <li>功耗分析</li>
 <li>代码覆盖率工具</li>
