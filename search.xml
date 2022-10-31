@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DPI学习笔记</title>
     <url>/2022/10/30/DPI/</url>
     <content><![CDATA[<h1 id="dpi学习笔记">DPI学习笔记</h1>
@@ -344,7 +375,7 @@ SV上的名称相同，但在C上，使用别名C_task1和C_task2执行链接。
 <li>每个原型必须完全相同</li>
 <li>更好的方法是在包中定义一个导入</li>
 </ul>
-<h3 id="常用数据类型映射">常用数据类型映射</h3>
+<h3 id="常用数据类型映射">4.3常用数据类型映射</h3>
 <ul>
 <li>SV byte -&gt; C char</li>
 </ul>
@@ -381,7 +412,7 @@ SV上的名称相同，但在C上，使用别名C_task1和C_task2执行链接。
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">// SV<br>import &quot;DPI-C&quot; function void compute_chandle(output chandle result);<br>import &quot;DPI-C&quot; function chandle get_chandle();<br>import &quot;DPI-C&quot; function void call_chandle(input chandle i_value, output int result);<br></code></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">compute_chandle</span><span class="hljs-params">(<span class="hljs-type">void</span>** result)</span>;<br><span class="hljs-type">void</span>** <span class="hljs-title function_">get_chandle</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">call_chandle</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* i_value, <span class="hljs-type">int</span>* o_value)</span>;<br></code></pre></td></tr></table></figure>
 <ul>
-<li>SV bit -&gt; C bit</li>
+<li>SV bit -&gt; C svbit</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">// SV<br>import &quot;DPI-C&quot; function void compute_bit(input bit i_value, output bit result);<br>import &quot;DPI-C&quot; function bit get_bit(input bit i_value);<br></code></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">compute_bit</span><span class="hljs-params">(<span class="hljs-type">const</span> svBit i_value, svBit* result)</span>;<br>svBit <span class="hljs-title function_">get_bit</span><span class="hljs-params">(<span class="hljs-type">const</span> svBit i_value)</span>;<br></code></pre></td></tr></table></figure>
@@ -420,6 +451,15 @@ SV上的名称相同，但在C上，使用别名C_task1和C_task2执行链接。
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs systemverilog">// SV<br>`define BIT_ARRAY_SIZE 16<br>typedef struct &#123;<br>	byte aByte;<br>	int anInt;<br>	bit aBit;<br>	longint aLongInt;<br>	bit[`BIT_ARRAY_SIZE-1:0] aBitVector;<br>&#125; dpi_c_ex_s;<br>import &quot;DPI-C&quot; function void compute_struct(input dpi_c_ex_s i_value, output dpi_c_ex_s result);<br></code></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dpi_c_ex_s</span> &#123;</span><br>	<span class="hljs-type">char</span> aChar;<br>	<span class="hljs-type">int</span> anInt;<br>	svBit aBit;<br>	<span class="hljs-type">long</span> <span class="hljs-type">int</span> aLongInt;<br>	svBitVecVal aBitVector;<br>&#125; dpi_c_ex_s;<br><span class="hljs-type">void</span> <span class="hljs-title function_">compute_struct</span><span class="hljs-params">(<span class="hljs-type">const</span> dpi_c_ex_s* i_value, dpi_c_ex_s* output)</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="五dpi进阶">五、DPI进阶</h2>
+<h4 id="压缩数组packed-arrays">压缩数组（Packed arrays）</h4>
+<p>对于某些数据类型，你可能希望既可以访问整个值，也可以将其分成更小的元素。</p>
+<p>例如，有一个32位寄存器，有时你希望将其视为四个8位值，而在其他时候则视为单个无符号值。
+压缩数组被视为数组和单个值。
+与非压缩的数组不同，它存储为一组连续的没有未使用空间的位。可以方便地将其作为数组元素进行访问。</p>
+<p>压缩数组：在数据类型标识符名称之前声明的维度 bit [7：0] p; // packed
+array of scalar bit types bit [3:0] [7:0] bytes // 4 bytes packed into
+32-bits</p>
 ]]></content>
       <categories>
         <category>基础课程</category>
@@ -427,84 +467,6 @@ SV上的名称相同，但在C上，使用别名C_task1和C_task2执行链接。
       <tags>
         <tag>SystemVerilog</tag>
         <tag>DPI-C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git</title>
-    <url>/2022/10/19/Git/</url>
-    <content><![CDATA[<h1 id="git">Git</h1>
-<p>用git提交项目到gitee上时，执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>error: failed to push some refs to ‘xxxxx’ hint: Updates were
-rejected because the tip of your current branch is behind hint: its
-remote counterpart. Integrate the remote changes (e.g. hint: ‘git pull
-…’) before pushing again. hint: See the ‘Note about fast-forwards’ in
-‘git push --help’ for details.</p>
-<p>其实是Github端已经产生了commit没有同步到本地端</p>
-<p>1.使用强制push的方法： git push -u origin master -f
-//但这样会使远程修改丢失。 2。push前先将远程repository修改pull下来 git
-pull origin master git push -u origin master</p>
-<p>结果又报refusing to merge unrelated histories这个错，我······</p>
-<p>解决方案 执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/10/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
       </tags>
   </entry>
 </search>

@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-31 10:25:50" itemprop="dateModified" datetime="2022-10-31T10:25:50+08:00">2022-10-31</time>
+                <time title="修改时间：2022-10-31 10:58:58" itemprop="dateModified" datetime="2022-10-31T10:58:58+08:00">2022-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -318,7 +318,7 @@ PLI允许用户创建自定义系统调用，这是Verilog语法不允许我们�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-28 12:18:36" itemprop="dateModified" datetime="2022-10-28T12:18:36+08:00">2022-10-28</time>
+                <time title="修改时间：2022-10-31 10:27:38" itemprop="dateModified" datetime="2022-10-31T10:27:38+08:00">2022-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -348,178 +348,14 @@ PLI允许用户创建自定义系统调用，这是Verilog语法不允许我们�
 <p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
 <strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
 <strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/10/19/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/19/Git/" class="post-title-link" itemprop="url">Git</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-19 20:40:32 / 修改时间：15:26:19" itemprop="dateCreated datePublished" datetime="2022-10-19T20:40:32+08:00">2022-10-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="git">Git</h1>
-<p>用git提交项目到gitee上时，执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>error: failed to push some refs to ‘xxxxx’ hint: Updates were
-rejected because the tip of your current branch is behind hint: its
-remote counterpart. Integrate the remote changes (e.g. hint: ‘git pull
-…’) before pushing again. hint: See the ‘Note about fast-forwards’ in
-‘git push --help’ for details.</p>
-<p>其实是Github端已经产生了commit没有同步到本地端</p>
-<p>1.使用强制push的方法： git push -u origin master -f
-//但这样会使远程修改丢失。 2。push前先将远程repository修改pull下来 git
-pull origin master git push -u origin master</p>
-<p>结果又报refusing to merge unrelated histories这个错，我······</p>
-<p>解决方案 执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/10/19/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/19/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-19 20:40:32" itemprop="dateCreated datePublished" datetime="2022-10-19T20:40:32+08:00">2022-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-17 20:25:51" itemprop="dateModified" datetime="2022-10-17T20:25:51+08:00">2022-10-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -602,7 +438,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
