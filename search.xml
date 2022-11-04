@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git</title>
+    <url>/2022/10/19/Git/</url>
+    <content><![CDATA[<h1 id="git">Git</h1>
+<p>用git执行下面语句时报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
+<span id="more"></span>
+<p>1.使用强制push的方法，这样会使远程修改丢失</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
+<p>2.先将远程repository修改pull下来再push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p>结果又报refusing to merge unrelated histories</p>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DPI学习笔记</title>
     <url>/2022/10/30/DPI/</url>
     <content><![CDATA[<h1 id="dpi学习笔记">DPI学习笔记</h1>
@@ -559,57 +610,6 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       <tags>
         <tag>SystemVerilog</tag>
         <tag>DPI-C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git</title>
-    <url>/2022/10/19/Git/</url>
-    <content><![CDATA[<h1 id="git">Git</h1>
-<p>用git执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
-<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
-<span id="more"></span>
-<p>1.使用强制push的方法，这样会使远程修改丢失</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
-<p>2.先将远程repository修改pull下来再push</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>结果又报refusing to merge unrelated histories</p>
-<p>解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
       </tags>
   </entry>
 </search>
