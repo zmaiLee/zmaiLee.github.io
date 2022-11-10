@@ -582,6 +582,101 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </categories>
   </entry>
   <entry>
+    <title>IC后端</title>
+    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
+<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
+<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
+Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
+<span id="more"></span>
+<h2 id="pvt">PVT</h2>
+<p>Process、Voltage、Temperature</p>
+<h2 id="multi-channel-library">multi-channel library</h2>
+<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
+SVTmax，性能增加20%，静态功耗增加80%。</p>
+<h2 id="t9t12t">7T/9T/12T</h2>
+<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
+<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
+blocks）、high-density（for highest density in GPU
+blocks）、high-speed（for highest performance in CPU blocks）。</p>
+<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
+pitch=minSpacing+minWidth。</p>
+<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
+<figure>
+<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
+<figcaption aria-hidden="true">这里写图片描述</figcaption>
+</figure>
+<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
+<p><img src="IC后端.assets/SouthEast-16679659616183.png"
+alt="img" /><strong>HLP</strong>，high performance low power；
+<strong>HPC</strong>，high performace compact。
+28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
+<figure>
+<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SynopsysEDA</title>
+    <url>/2022/11/10/SynopsysEDA/</url>
+    <content><![CDATA[<ul>
+<li><p><strong>Design Compiler</strong> for the synthesis,</p></li>
+<li><p><strong>ICC Compiler</strong> for the layout</p></li>
+<li><p><strong>PrimeTime PX</strong> for estimating the power
+consumption</p></li>
+</ul>
+<span id="more"></span>
+<h1 id="第一章design-compiler使用">第一章：Design Compiler使用</h1>
+<h2 id="综合">1.1综合</h2>
+<p>Systhesis = Translation(转换) + G ate M apping(映射) + Logic O ptim
+ization(优化)</p>
+<ul>
+<li>Tranlation：把电路转换为ED A 内部数据</li>
+<li>Mapping：将门级网表映射到晶圆厂给定的工艺库上，形成对应的门级网表</li>
+<li>Optimization：
+根据工作频率、面积、功耗来对电路进行优化，推断出满足要求的门级网表</li>
+</ul>
+<h2 id="逻辑综合流程">1.2逻辑综合流程</h2>
+<p>1.读取库和设计：包括目标库、链接库、符号库等</p>
+<p>2.添加时序约束和设计规则约束：包括环境约束、面积约束、时序约束等</p>
+<p>3.综合RTL设计：将RTL代码转换为用标准单元表示的门级网表</p>
+<p>4.分析结果</p>
+<p>5.输出设计数据</p>
+<h2 id="command">1.3Command</h2>
+<h3 id="打开-d-c">打开 D C</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">design_vision //GUI界面<br>dc_shell -f syn.tcl | <span class="hljs-built_in">tee</span> -i syn.log //批量模式(batch mode)<br>dc_shell //命令行模式<br></code></pre></td></tr></table></figure>
+<h3 id="读取verilog设置顶层">读取verilog，设置顶层</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">read_verilog xxx.v<br>current_design TOP(设置最顶层的模块)<br></code></pre></td></tr></table></figure>
+<h3 id="设置路径search_path">设置路径：search_path</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">set_app_var search_path <span class="hljs-string">&quot;<span class="hljs-variable">$search_path</span> ./rtl&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="建立库library_setup">建立库：library_setup</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//target library(工艺库) <br>set_app_var target_library xxx.db<br><br>//link library(链接库) <br>set_app_var link_library xxx.db<br>set_app_var link_library <span class="hljs-string">&quot;<span class="hljs-variable">$target_library</span>&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="约束">约束</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//时序约束<br>create_clock -period 2 [get_ports CLK] //clock period 2ns<br>set_clock uncertainty -setup 0.3 [get_ports CLK] //clock skew<br>set_clock transition -max 0.15 [get_ports CLK] //CLK跳转最大时间为0.15ns<br>set_clock_latency -max 0.7 [get_ports CLK] //晶振到CLK端口所需最大时间为0.7ns<br>set_input_delay -max 0.6 -clock CLK [get_ports A] //A端口数据到寄存器输入时延<br>set_out_put -max 0.8 -clock CLK [get_ports B] //寄存器输出到B端口的时延<br><br>//环境约束<br>set_input_transition 0.12 [get_ports A] //输入端口A的电平跳变时间0.12ns<br>set_load [<span class="hljs-built_in">expr</span>&#123;30.0/1000&#125;] [get_ports B]<br></code></pre></td></tr></table></figure>
+<h3 id="编译">编译</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">compile<br>compile_utra<br></code></pre></td></tr></table></figure>
+<h3 id="输出信息">输出信息</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">report_clock<br>report_timing<br>write_sdc xxx.sdc//输出约束条件<br>write_sdf xxx.sdf//输出时延信息<br>write_file -format verilog -output xxx_netlist.v//输出网表文件<br></code></pre></td></tr></table></figure>
+<h1 id="第二章icc-compiler">第二章：ICC Compiler</h1>
+<h1 id="第二章primetime-px">第二章：PrimeTime PX</h1>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>EDA</tag>
+        <tag>数字IC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>智能计算系统</title>
     <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
