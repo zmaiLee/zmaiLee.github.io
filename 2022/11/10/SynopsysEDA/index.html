@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/webp-16681351791993.webp">
 <meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/webp-16681352041766.webp">
 <meta property="article:published_time" content="2022-11-10T07:20:14.357Z">
-<meta property="article:modified_time" content="2022-11-11T03:38:06.049Z">
+<meta property="article:modified_time" content="2022-11-11T12:36:21.917Z">
 <meta property="article:author" content="zmaiLee">
 <meta property="article:tag" content="EDA">
 <meta property="article:tag" content="数字IC">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-11 11:38:06" itemprop="dateModified" datetime="2022-11-11T11:38:06+08:00">2022-11-11</time>
+                <time title="修改时间：2022-11-11 20:36:21" itemprop="dateModified" datetime="2022-11-11T20:36:21+08:00">2022-11-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,6 +287,7 @@ ization(优化)</p>
 <p>4.分析结果</p>
 <p>5.输出设计数据</p>
 <h2 id="command">1.3Command</h2>
+<p><strong>所有命令均可以使用man进行查询</strong></p>
 <h3 id="启动-dc">启动 DC</h3>
 <p>DC在启动时会自动在启动目录下创建“command.log”和“view_command.log”两个文件，用于记录用户在使用DC时所执行的命令及设置的参数。还会创建“filenames.log”，用于记录DC访问过的目录，包括库、源文件等，退出DC时会被自动删除。启动dc_shell只产生“command.log”日志文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">dc_shell   <span class="hljs-comment">#命令行</span><br>dc_shell -f syn.tcl | <span class="hljs-built_in">tee</span> -i syn.log <span class="hljs-comment">#批量模式(batch mode)</span><br>design_analyzer <span class="hljs-comment">#图形，基于dc_shell</span><br>dc_shell_t <span class="hljs-comment">#命令行</span><br>  <span class="hljs-comment"># 以tcl为基础；</span><br>  <span class="hljs-comment"># 在该脚本语言上扩展了实现DC的命令；</span><br>  <span class="hljs-comment"># 也可直接调用tcl脚本“dc_shell_t -f script”来执行。 `推荐`</span><br>design_vision <span class="hljs-comment">#图形，基于tcl</span><br><span class="hljs-built_in">source</span> dc.tcl  <span class="hljs-comment">#启动后可以运行tcl脚本</span><br></code></pre></td></tr></table></figure>
@@ -321,6 +322,7 @@ Tree乘法器等等，一般这个库不用载入，DC会自动载入Synopsis的
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#target library(工艺库) </span><br>set_app_var target_library xxx.db<br><span class="hljs-built_in">set</span> target_library  xxx.db<br><br><span class="hljs-comment">#link library(链接库) </span><br>set_app_var link_library xxx.db<br>set_app_var link_library <span class="hljs-string">&quot;<span class="hljs-variable">$target_library</span>&quot;</span><br><span class="hljs-built_in">set</span> link_library   [ list * xxx.db Lib/dw_foundation.sldb]<br>	<span class="hljs-comment"># “*”号表示如果设计中某个模块找不到对应的库，那么就现在DC内存中搜索</span><br><span class="hljs-built_in">set</span> symbol_library  <span class="hljs-string">&quot;xxx/xxx.sdb&quot;</span><br></code></pre></td></tr></table></figure>
 <p>gtech.db和standard.db是synopsys提供的默认库，分别包含了GTECH逻辑单元和基本的DesignWare
 IP模块。在使用read命令时，这些库都被自动地加载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">elaborate design_name<br>      [-library library_name | -work library_name]<br>      [-architecture arch_name]<br>      [-parameters param_list]<br>      [-file_parameters file_list]<br>      [-update]<br>      [-ref]<br></code></pre></td></tr></table></figure>
 <h3 id="时钟约束">时钟约束</h3>
 <h4 id="creat_clock">creat_clock</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">create_clock -period 2 [get_ports CLK] <span class="hljs-comment">#clock period 2ns</span><br>creat_clock	-period	period_value		<span class="hljs-comment">#定义时钟周期，如-period 10</span><br>			[source_objects]			<span class="hljs-comment">#标识时钟源，如[get_ports A]</span><br>			[-name clock_name]			<span class="hljs-comment">#命名时钟，如-name CLK</span><br>			[-waveform edge_list]		<span class="hljs-comment">#指定占空比，如-waveform &#123;0 5&#125;</span><br>			[-add]						<span class="hljs-comment">#多源时钟，加此开关且各源时钟不同名</span><br>			[-comment comment_string]	<span class="hljs-comment">#注释时钟，字符串纪录时钟信号文档信息</span><br></code></pre></td></tr></table></figure>

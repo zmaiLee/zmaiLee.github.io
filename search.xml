@@ -21,6 +21,49 @@
       </categories>
   </entry>
   <entry>
+    <title>IC后端</title>
+    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
+<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
+<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
+Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
+<span id="more"></span>
+<h2 id="pvt">PVT</h2>
+<p>Process、Voltage、Temperature</p>
+<h2 id="multi-channel-library">multi-channel library</h2>
+<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
+SVTmax，性能增加20%，静态功耗增加80%。</p>
+<h2 id="t9t12t">7T/9T/12T</h2>
+<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
+<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
+blocks）、high-density（for highest density in GPU
+blocks）、high-speed（for highest performance in CPU blocks）。</p>
+<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
+pitch=minSpacing+minWidth。</p>
+<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
+<figure>
+<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
+<figcaption aria-hidden="true">这里写图片描述</figcaption>
+</figure>
+<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
+<p><img src="IC后端.assets/SouthEast-16679659616183.png"
+alt="img" /><strong>HLP</strong>，high performance low power；
+<strong>HPC</strong>，high performace compact。
+28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
+<figure>
+<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DPI学习笔记</title>
     <url>/2022/10/30/DPI/</url>
     <content><![CDATA[<h1 id="dpi学习笔记">DPI学习笔记</h1>
@@ -582,39 +625,27 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </tags>
   </entry>
   <entry>
-    <title>IC后端</title>
-    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
-<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
-<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
-Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
 <span id="more"></span>
-<h2 id="pvt">PVT</h2>
-<p>Process、Voltage、Temperature</p>
-<h2 id="multi-channel-library">multi-channel library</h2>
-<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
-SVTmax，性能增加20%，静态功耗增加80%。</p>
-<h2 id="t9t12t">7T/9T/12T</h2>
-<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
-<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
-blocks）、high-density（for highest density in GPU
-blocks）、high-speed（for highest performance in CPU blocks）。</p>
-<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
-pitch=minSpacing+minWidth。</p>
-<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
-<figure>
-<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
-<figcaption aria-hidden="true">这里写图片描述</figcaption>
-</figure>
-<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
-<p><img src="IC后端.assets/SouthEast-16679659616183.png"
-alt="img" /><strong>HLP</strong>，high performance low power；
-<strong>HPC</strong>，high performace compact。
-28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
-<figure>
-<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
 ]]></content>
       <categories>
         <category>基础课程</category>
@@ -651,6 +682,7 @@ ization(优化)</p>
 <p>4.分析结果</p>
 <p>5.输出设计数据</p>
 <h2 id="command">1.3Command</h2>
+<p><strong>所有命令均可以使用man进行查询</strong></p>
 <h3 id="启动-dc">启动 DC</h3>
 <p>DC在启动时会自动在启动目录下创建“command.log”和“view_command.log”两个文件，用于记录用户在使用DC时所执行的命令及设置的参数。还会创建“filenames.log”，用于记录DC访问过的目录，包括库、源文件等，退出DC时会被自动删除。启动dc_shell只产生“command.log”日志文件。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">dc_shell   <span class="hljs-comment">#命令行</span><br>dc_shell -f syn.tcl | <span class="hljs-built_in">tee</span> -i syn.log <span class="hljs-comment">#批量模式(batch mode)</span><br>design_analyzer <span class="hljs-comment">#图形，基于dc_shell</span><br>dc_shell_t <span class="hljs-comment">#命令行</span><br>  <span class="hljs-comment"># 以tcl为基础；</span><br>  <span class="hljs-comment"># 在该脚本语言上扩展了实现DC的命令；</span><br>  <span class="hljs-comment"># 也可直接调用tcl脚本“dc_shell_t -f script”来执行。 `推荐`</span><br>design_vision <span class="hljs-comment">#图形，基于tcl</span><br><span class="hljs-built_in">source</span> dc.tcl  <span class="hljs-comment">#启动后可以运行tcl脚本</span><br></code></pre></td></tr></table></figure>
@@ -685,6 +717,7 @@ Tree乘法器等等，一般这个库不用载入，DC会自动载入Synopsis的
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#target library(工艺库) </span><br>set_app_var target_library xxx.db<br><span class="hljs-built_in">set</span> target_library  xxx.db<br><br><span class="hljs-comment">#link library(链接库) </span><br>set_app_var link_library xxx.db<br>set_app_var link_library <span class="hljs-string">&quot;<span class="hljs-variable">$target_library</span>&quot;</span><br><span class="hljs-built_in">set</span> link_library   [ list * xxx.db Lib/dw_foundation.sldb]<br>	<span class="hljs-comment"># “*”号表示如果设计中某个模块找不到对应的库，那么就现在DC内存中搜索</span><br><span class="hljs-built_in">set</span> symbol_library  <span class="hljs-string">&quot;xxx/xxx.sdb&quot;</span><br></code></pre></td></tr></table></figure>
 <p>gtech.db和standard.db是synopsys提供的默认库，分别包含了GTECH逻辑单元和基本的DesignWare
 IP模块。在使用read命令时，这些库都被自动地加载。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">elaborate design_name<br>      [-library library_name | -work library_name]<br>      [-architecture arch_name]<br>      [-parameters param_list]<br>      [-file_parameters file_list]<br>      [-update]<br>      [-ref]<br></code></pre></td></tr></table></figure>
 <h3 id="时钟约束">时钟约束</h3>
 <h4 id="creat_clock">creat_clock</h4>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">create_clock -period 2 [get_ports CLK] <span class="hljs-comment">#clock period 2ns</span><br>creat_clock	-period	period_value		<span class="hljs-comment">#定义时钟周期，如-period 10</span><br>			[source_objects]			<span class="hljs-comment">#标识时钟源，如[get_ports A]</span><br>			[-name clock_name]			<span class="hljs-comment">#命名时钟，如-name CLK</span><br>			[-waveform edge_list]		<span class="hljs-comment">#指定占空比，如-waveform &#123;0 5&#125;</span><br>			[-add]						<span class="hljs-comment">#多源时钟，加此开关且各源时钟不同名</span><br>			[-comment comment_string]	<span class="hljs-comment">#注释时钟，字符串纪录时钟信号文档信息</span><br></code></pre></td></tr></table></figure>
@@ -791,6 +824,65 @@ references”进行综合，产生没有意义的结果。</p>
       <tags>
         <tag>EDA</tag>
         <tag>数字IC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梅森旋转算法</title>
+    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
+<p>梅森数：形如<span
+class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
+<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
+<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
+<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
+<span id="more"></span>
+<p>本原多项式：一个 m 阶的不可约多项式 <span
+class="math inline">\(\large f(x)\)</span>，如果 <span
+class="math inline">\(\large f(x)\)</span> 整除 <span
+class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
+class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
+<figure>
+<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
+<figcaption aria-hidden="true">查看源图像</figcaption>
+</figure>
+<p>线性反馈移位寄存器LFSR：</p>
+<figure>
+<img
+src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png"
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
+class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<figure>
+<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>梅森素数</tag>
+        <tag>伪随机数</tag>
       </tags>
   </entry>
   <entry>
@@ -1959,96 +2051,6 @@ role="doc-backlink">↩︎</a></p></li>
 ]]></content>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梅森旋转算法</title>
-    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
-<p>梅森数：形如<span
-class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
-<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
-<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
-<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
-<span id="more"></span>
-<p>本原多项式：一个 m 阶的不可约多项式 <span
-class="math inline">\(\large f(x)\)</span>，如果 <span
-class="math inline">\(\large f(x)\)</span> 整除 <span
-class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
-class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
-<figure>
-<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
-<figcaption aria-hidden="true">查看源图像</figcaption>
-</figure>
-<p>线性反馈移位寄存器LFSR：</p>
-<figure>
-<img
-src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png"
-alt="在这里插入图片描述" />
-<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
-</figure>
-<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
-class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<figure>
-<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>梅森素数</tag>
-        <tag>伪随机数</tag>
       </tags>
   </entry>
 </search>
