@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/webp.webp">
 <meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/webp-16681351791993.webp">
 <meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/webp-16681352041766.webp">
+<meta property="og:image" content="https://zmailee.github.io/2022/11/10/SynopsysEDA/SynopsysEDA.assets/Power%20Analysis%20Flow.png">
 <meta property="article:published_time" content="2022-11-10T07:20:14.357Z">
-<meta property="article:modified_time" content="2022-11-12T09:23:08.035Z">
+<meta property="article:modified_time" content="2022-11-13T11:07:57.080Z">
 <meta property="article:author" content="zmaiLee">
 <meta property="article:tag" content="EDA">
 <meta property="article:tag" content="数字IC">
@@ -233,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-12 17:23:08" itemprop="dateModified" datetime="2022-11-12T17:23:08+08:00">2022-11-12</time>
+                <time title="修改时间：2022-11-13 19:07:57" itemprop="dateModified" datetime="2022-11-13T19:07:57+08:00">2022-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -415,7 +416,39 @@ id="set_max_dynamicleakage_power指定动态静态功耗">set_max_dynamic/leakag
 <h3 id="编译">编译</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">compile<br>compile_utra<br>compile -exact_map //综合优化<br></code></pre></td></tr></table></figure>
 <h3 id="输出信息">输出信息</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">report_clock<br>report_timing &gt; ./timing.rpt<br>report_area &gt; ./area.rpt<br>report_constraint -all_violators &gt; ./constraint.rpt<br>report_qor<br>write_sdc xxx.sdc <span class="hljs-comment">#输出约束条件</span><br>write_sdf xxx.sdf <span class="hljs-comment">#输出时延信息</span><br>write_file -format verilog -output xxx_netlist.v <span class="hljs-comment">#输出网表文件</span><br>write -format verilog -hierarchy -output xxx_netlist.v<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">report_clock<br>report_timing &gt; ./timing.rpt<br>report_area &gt; ./area.rpt<br>report_constraint -all_violators &gt; ./constraint.rpt<br>report_qor<br>write_sdc xxx.sdc <span class="hljs-comment">#输出约束条件</span><br>write_sdf xxx.sdf <span class="hljs-comment">#输出时延信息</span><br>write_file -format verilog -output xxx_netlist.v <span class="hljs-comment">#输出网表文件</span><br>write -format verilog -hierarchy -output xxx_netlist.v<br>write_parasitics <span class="hljs-comment">#save parasitics in SPEF format or as a Tcl that contains set_load and set_resistance commands.</span><br></code></pre></td></tr></table></figure>
+<p>​</p>
+<p>SYNTAX status write_parasitics [-output file_name] [-format reduced]
+[-min] [-ratio ratio_number] [-script]</p>
+<p>Data Types file_name string ratio_number float</p>
+<p>ARGUMENTS -output file_name Specifies the name of the output file to
+which parasitics for the current design are written.</p>
+<pre><code>          If you do not specify this option, the parasitics are written to
+          a file named design_name.format_name, where design_name  is  the
+          name of the current design.
+
+   -format reduced
+          Specifies to write the parasitics in reduced SPEF format.
+
+   -min   Writes  parasitics  for  the  minimum  operating  condition.  By
+          default, the parasitics are written for  the  maximum  operating
+          conditions.
+
+   -ratio ratio_number
+          Specifies  the ratio used when writing the pie model description
+          for every driver in the net.  The ratio specified by  this  com-
+          mand  must  be  in the range 0.0 - 1.0.  By default, the nets in
+          reduced format are generated with a ratio  equal  to  0.5.   The
+          capacitor  closest  to the driver is 0.5 (the ratio value) times
+          the total net capacitance in the pie model description.
+
+   -script
+          Writes out set_load and set_resistance commands  instead  of  an
+          SPEF file.</code></pre>
+<p>DESCRIPTION This command writes parasitics for the current design to
+a disk file.</p>
+<p>Multicorner-Multimode Support This command uses information from all
+active scenarios.</p>
 <p>在面积报告里面没有线网所消耗的面积，这是因为我们之前没有规定综合使用的线网模型，如果我们设置了wire_load那么最后的area报告里面也会有布线所花的面积。</p>
 <h3 id="demo">demo</h3>
 <p>link是Design Compiler ”resolve”设计中例化模块的过程。Design
@@ -434,9 +467,172 @@ consumption</li>
 <li><p>静态时序分许：通过提取整个电路的所有时序路径，检查建立时间和保持时间是否满足要求。分析执行速度快，不需要测试向量，适合进行大规模集成电路的验证，可节约大量时间。</p></li>
 </ul>
 <p>随着设计尺寸和复杂性的增加，动态仿真所需时间及工作量都难以承受，在设计流程中成为一个严重的瓶颈，促使时序分析技术从动态向静态迁移。并由此诞生了静态时序分析工具。</p>
-<p>3.2</p>
+<h2 id="pt命令">3.2PT命令</h2>
 <p>PT的输入可以使db、Verilog、VHDL或EDIF格式的文件。</p>
 <p>read_ db -netlist_ _only <design name> .db <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs tcl">read_db -netlist_only &lt;design name&gt;.db  #db <span class="hljs-keyword">format</span><br>read_verilog &lt;design name&gt;.sv   #verilog <span class="hljs-keyword">format</span><br>read_vhdl &lt;design name&gt;.svhd    #vhdl <span class="hljs-keyword">format</span><br>read_edif &lt;design name&gt;.edf     #edif <span class="hljs-keyword">format</span><br><br><br>create_clock -period <span class="hljs-number">20</span> -waveform &#123;<span class="hljs-number">0</span> <span class="hljs-number">10</span>&#125; [<span class="hljs-keyword">list</span> CLK]  # 创建时钟<br>set_clock_latency <span class="hljs-number">2.5</span> [get_clocks CLK]<br>set_clock_transition <span class="hljs-number">0.2</span> [get_clocks CLK]<br><br><span class="hljs-comment">#插入时钟树之后布图工具通常接着要进行传播时钟，网表被带回PT进行STA</span><br><span class="hljs-comment">#时钟通过网表中的整个时钟树网络传播以确定时钟延迟。换言之，对通过时钟树中每个单元的延迟和单元间的互连线延迟都要加以考虑</span><br>set_propagated_clock [get_clocks CLK]<br>set_clock_uncertainty <span class="hljs-number">0.5</span> -from [get_clocks CLK1] -to [get_clocks CLK2]<br><br><span class="hljs-comment">#定义生成时钟与源时钟间的关系</span><br><span class="hljs-comment">#在布图后时序分析中，插入了时钟树并通过时钟树缓冲器传播时钟信号来计算时钟延迟。用户选择定义独立于时钟源的分频时钟（通过在分频逻辑子模块的输出引脚上定义时钟）。然而，这个方法迫使设计人员从时钟源到分频逻辑模块的时钟延迟手动添加从分频模块到设计的其余部分的时钟树延迟。通过下述命令建立分频时钟，则这两个时钟在布图前和布图后阶段都保持同步。</span><br>create_generated_clock -name &lt;divided <span class="hljs-keyword">clock</span> name&gt;<br>										 -<span class="hljs-keyword">source</span> &lt;primary <span class="hljs-keyword">clock</span> name&gt;<br>                       -divide_by &lt;value&gt;<br>                       &lt;pin name&gt;<br>                       <br><span class="hljs-comment"># PT允许对门控时钟指定建立/保持要求</span><br>set_clock_gating_check -setup &lt;value&gt;<br>										 -hold &lt;value&gt;<br>								     &lt;object <span class="hljs-keyword">list</span>&gt;<br><br></code></pre></td></tr></table></figure></p>
+<h2 id="primetime-px">3.3PrimeTime PX</h2>
+<p>PT如果进行功耗分析需要额外的PTPX的licence，可以通过命令打开：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_app_var power_enable_analysis true #默认为false<br></code></pre></td></tr></table></figure>
+<p><strong>在EDA工具的安装目录底下有Lab教程和相关设计文件</strong></p>
+<figure>
+<img src="SynopsysEDA.assets/Power%20Analysis%20Flow.png"
+alt="Power Analysis Flow" />
+<figcaption aria-hidden="true">Power Analysis Flow</figcaption>
+</figure>
+<p><strong>Power = Leakage Power + Dynamic Power(internal power and
+switching power)</strong></p>
+<p><strong>动态功耗</strong>：电容充放电引起的功耗、短路功耗。</p>
+<p><strong>静态功耗</strong>：主要为泄露电流和亚阈值电流引起的功耗。</p>
+<p>PTPX支持两种功耗分析模式： <strong>averaged
+mode</strong>和<strong>time-based mode</strong>。</p>
+<h3 id="命令">命令</h3>
+<p><strong>Setting the Concurrent Multirail Power Analysis
+Mode</strong></p>
+<p>PTPX supports concurrent power analysis on multiple power rails. This
+feature improves the performance because, a single run of the
+update_power command analyzes multiplepower rails or power supply nets
+in the UPF mode, simultaneously. The concurrent multirail power analysis
+is supported in both averaged and time-based power analysis modes. When
+you run the update_power command with this variable set to true, the
+tool simultaneously updates all the valid power rails in the design.</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">set</span> power_enable_multi_rail_analysis true<br></code></pre></td></tr></table></figure>
+<p><strong>Estimating Clock Network Power Consumption</strong></p>
+<p>You can estimate the additional power incurred by a clock network
+prior to its insertion. You enable this feature with the
+estimate_clock_network_power command, which provides a more accurate
+analysis of the total design power when clock network synthesis has not
+yet been performed. Before issuing the estimate_clock_network_power
+command, you must identify the design clocks.</p>
+<p>If you want PrimeTime PX to consider clock-gating cells to be part of
+the clock network, set the</p>
+<p>power_clock_network_include_clock_gating_network</p>
+<p>variable to true. The default value of this variable is false.</p>
+<p>The estimate_clock_network_power command is supported only in the
+averaged power analysis mode.</p>
+<h3 id="averaged-power-analysis"><strong>Averaged Power
+Analysis</strong></h3>
+<p>For purely averaged power analysis, PrimeTime PX supports propagation
+of switching activity based on <strong>defaults</strong>,
+<strong>user-defined switching</strong>, or switching derived from an
+<strong>HDL simulation</strong> (either RTL or gate level).</p>
+<p>（1）有波形文件：最理想的情况是能提供后仿产生的VCD/SAIF文件，通过<strong>read_vcd</strong>/<strong>read_saif</strong>将真实的翻转率反标到Net上，然后通过<strong>report_switching_activity</strong>检查反标率，最后<strong>report_power</strong>报功耗值。</p>
+<p>（2）人为设置翻转率：根据以往项目的经验值，通过<strong>set_switching_activity/set_case_analysis</strong>来设置register，clock
+gate以及memory/blackbox的翻转率</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tcl">reset_switching_activity # 重置之前设置的翻转率<br><br><span class="hljs-comment"># 设置register翻转率</span><br>set_switching_activity [get_pins -of_object [all_registers]] -toggle_rate <span class="hljs-number">0.5</span> -static_probability <span class="hljs-number">0.5</span> -base_clock * <br><span class="hljs-comment"># 设置blockboxs上的翻转率</span><br>set_switching_activity -type black_boxes -toggle_rate <span class="hljs-number">0.1</span> -static_probability <span class="hljs-number">0.5</span> -base_clock * -hierarchy <br>set_switching_activity -toggle_rate <span class="hljs-number">0.5</span> -static_probability <span class="hljs-number">0.5</span> -base_clock * [remove_from_collection [all_inputs] [get_port -filter <span class="hljs-string">&quot;is_clock_used_as_clock == true&quot;</span>]] # 设置Input上的翻转率<br>set_switching_activity [get_pins -of_object [get_cells -hierarchical * -filter <span class="hljs-string">&quot;ref_name =~ *ICG*&quot;</span>]] -toggle_rate <span class="hljs-number">0.5</span> -static_probability <span class="hljs-number">0.5</span> -base_clock * （设置<span class="hljs-keyword">clock</span> gate上的翻转率）<br>set_case_analysis <span class="hljs-number">1</span> [get_ports *reset*] # 使reset信号不翻转，准静态信号<br>set_switching_activity -toggle_rate <span class="hljs-number">0</span> -static_probability <span class="hljs-number">1</span> -base_clock * [get_port *reset*]<br></code></pre></td></tr></table></figure>
+<p>（3）<strong>Vector-Free Power Analysis：</strong>使用默认翻转率</p>
+<p>The default value of the static probability and toggle rate are 0.5
+and 0.1. If required, you can change thedefault toggle rate. This usage
+model is useful for quick power estimation.</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_app_var power_default_toggle_rate <span class="hljs-number">0.5</span> # 默认值为 <span class="hljs-number">0.1</span><br>set_app_var power_default_static_probability <span class="hljs-number">0.5</span> # 默认值为<span class="hljs-number">0.5</span><br>set_app_var power_default_toggle_rate_reference_clock fastest # 默认值related<br></code></pre></td></tr></table></figure>
+<p>The following commands and variables affect the default togglerates
+used by the tool:</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tcl">create_clock<br><span class="hljs-keyword">set</span> power_default_toggle_rate<br><span class="hljs-keyword">set</span> power_default_static_probability<br><span class="hljs-keyword">set</span> power_default_toggle_rate_reference_clock<br>set_switching_activity<br>reset_switching_activity<br>set_case_analysis<br></code></pre></td></tr></table></figure>
+<p>在PT中report_switching_activity会报出所有Nets的switching
+activity来源的统计数据：</p>
+<p><strong>From Activity File：</strong> The switching activity value is
+from a SAIF or VCD file，
+在read_vcd或者read_saif时要注意通过<strong>-stripe_path</strong>选项指定合适的hierarchical层次，否则activity反标不上。</p>
+<p><strong>From SSA： </strong>The switching activity value set by using
+the <strong>set_switching_activity</strong> command.</p>
+<p><strong>From SCA ：</strong>The switching activity set by using the
+<strong>set_case_analysis</strong> command.</p>
+<p><strong>From clock ：</strong>The switching activity set by using the
+create_clock command.</p>
+<p><strong>Default：</strong>对于用户没有指定的翻转率的Net，使用默认的翻转率</p>
+<p><strong>Propagated：</strong>The switching activity from
+<strong>propagation engine</strong></p>
+<p><strong>Implied：</strong>Switching activity from simple automatic
+propagation of activity <strong>through buffers and
+inverters</strong></p>
+<p><strong>Not
+Annotated：</strong>没有反标翻转率的Net，需要特别注意，一般要求在update_power或者report_power之后，这部分占比应该很低甚至为0，如果有大量没有翻转的Net，会影响report_power的准确率，可以通过以下命令打印出来分析：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">report_switching_activity -list_not_annotated    <br>get_switching_activity ...<br></code></pre></td></tr></table></figure>
+<h3 id="averaged-power-analysis-script">Averaged Power Analysis
+Script</h3>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment"># Set the Power Analysis Mode</span><br><span class="hljs-keyword">set</span> power_enable_analysis TRUE<br><span class="hljs-keyword">set</span> power_analysis_mode averaged<br><br><span class="hljs-comment"># Read and link the Gate Level Netlist</span><br><span class="hljs-keyword">set</span> search_path <span class="hljs-string">&quot;../src/hdl/gate ../src/lib/snps . &quot;</span><br><span class="hljs-keyword">set</span> link_library <span class="hljs-string">&quot; * core_typ.db&quot;</span><br>read_verilog mac.vg<br>current_design mac<br>link<br><br><span class="hljs-comment"># Read SDC and set transition time or annotate parasitics</span><br>read_sdc ../src/hdl/gate/mac.sdc<br>set_disable_timing [get_lib_pins ssc_core_typ/*/G]<br>read_parasitics ../src/annotate/mac.spef.gz<br><br><span class="hljs-comment"># check, update, or report the timing</span><br>check_timing<br>update_timing<br>report_timing<br><br><span class="hljs-comment"># read switching activity file</span><br>read_vcd -strip_path tb/macinst ../sim/vcd.dump.gz<br>report_switching_activity -list_not_annotated<br><br><span class="hljs-comment"># check or update or report power</span><br>check_power<br>update_power<br>report_power -hierarchy<br></code></pre></td></tr></table></figure>
+<h3 id="time-based-power-analysis"><strong>Time-based power
+analysis</strong></h3>
+<p>For extremely accurate analysis of power with respect to time,
+PrimeTime PX supports analysis <strong>based on the RTL or gate-level
+simulation activity over time</strong>.</p>
+<p>PrimeTime PX uses an event-driven algorithm to calculate the
+powerconsumption for each event. Detailed time-based power waveforms are
+generatedto provide both average and peak power results. The tool can
+produce an average and peak power report.</p>
+<p>通过以下选项开启，在该模式下，需要提供VCD（<strong>注：SAIF文件不行</strong>）</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">set</span> power_enable_analysis TRUE<br><span class="hljs-keyword">set</span> power_analysis_mode time_based<br>set_app_var power_analysis_mode time_based # 默认为averaged<br></code></pre></td></tr></table></figure>
+<p>time
+based模式下工具会分析峰值功耗，生成功耗波形等图，执行完功耗分析之后，会在当前工作目录底下保存.fsdb波形文件</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_power_analysis_options -waveform_format fsdb -waveform_output [name]<br>nWave &amp;       # 使用nWave波形查看器查看波形文件<br></code></pre></td></tr></table></figure>
+<h3 id="time-based-power-analysis-script">Time-based power analysis
+Script</h3>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment"># Set the Power Analysis Mode</span><br><span class="hljs-keyword">set</span> power_enable_analysis TRUE<br><span class="hljs-keyword">set</span> power_analysis_mode time_based<br><span class="hljs-comment">#set_power_analysis_options # 为功耗分析设置选项</span><br><span class="hljs-comment">#set_app_var power_limit_extrapolation_range true # 超过功耗查找表时，可以外推，默认是false</span><br><span class="hljs-comment">#set_app_var power_use_ccsp_pin_capacitance true；# 考虑弥勒效应，默认是false</span><br><br><span class="hljs-comment"># link design</span><br><span class="hljs-keyword">set</span> search_path <span class="hljs-string">&quot;../src/hdl/gate ../src/lib/snps . &quot;</span><br><span class="hljs-keyword">set</span> link_library <span class="hljs-string">&quot; *core_typ.db&quot;</span><br>read_verilog mac.vg<br>current_design mac<br>link<br><br><span class="hljs-comment"># set transition time/annotate parasitics</span><br>read_sdc ../src//hdl/gate/mac.sdc<br>set_disable_timing [get_lib_pins ssc_core_typ/*/G]<br>read_parasitics ../src/annotate/mac.spef.gz<br><br><span class="hljs-comment"># analyze timing</span><br>check_timing<br>update_timing # 更新时序关系<br>report_timing<br><br><span class="hljs-comment"># read switching activityfile</span><br>read_vcd ../sim/vcd.dump.gz \<br>  -strip_path tb/macinst<br><span class="hljs-comment"># read_vpd</span><br><span class="hljs-comment"># read_fsdb</span><br><span class="hljs-comment"># read_saif 用在平均功耗分析上</span><br><span class="hljs-comment"># set_switching_activity </span><br><span class="hljs-comment"># set_case_analysis </span><br><br><span class="hljs-comment"># analyze power</span><br>check_power # 检查会影响功耗准确性的错误，默认的检查内容由power_check_defaults定义<br>set_power_analysis_options \<br>  -waveform_format out \<br>  -waveform_output vcd<br>update_power # 进行功耗分析<br>report_power<br></code></pre></td></tr></table></figure>
+<h3 id="required-files-descriptions"><strong>Required Files
+descriptions</strong></h3>
+<p><strong>逻辑库</strong>：单元库，包含所有单元的时序和功耗特性，db文件；</p>
+<p><strong>spef文件</strong>：寄生参数文件；</p>
+<ul>
+<li><p><strong>Gate-Level
+Netlist：</strong>verilog、vhdl，db、ddc、Milkyway格式的网表均可</p></li>
+<li><p><strong>Technology Library</strong></p></li>
+</ul>
+<p>PTPX supports either CCS (composite current source) or NLPM
+(nonlinear power model).</p>
+<p>You use the power_model_preference nlpm | ccs variable to specify
+your power model preference when the library contains both NLPM and CCS
+data. The default is ccs.</p>
+<ul>
+<li><strong>SDC File</strong></li>
+</ul>
+<p>The SDC file contains the <strong>design constraints</strong>. The
+driver cellinformation is used to calculate the transition time on the
+primary inputs.</p>
+<ul>
+<li><p><strong>Parasitic File</strong></p></li>
+<li><p><strong>Switching
+Activity：</strong>vcd、vpd、fsdb、saif文件，或者命令设置</p></li>
+</ul>
+<p>In the averaged power analysis, you use either SAIF or VCD file
+formats to read the switching activity. If you do not specify switching
+activity information, the tool assumes certain default values for the
+switching activity.</p>
+<p>In time-based power analysis, you use VCD file formats to read the
+switching activity.</p>
+<p>When you read a SAIF file or an RTL VCD file for power estimation,
+use the set_rtl_to_gate_name command to map the RTL and gate-level
+object names. This command is especially necessary if you have performed
+only the RTL simulation for generating the backward SAIF file. Because
+the RTL object names can change after synthesis, the read_saif or
+read_vcd command is not able to map the names present in the RTL SAIF or
+VCD fileto the gate-level objects, which can result in inaccurate
+results. You can avoid this by using the set_rtl_to_gate_name
+command.</p>
+<h2 id="vcdsaiffsdb的区别">3.4VCD，SAIF，FSDB的区别</h2>
+<h4 id="vcdvaluevariable-change-dump">VCD：Value/Variable Change
+Dump</h4>
+<ul>
+<li>It is an event-based format that contains every value change for the
+signals in the design and the time at which they occurred.</li>
+<li>VCD is supported in both the averaged and time-based analysis
+modes，是国际标准格式</li>
+<li>Gate-Level VCD和RTL-Level VCD都可以，但是使用RTL-Level
+VCD时，需要进行name mapping (set_rtl_to_gate_name)。</li>
+<li>VCD文件示例：http://en.wikipedia.org/wiki/Value_change_dump</li>
+</ul>
+<h4 id="saifswitching-activity-interface-format">SAIF：Switching
+Activity Interface Format</h4>
+<ul>
+<li>It captures signal transitions and the time spent at each logic
+level. The SAIF file contains the toggle counts and static probabilities
+for the nets in the design.</li>
+<li>SAIF is supported only in the averaged power analysis mode.</li>
+<li>有些工具，比如ICC/ICC2，只支持SAIF文件，需要将VCD转换成SAIF文件，在PT安装目录下有一个utility：</li>
+<li>vcd2saif -input vcd_file -output saif_file ...</li>
+</ul>
+<h4 id="fsdbfast-signal-databbase">FSDB：Fast Signal DataBbase</h4>
+<ul>
+<li>类似于VCD的波形文件，去除了VCD中的冗余信息，数据量小很多，提高了仿真的速度，Synopsys的仿真工具支持较多。</li>
+</ul>
 <h1 id="第四章icc-compiler">第四章：ICC Compiler</h1>
 
     </div>
@@ -542,7 +738,14 @@ consumption</li>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0design-compiler%E4%BD%BF%E7%94%A8"><span class="nav-text">第一章：Design Compiler使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88"><span class="nav-text">1.1综合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88%E6%B5%81%E7%A8%8B"><span class="nav-text">1.2逻辑综合流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#command"><span class="nav-text">1.3Command</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-dc"><span class="nav-text">启动 DC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96verilog%E8%AE%BE%E7%BD%AE%E9%A1%B6%E5%B1%82%E8%AE%BE%E7%BD%AE%E8%B7%AF%E5%BE%84"><span class="nav-text">读取verilog，设置顶层，设置路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%BA%93"><span class="nav-text">建立库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E7%BA%A6%E6%9D%9F"><span class="nav-text">时钟约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#creat_clock"><span class="nav-text">creat_clock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#creat_generated_clock%E6%97%B6%E9%92%9F%E5%88%86%E9%A2%91%E6%88%96%E5%80%8D%E9%A2%91"><span class="nav-text">creat_generated_clock（时钟分频或倍频）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_group%E5%BC%82%E6%AD%A5%E6%97%B6%E9%92%9F%E5%9F%9F"><span class="nav-text">set_clock_group（异步时钟域）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_transition"><span class="nav-text">set_clock_transition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_uncertaintyskewjitter"><span class="nav-text">set_clock_uncertainty（skew+jitter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_latencysource-latencynetwork-latency"><span class="nav-text">set_clock_latency（source
-latency+network latency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_sense%E6%97%B6%E9%92%9F%E6%95%8F%E6%84%9F%E6%80%A7%E9%9D%9E%E5%8D%95%E8%BE%B9"><span class="nav-text">set_clock_sense（时钟敏感性：非单边）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%BA%A6%E6%9D%9F"><span class="nav-text">信号约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set_input_delay"><span class="nav-text">set_input_delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_output_delay"><span class="nav-text">set_output_delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_drive%E9%A9%B1%E5%8A%A8%E7%94%B5%E9%98%BB"><span class="nav-text">set_drive（驱动电阻）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_driving_cell%E9%A9%B1%E5%8A%A8%E5%8D%95%E5%85%83"><span class="nav-text">set_driving_cell（驱动单元）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_input_transition%E8%BE%93%E5%85%A5%E8%BF%87%E6%B8%A1"><span class="nav-text">set_input_transition（输入过渡）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_port_fanout_number%E6%89%87%E5%87%BA%E6%95%B0"><span class="nav-text">set_port_fanout_number（扇出数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_load%E8%B4%9F%E8%BD%BD"><span class="nav-text">set_load（负载）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%BA%A6%E6%9D%9F"><span class="nav-text">其他约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set_operating_conditions%E6%8C%87%E5%AE%9A%E5%B7%A5%E4%BD%9C%E6%9D%A1%E4%BB%B6"><span class="nav-text">set_operating_conditions（指定工作条件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_units%E6%8C%87%E5%AE%9A%E5%8D%95%E4%BD%8D%E6%A0%87%E8%AF%86"><span class="nav-text">set_units（指定单位标识）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#current_instance%E6%8C%87%E5%AE%9A%E5%BD%93%E5%89%8D%E8%AE%BE%E8%AE%A1%E6%88%96%E5%AE%9E%E4%BE%8B"><span class="nav-text">current_instance（指定当前设计或实例）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_wire_load_model%E6%8C%87%E5%AE%9A%E7%BA%BF%E8%B4%9F%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="nav-text">set_wire_load_model（指定线负载模型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_max_area%E6%8C%87%E5%AE%9A%E9%9D%A2%E7%A7%AF%E7%BA%A6%E6%9D%9F"><span class="nav-text">set_max_area（指定面积约束）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_voltage%E6%8C%87%E5%AE%9A%E7%94%B5%E5%8E%8B%E7%BA%A6%E6%9D%9F"><span class="nav-text">set_voltage（指定电压约束）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#creat_voltage_area%E6%8C%87%E5%AE%9A%E7%94%B5%E5%8E%8B%E5%B2%9B"><span class="nav-text">creat_voltage_area（指定电压岛）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_level_shifter_strategythreshold%E6%8C%87%E5%AE%9A%E7%94%B5%E5%B9%B3%E7%A7%BB%E4%BD%8D%E5%99%A8"><span class="nav-text">set_level_shifter_strategy&#x2F;threshold（指定电平移位器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_max_dynamicleakage_power%E6%8C%87%E5%AE%9A%E5%8A%A8%E6%80%81%E9%9D%99%E6%80%81%E5%8A%9F%E8%80%97"><span class="nav-text">set_max_dynamic&#x2F;leakage_power（指定动态、静态功耗）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E4%BF%A1%E6%81%AF"><span class="nav-text">输出信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-text">demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0vcs"><span class="nav-text">第二章：VCS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0primetime"><span class="nav-text">第三章：PrimeTime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90"><span class="nav-text">3.1时序分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0icc-compiler"><span class="nav-text">第四章：ICC Compiler</span></a></li></ol></div>
+latency+network latency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_clock_sense%E6%97%B6%E9%92%9F%E6%95%8F%E6%84%9F%E6%80%A7%E9%9D%9E%E5%8D%95%E8%BE%B9"><span class="nav-text">set_clock_sense（时钟敏感性：非单边）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%BA%A6%E6%9D%9F"><span class="nav-text">信号约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set_input_delay"><span class="nav-text">set_input_delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_output_delay"><span class="nav-text">set_output_delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_drive%E9%A9%B1%E5%8A%A8%E7%94%B5%E9%98%BB"><span class="nav-text">set_drive（驱动电阻）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_driving_cell%E9%A9%B1%E5%8A%A8%E5%8D%95%E5%85%83"><span class="nav-text">set_driving_cell（驱动单元）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_input_transition%E8%BE%93%E5%85%A5%E8%BF%87%E6%B8%A1"><span class="nav-text">set_input_transition（输入过渡）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_port_fanout_number%E6%89%87%E5%87%BA%E6%95%B0"><span class="nav-text">set_port_fanout_number（扇出数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_load%E8%B4%9F%E8%BD%BD"><span class="nav-text">set_load（负载）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%BA%A6%E6%9D%9F"><span class="nav-text">其他约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set_operating_conditions%E6%8C%87%E5%AE%9A%E5%B7%A5%E4%BD%9C%E6%9D%A1%E4%BB%B6"><span class="nav-text">set_operating_conditions（指定工作条件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_units%E6%8C%87%E5%AE%9A%E5%8D%95%E4%BD%8D%E6%A0%87%E8%AF%86"><span class="nav-text">set_units（指定单位标识）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#current_instance%E6%8C%87%E5%AE%9A%E5%BD%93%E5%89%8D%E8%AE%BE%E8%AE%A1%E6%88%96%E5%AE%9E%E4%BE%8B"><span class="nav-text">current_instance（指定当前设计或实例）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_wire_load_model%E6%8C%87%E5%AE%9A%E7%BA%BF%E8%B4%9F%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="nav-text">set_wire_load_model（指定线负载模型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_max_area%E6%8C%87%E5%AE%9A%E9%9D%A2%E7%A7%AF%E7%BA%A6%E6%9D%9F"><span class="nav-text">set_max_area（指定面积约束）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_voltage%E6%8C%87%E5%AE%9A%E7%94%B5%E5%8E%8B%E7%BA%A6%E6%9D%9F"><span class="nav-text">set_voltage（指定电压约束）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#creat_voltage_area%E6%8C%87%E5%AE%9A%E7%94%B5%E5%8E%8B%E5%B2%9B"><span class="nav-text">creat_voltage_area（指定电压岛）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_level_shifter_strategythreshold%E6%8C%87%E5%AE%9A%E7%94%B5%E5%B9%B3%E7%A7%BB%E4%BD%8D%E5%99%A8"><span class="nav-text">set_level_shifter_strategy&#x2F;threshold（指定电平移位器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set_max_dynamicleakage_power%E6%8C%87%E5%AE%9A%E5%8A%A8%E6%80%81%E9%9D%99%E6%80%81%E5%8A%9F%E8%80%97"><span class="nav-text">set_max_dynamic&#x2F;leakage_power（指定动态、静态功耗）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E4%BF%A1%E6%81%AF"><span class="nav-text">输出信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-text">demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0vcs"><span class="nav-text">第二章：VCS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0primetime"><span class="nav-text">第三章：PrimeTime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90"><span class="nav-text">3.1时序分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pt%E5%91%BD%E4%BB%A4"><span class="nav-text">3.2PT命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primetime-px"><span class="nav-text">3.3PrimeTime PX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#averaged-power-analysis"><span class="nav-text">Averaged Power
+Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#averaged-power-analysis-script"><span class="nav-text">Averaged Power Analysis
+Script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#time-based-power-analysis"><span class="nav-text">Time-based power
+analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#time-based-power-analysis-script"><span class="nav-text">Time-based power analysis
+Script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#required-files-descriptions"><span class="nav-text">Required Files
+descriptions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vcdsaiffsdb%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">3.4VCD，SAIF，FSDB的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vcdvaluevariable-change-dump"><span class="nav-text">VCD：Value&#x2F;Variable Change
+Dump</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#saifswitching-activity-interface-format"><span class="nav-text">SAIF：Switching
+Activity Interface Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fsdbfast-signal-databbase"><span class="nav-text">FSDB：Fast Signal DataBbase</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0icc-compiler"><span class="nav-text">第四章：ICC Compiler</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -558,7 +761,7 @@ latency+network latency）</span></a></li><li class="nav-item nav-level-4"><a cl
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -569,7 +772,7 @@ latency+network latency）</span></a></li><li class="nav-item nav-level-4"><a cl
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
