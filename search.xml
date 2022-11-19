@@ -625,37 +625,6 @@ alt="img" /><strong>HLP</strong>，high performance low power；
       </tags>
   </entry>
   <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2269,6 +2238,7 @@ role="doc-backlink">↩︎</a></p></li>
     <url>/2022/11/19/Makefile/</url>
     <content><![CDATA[<h1 id="makefile学习笔记">Makefile学习笔记</h1>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Check for sanity to avoid later confusion</span><br><span class="hljs-keyword">ifneq</span> (<span class="hljs-variable">$(words <span class="hljs-variable">$(CURDIR)</span>)</span>,1)<br> <span class="hljs-variable">$(<span class="hljs-built_in">error</span> Unsupported: GNU Make cannot build in directories containing spaces, build elsewhere: &#x27;<span class="hljs-variable">$(CURDIR)</span>&#x27;)</span><br><span class="hljs-keyword">endif</span><br><br><span class="hljs-comment"># This is intended to be a minimal example.  Before copying this to start a</span><br><span class="hljs-comment"># real project, it is better to start with a more complete example,</span><br><span class="hljs-comment"># e.g. examples/make_tracing_c.</span><br><br><span class="hljs-comment"># If $VERILATOR_ROOT isn&#x27;t in the environment, we assume it is part of a</span><br><span class="hljs-comment"># package install, and verilator is in your path. Otherwise find the</span><br><span class="hljs-comment"># binary relative to $VERILATOR_ROOT (such as when inside the git sources).</span><br><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(VERILATOR_ROOT)</span>,)<br>VERILATOR = verilator<br><span class="hljs-keyword">else</span><br><span class="hljs-keyword">export</span> VERILATOR_ROOT<br>VERILATOR = <span class="hljs-variable">$(VERILATOR_ROOT)</span>/bin/verilator<br><span class="hljs-keyword">endif</span><br><br><span class="hljs-section">default:</span><br>	@echo <span class="hljs-string">&quot;-- Verilator hello-world simple example&quot;</span><br>	@echo <span class="hljs-string">&quot;-- VERILATE &amp; BUILD --------&quot;</span><br>	<span class="hljs-variable">$(VERILATOR)</span> -cc --exe --build -j top.v sim_main.cpp<br>	@echo <span class="hljs-string">&quot;-- RUN ---------------------&quot;</span><br>	obj_dir/Vtop<br>	@echo <span class="hljs-string">&quot;-- DONE --------------------&quot;</span><br>	@echo <span class="hljs-string">&quot;Note: Once this example is understood, see examples/make_tracing_c.&quot;</span><br>	@echo <span class="hljs-string">&quot;Note: Also see the EXAMPLE section in the verilator manpage/document.&quot;</span><br><br></code></pre></td></tr></table></figure>
+<span id="more"></span>
 <p><code>$@</code>目标文件，<code>$^</code>所有的依赖文件，<code>$&lt;</code>第一个依赖文件</p>
 <p>这个规则表示所有的 .o文件都是依赖与相应的.c文件的</p>
 <h1 id="basename-names">$(basename NAMES…)</h1>
@@ -3308,6 +3278,37 @@ $@ $</em>.o $(RM) $*.o</p>
       </categories>
       <tags>
         <tag>Makefile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
       </tags>
   </entry>
 </search>
