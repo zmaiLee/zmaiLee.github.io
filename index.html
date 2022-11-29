@@ -194,6 +194,251 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/27/Skew%20Number%20System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="zmaiLee">
+      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mai's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/27/Skew%20Number%20System/" class="post-title-link" itemprop="url">Skew Number System</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-27 17:02:52 / 修改时间：17:22:36" itemprop="dateCreated datePublished" datetime="2022-11-27T17:02:52+08:00">2022-11-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="zmaiLee">
+      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mai's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/" class="post-title-link" itemprop="url">高速缓存与一致性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-26 18:40:14" itemprop="dateCreated datePublished" datetime="2022-11-26T18:40:14+08:00">2022-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-27 17:02:44" itemprop="dateModified" datetime="2022-11-27T17:02:44+08:00">2022-11-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Arch/" itemprop="url" rel="index"><span itemprop="name">Arch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="cache的基本原理">Cache的基本原理</h1>
+<p>Cache指的是高速缓存简称缓存，原始意义是指访问速度比一般随机存取存储器（RAM）快的一种RAM，通常它不像系统主存那样使用DRAM技术，而使用昂贵但较快速的SRAM技术。</p>
+<p>在CPU中，Cache是介于内存和处理器之间的缓存，用于存放CPU即将可能使用的数据，当CPU要使用的数据在Cache中取到时，便不再需要到内存去存取数据，从而减少处理器访问内存的次数。
+提供“缓存”的目的是为了让数据访问的速度适应CPU的处理速度，由于CPU的运行速度远快于存储器的存储速度，当处理器通过内存存取一次数据将耗费数十个时钟周期，而处理器访问Cache则只需要一个或者几个时钟周期，所以Cache的出现极大的减小了CPU运行速度和存储速度的差距。设想一下一个主频2GHz的4-way超标量处理器访问一个100ns的DRAM,
+在访问一次DRAM时间内，处理器内部可以执行800条指令，这是不可以接受的，所以就有了和处理器一样工艺制造的L1Cache，紧密耦合在处理器内，得以让处理器能够直接访问Cache得到数据。虽然Cache能极大的提升处理器的性能，但是在一块芯片中，Cache的容量大小一般只有1KB到32KB，而这相较于内存存储的几个GB甚至TB的数据来说，Cache的容量是微乎其微的,Cache只能缓存内存的一小部分数据，但是Cache依然能够让处理器取到大部分需要的数据，其中的原理是内存中“程序执行与数据访问的局域性行为”，即一定程序执行时间和空间内，被访问的代码集中于一部分，所以Cache中缓存的数据都是被近期访问过数据或者可能会被访问的数据，这样就使得Cache的命中率大大提高。</p>
+<figure>
+<img
+src="高速缓存与一致性.assets/v2-bc15d8c0612599fc3de51c4382e07aa5_r.jpg"
+alt="v2-bc15d8c0612599fc3de51c4382e07aa5_r" />
+<figcaption
+aria-hidden="true">v2-bc15d8c0612599fc3de51c4382e07aa5_r</figcaption>
+</figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/20/%E6%80%BB%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="zmaiLee">
+      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mai's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/20/%E6%80%BB%E7%BA%BF/" class="post-title-link" itemprop="url">总线</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-20 17:35:24" itemprop="dateCreated datePublished" datetime="2022-11-20T17:35:24+08:00">2022-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-26 09:55:57" itemprop="dateModified" datetime="2022-11-26T09:55:57+08:00">2022-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IC/" itemprop="url" rel="index"><span itemprop="name">IC</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么是总线">什么是总线？</h1>
+<p>总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线，它是由导线组成的传输线束，
+按照计算机所传输的信息种类，计算机的总线可以划分为数据总线、地址总线和控制总线，分别用来传输数据、数据地址和控制信号。总线是一种内部结构，它是CPU、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。在计算机系统中，各个部件之间传送信息的公共通路叫总线，微型计算机是以总线结构来连接各个功能部件的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/20/%E6%80%BB%E7%BA%BF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/19/Makefile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,7 +546,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-12 23:01:30" itemprop="dateModified" datetime="2022-11-12T23:01:30+08:00">2022-11-12</time>
+                <time title="修改时间：2022-11-29 18:32:13" itemprop="dateModified" datetime="2022-11-29T18:32:13+08:00">2022-11-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,7 +632,7 @@ class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-13 19:07:57" itemprop="dateModified" datetime="2022-11-13T19:07:57+08:00">2022-11-13</time>
+                <time title="修改时间：2022-11-24 22:52:07" itemprop="dateModified" datetime="2022-11-24T22:52:07+08:00">2022-11-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -554,7 +799,7 @@ Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-04 13:27:00" itemprop="dateModified" datetime="2022-11-04T13:27:00+08:00">2022-11-04</time>
+                <time title="修改时间：2022-11-23 14:40:18" itemprop="dateModified" datetime="2022-11-23T14:40:18+08:00">2022-11-23</time>
               </span>
 
           
@@ -780,92 +1025,11 @@ PLI允许用户创建自定义系统调用，这是Verilog语法不允许我们�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/10/19/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/19/Git/" class="post-title-link" itemprop="url">Git</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-19 20:40:32" itemprop="dateCreated datePublished" datetime="2022-10-19T20:40:32+08:00">2022-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-31 10:31:51" itemprop="dateModified" datetime="2022-10-31T10:31:51+08:00">2022-10-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="git">Git</h1>
-<p>用git执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
-<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/19/Git/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -932,18 +1096,18 @@ PLI允许用户创建自定义系统调用，这是Verilog语法不允许我们�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
