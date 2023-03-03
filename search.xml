@@ -2048,6 +2048,112 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
+<span id="more"></span>
+<p>​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2510,109 +2616,92 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
+    <title>异步复位同步撤离</title>
+    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
+    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
+<h2 id="优点">1.1 优点</h2>
+<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
+<h2 id="缺点">1.2 缺点</h2>
+<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
+<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
 <span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
+<h1 id="异步复位">2 异步复位</h1>
+<h2 id="recovery-time和removal-time">2.1 recovery time和removal
+time</h2>
+<p>在同步电路中，输入数据需要与时钟满足setup time和hold
+time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
+time</strong>和<strong>removal
+time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
 <figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
 </figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
+<p><strong>recovery
+time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
+time，类似于同步时钟的setup time。</p>
+<p><strong>removal
+time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
+time(去除时间)。类似同步时钟hold time。</p>
+<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
+time和removal
+time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
+time和removal
+time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
+<h2 id="优点-1">2.2 优点</h2>
 <ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
+<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
+<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
 </ul>
+<h2 id="缺点-1">2.3 缺点</h2>
+<ul>
+<li>复位信号容易受到毛刺的影响。</li>
+<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
+</ul>
+<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
+<p>Synchronized Asynchronous
+Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
+<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
+<p>​
+异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
+<p>​
+同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
 <figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
 </figure>
-<h2 id="位置信息表达">位置信息表达</h2>
 <figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
 </figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
+<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
+<p>注意：
+既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
+<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
+<p>​ 只适用于不带PLL的系统。</p>
+<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
+<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
+<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
+<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
+<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
 <figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
 </figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
 ]]></content>
       <categories>
-        <category>算法</category>
+        <category>IC</category>
       </categories>
       <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
+        <tag>复位</tag>
       </tags>
   </entry>
   <entry>
@@ -3781,95 +3870,6 @@ role="doc-backlink">↩︎</a></p></li>
 ]]></content>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>异步复位同步撤离</title>
-    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
-    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
-<h2 id="优点">1.1 优点</h2>
-<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
-<h2 id="缺点">1.2 缺点</h2>
-<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
-<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
-<span id="more"></span>
-<h1 id="异步复位">2 异步复位</h1>
-<h2 id="recovery-time和removal-time">2.1 recovery time和removal
-time</h2>
-<p>在同步电路中，输入数据需要与时钟满足setup time和hold
-time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
-time</strong>和<strong>removal
-time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
-<figure>
-<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>recovery
-time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
-time，类似于同步时钟的setup time。</p>
-<p><strong>removal
-time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
-time(去除时间)。类似同步时钟hold time。</p>
-<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
-time和removal
-time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
-time和removal
-time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
-<h2 id="优点-1">2.2 优点</h2>
-<ul>
-<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
-<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
-</ul>
-<h2 id="缺点-1">2.3 缺点</h2>
-<ul>
-<li>复位信号容易受到毛刺的影响。</li>
-<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
-</ul>
-<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
-<p>Synchronized Asynchronous
-Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
-<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
-<p>​
-异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
-<p>​
-同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-<figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
-alt="在这里插入图片描述" />
-<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
-</figure>
-<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
-<p>注意：
-既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
-<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
-<p>​ 只适用于不带PLL的系统。</p>
-<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
-<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
-<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
-<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
-<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-<figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>IC</category>
-      </categories>
-      <tags>
-        <tag>复位</tag>
       </tags>
   </entry>
   <entry>
