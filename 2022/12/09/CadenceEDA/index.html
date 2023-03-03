@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zmailee.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="IC618 for xxx xxx for xxx xxx for xxx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CadenceEDA">
+<meta property="og:url" content="https://zmailee.github.io/2022/12/09/CadenceEDA/index.html">
+<meta property="og:site_name" content="Mai&#39;s blog">
+<meta property="og:description" content="IC618 for xxx xxx for xxx xxx for xxx">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmailee.github.io/2022/12/09/CadenceEDA/CadenceEDA.assets/20200508220432143.png">
+<meta property="og:image" content="https://zmailee.github.io/2022/12/09/CadenceEDA/CadenceEDA.assets/20200508220513691.png">
+<meta property="article:published_time" content="2022-12-09T09:52:27.596Z">
+<meta property="article:modified_time" content="2023-02-26T07:18:36.403Z">
+<meta property="article:author" content="zmaiLee">
+<meta property="article:tag" content="EDA">
+<meta property="article:tag" content="模拟IC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmailee.github.io/2022/12/09/CadenceEDA/CadenceEDA.assets/20200508220432143.png">
+
+<link rel="canonical" href="https://zmailee.github.io/2022/12/09/CadenceEDA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>CadenceEDA | Mai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mai's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+     <a href="https://zmailee.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mai's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">try my best</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zmaiLee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/12/09/CadenceEDA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="zmaiLee">
+      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mai's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CadenceEDA
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-09 17:52:27" itemprop="dateCreated datePublished" datetime="2022-12-09T17:52:27+08:00">2022-12-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-26 15:18:36" itemprop="dateModified" datetime="2023-02-26T15:18:36+08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><strong>IC618</strong> for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+</ul>
+<span id="more"></span>
+<h1 id="第一章virtuoso使用">第一章：Virtuoso使用</h1>
+<h2 id="virtuoso使用">Virtuoso使用</h2>
+<p>新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
+新库 →右键property查看其它这个库的相关属性
+如何用脚本快速配置工业库：1）找到该脚本liblnit.il
+文件，注意一定是il后缀的，终端打开 pwd查看路径，
+2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
+3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
+文件不一定要勾选</p>
+<h2 id="schematic">Schematic</h2>
+<table>
+<thead>
+<tr class="header">
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I</td>
+<td>添加元件</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>复制</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>移动</td>
+</tr>
+<tr class="even">
+<td>Shift+M</td>
+<td>移动器件但连线保持不变&lt;</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>整体居中显示</td>
+</tr>
+<tr class="even">
+<td>右键拉框</td>
+<td>放大该区域</td>
+</tr>
+<tr class="odd">
+<td>U</td>
+<td>撤销上一次操作</td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td>旋转或</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>高亮选中节点所有连线</td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td>存盘</td>
+</tr>
+<tr class="odd">
+<td>W</td>
+<td>wire</td>
+</tr>
+<tr class="even">
+<td>P</td>
+<td>添加port</td>
+</tr>
+<tr class="odd">
+<td>L</td>
+<td>添加label</td>
+</tr>
+<tr class="even">
+<td>Q</td>
+<td>属性编辑</td>
+</tr>
+<tr class="odd">
+<td>E 查看底层电路</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Ctrl+E 返回顶层电路</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Shift+R</td>
+<td>镜像</td>
+</tr>
+<tr class="even">
+<td>X</td>
+<td>save and check</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="simulation">Simulation</h2>
+<h2 id="layout">Layout</h2>
+<ul>
+<li>F4：单独调线宽模式</li>
+<li>S：移动</li>
+<li>O：放置contact</li>
+<li>P：</li>
+<li>R：</li>
+<li>K：标尺</li>
+</ul>
+<p>AA有源层 NW 为N＃ DNW为P# GT 栅极 SN N型注入 SP为P型注入 M1234
+为金属层 V表示过孔<br />
+DRW表示可以画的层</p>
+<p>先选择元件→connectivity→pick from schematic shift +f 显示所有的层
+ctrl+f 只显示最外层边框 打散层 edit→hercany→flatten→pin</p>
+<p>option→display 更改间距 layout过程中 P+F3可以修改线宽 快捷键K
+调出尺子使用 Shift+K清楚所有标识层 R画矩形的快捷键
+Shift+Z逐步缩小所画的版图 ctrl＋Z逐步放大所画的版图 O快速画出过孔
+点击一下滑轮进行元器件的旋转 延长/拉动
+连线/器件：首先按F4，让状态栏处的“(F)select”变成“(P)select”，接着按S，点击前面选中的器件，然后拉动，就可以延长连线了
+L增加标签</p>
+<h2 id="drccalibre使用">DRC→Calibre使用</h2>
+<h2 id="工艺库文件">工艺库文件</h2>
+<p>tech.db</p>
+<p>techfile.tf</p>
+<p>display.drf</p>
+<ol type="1">
+<li>techfile.tf 内为自然语言，可以用vim等工具直接编辑，tech.db
+经过编译。</li>
+<li>函数 <code>tcLoadTechFile(d_tech t_techfile)</code>
+并不会修改上述任意一个文件，只会写入虚拟内存，需要 save 才能写入 tech.db
+。</li>
+<li>Virtuoso启动时自动加载的不是techfile.tf
+，而是<strong>tech.db</strong></li>
+<li>display.drf中含有一个个的 Packet，理解为颜色包 ，techfile 含有 Layer
+与 Packet 的对应关系。因此 Packet 像是一个“纽带”，把 display.drf
+中的颜色信息跟 techfile 中定义的 Layer Purpose Pair ( lpp )
+联系起来。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yeungchie/p/13406021.html">Virtuoso
+] display.drf、techfile.tf、tech.db 之间的关系，以及 Packet
+在它们之间的作用 - YEUNGCHIE - 博客园 (cnblogs.com)</a></p>
+<h1 id="数模混合仿真流程">数模混合仿真流程</h1>
+<h2 id="新建cell">1.新建cell</h2>
+<p><strong>file—new—cellview</strong></p>
+<p>cell type：Verilog</p>
+<p>编辑器：text editor</p>
+<h2 id="产生symbol">2.产生symbol</h2>
+<p>按照verilog要求，编写verilog代码并产生symbol</p>
+<h2 id="建立-analog---digital-混合仿真原理图">3.建立 Analog - Digital
+混合仿真原理图</h2>
+<p>新建cell type选择
+schematic。在schematic中导入之前生成的symbol。加入时钟信号，地。暂时不用考虑数字模块的电源电压，后续仿真会设置。如果跟模拟模块联合仿真，按照正常步骤添加模拟symbol即可。</p>
+<p><strong>如果输出端口为多位数据，可以将对应label命名为out&lt;n:0&gt;这种格式，表明输出有n+1位</strong></p>
+<h2 id="建立-analog---digital-混合仿真config文件">4.建立 Analog -
+Digital 混合仿真config文件</h2>
+<p>创建 Cellview ，名字要与混合仿真的schematic的名字相同。Type要选
+config。这样在View中也是 config。 或者在library
+manager界面选中仿真原理图cell后，点击file——new——cellview。此时cell的名称自动为count4_test,但type为config</p>
+<h1 id="cadence-ams数模混合仿真">Cadence AMS数模混合仿真</h1>
+<p>以实现一个全加器为例，复现一次混合信号电路的仿真过程。通过Verilog
+实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
+<h2 id="建立数字模块">1、建立数字模块</h2>
+<figure>
+<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img src="CadenceEDA.assets/20200508220513691.png"
+alt="20200508220513691" />
+<figcaption aria-hidden="true">20200508220513691</figcaption>
+</figure>
+<h1 id="verilog-aams系统设计与仿真">Verilog-A/AMS系统设计与仿真</h1>
+<p>Verilog-ams是Verilog标准的模拟混合信号版本。开发的第一阶段是Verilog-A，描述模拟电路所必需的一组连续时间构造。这是基于SPICE的语言。Verilog-A并不打算直接与Verilog-HDL一起工作。相反，它是一种具有类似语法和相关语义的语言，旨在为模拟系统建模。</p>
+<p>Verilog-A在1996年被OVI标准化。Verilog-AMS的最新版本是2.4，发布于2014年，基于IEEE
+1364-2005。这将是它的最后一个版本，因为从那时起，Verilog已经被SystemVerilog取代。模拟扩展从来没有交给过IEEE。</p>
+<p>工作组目前正在努力使Verilog-AMS与IEEE
+1800的SystemVerilog保持一致，或者在新的SystemVerilog-AMS”标准中包含AMS能力。此外，工作正在进行中，重点关注社区要求的新功能和增强，以改进混合信号设计和验证，以及通过小组委员会将SystemVerilog断言扩展到模拟和混合信号设计。</p>
+<p><a target="_blank" rel="noopener" href="https://verilogams.com/index.html">Verilog-A/MS —
+Documentation (verilogams.com)</a>
+Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
+<p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/EDA/" rel="tag"># EDA</a>
+              <a href="/tags/%E6%A8%A1%E6%8B%9FIC/" rel="tag"># 模拟IC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/" rel="prev" title="异步复位同步撤离">
+      <i class="fa fa-chevron-left"></i> 异步复位同步撤离
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/11/%E7%89%88%E5%9B%BE/" rel="next" title="版图">
+      版图 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0virtuoso%E4%BD%BF%E7%94%A8"><span class="nav-text">第一章：Virtuoso使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#virtuoso%E4%BD%BF%E7%94%A8"><span class="nav-text">Virtuoso使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#schematic"><span class="nav-text">Schematic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#simulation"><span class="nav-text">Simulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout"><span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drccalibre%E4%BD%BF%E7%94%A8"><span class="nav-text">DRC→Calibre使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E8%89%BA%E5%BA%93%E6%96%87%E4%BB%B6"><span class="nav-text">工艺库文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%A8%A1%E6%B7%B7%E5%90%88%E4%BB%BF%E7%9C%9F%E6%B5%81%E7%A8%8B"><span class="nav-text">数模混合仿真流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAcell"><span class="nav-text">1.新建cell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E7%94%9Fsymbol"><span class="nav-text">2.产生symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-analog---digital-%E6%B7%B7%E5%90%88%E4%BB%BF%E7%9C%9F%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="nav-text">3.建立 Analog - Digital
+混合仿真原理图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-analog---digital-%E6%B7%B7%E5%90%88%E4%BB%BF%E7%9C%9Fconfig%E6%96%87%E4%BB%B6"><span class="nav-text">4.建立 Analog -
+Digital 混合仿真config文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cadence-ams%E6%95%B0%E6%A8%A1%E6%B7%B7%E5%90%88%E4%BB%BF%E7%9C%9F"><span class="nav-text">Cadence AMS数模混合仿真</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%95%B0%E5%AD%97%E6%A8%A1%E5%9D%97"><span class="nav-text">1、建立数字模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#verilog-aams%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F"><span class="nav-text">Verilog-A&#x2F;AMS系统设计与仿真</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zmaiLee"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">zmaiLee</p>
+  <div class="site-description" itemprop="description">HUSTer19. ICdesign & Computer Architecture</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zmaiLee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zmaiLee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45631071" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45631071" rel="noopener" target="_blank"><i class="crosshairs fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=386538&auto=1&height=66"></iframe>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">劢</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>
