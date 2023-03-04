@@ -1,261 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>3D堆叠</title>
-    <url>/2023/03/03/3D%E5%A0%86%E5%8F%A0/</url>
-    <content><![CDATA[<h1 id="d堆叠的出现"><strong>3D堆叠的出现</strong></h1>
-<p>现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。</p>
-<p>近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在<strong>硅载片（silicon
-interposer）</strong>上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。</p>
-<p>而传统的3D
-IC技术则是将多块芯片堆叠在一起，并使用<strong>TSV技术</strong>将不同的芯片做互联。目前，3D
-IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在<strong>HBM内存</strong>中，多块内存之间使用3D
-IC集成，而内存与主芯片之间则使用2.5D技术集成在一起。</p>
-<p>通过调整放置在一个芯片封装中的芯粒数量，就可以创建不同规模的系统，大大提升了系统设计的灵活性和可扩展性，同时也大大降低了研发成本，缩短了研发周期。</p>
-<span id="more"></span>
-<h1 id="什么是3d堆叠技术"><strong>什么是3D堆叠技术？</strong></h1>
-<p>3D堆叠技术是利用堆叠技术或通过互连和其他微加工技术在芯片或结构的<strong>Z轴方向上形成三维集成</strong>，信号连接以及晶圆级，芯片级和硅盖封装具有不同的功能。针对包装和可靠性技术的三维堆叠处理技术。该技术用于微系统集成，是在片上系统（SOC）和多芯片模块（MCM）之后开发的先进的系统级封装制造技术。</p>
-<p>所谓的3D堆叠技术其实很好理解，就是在原本的封装体里面，封装进两个以上不同功能的芯片，一般都是在不改变原本的封装体积大小，而在垂直方向进行的芯片叠放，这种技术所带来的特点就是改变了原有的在单位面积上不断增加晶体管的方式，而是在垂直方向上进行芯片叠放，自然也会实现芯片的功能多样化。</p>
-<p>总体上看，3D堆叠技术在<strong>集成度、性能、功耗</strong>等方面更具优势，同时设计自由度更高，开发时间更短，是各封装技术中最具发展前景的一种。当前，随着高效能运算、人工智能等应用兴起，加上用于提供多个晶圆垂直通信的TSV技术愈来愈成熟，可以看到越来越多的CPU、GPU和存储器开始采用3D堆叠技术。</p>
-<p>在传统的SiP封装系统中，任何芯片堆栈都可以称为3D，因为在Z轴上功能和信号都有扩展，无论堆栈位于IC内部还是外部。</p>
-<h1 id="amd-的-zen-3"><strong>AMD 的 Zen 3</strong></h1>
-<figure>
-<img src="3D堆叠.assets/v2-e97d3c77e5f25517bb8a3cbc6bf750bb_720w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>AMD 的 3D V-Cache 技术将一个 64 MB的 SRAM 缓存 [红色]
-和两个空白结构小芯片连接到 Zen 3 计算小芯片上。</p>
-<p>尽管Zen 2和新的Zen
-3处理器内核都使用相同的台积电制造工艺制造——因此具有相同尺寸的晶体管、互连和其他一切——AMD
-进行了如此多的架构改动，这让他们即使没有额外的高速缓存的前提下，Zen
-3也能平均提供 19% 的性能提升。其中一个架构瑰宝是包含一组硅通孔
-(TSV)，垂直互连直接穿过大部分硅。TSV 构建在 Zen 3 的L3
-级别缓存中，它位于计算小芯片的中间，并在其所有八个内核之间共享。</p>
-<p>在用于数据繁重工作负载的处理器中，Zen 3 晶圆的背面被减薄，直到 TSV
-暴露出来。然后使用所谓的混合键合将一个 64 兆字节的 SRAM
-小芯片键合到那些暴露的 TSV
-上——这一过程类似于将铜冷焊在一起。结果是一组密集的连接可以紧密到 9
-微米。最后，为了结构稳定性和热传导，附加空白硅芯片以覆盖 Zen 3 CPU
-芯片的其余部分。</p>
-<p>通过将额外的内存设置在 CPU
-芯片旁边来添加额外的内存不是一种选择，因为数据需要很长时间才能到达处理器内核。“尽管
-L3 [缓存] 大小增加了三倍，但 3D V-Cache 仅增加了四个 [时钟]
-周期的延迟——这只能通过 3D 堆叠来实现，” AMD 高级设计工程师 John
-Wuu表示。</p>
-<p>更大的缓存在高端游戏中占有一席之地。使用台式机锐龙 CPU 和 3D V-Cache
-可将 1080p 的游戏速度平均提高
-15%。它也适用于更严肃的工作，将困难的半导体设计计算的运行时间缩短了
-66%。</p>
-<p>与缩小逻辑的能力相比，业界缩小 SRAM
-的能力正在放缓。因此，您可以预期未来的 SRAM
-扩展包将继续使用更成熟的制造工艺制造，而计算芯片则被推向摩尔定律的前沿。</p>
-<p>台积电3D WoW硅晶圆堆叠技术</p>
-]]></content>
-      <categories>
-        <category>微电子工艺</category>
-      </categories>
-      <tags>
-        <tag>3D堆叠</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CadenceEDA</title>
-    <url>/2022/12/09/CadenceEDA/</url>
-    <content><![CDATA[<ul>
-<li><p><strong>IC618</strong> for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-</ul>
-<span id="more"></span>
-<h1 id="第一章virtuoso使用">第一章：Virtuoso使用</h1>
-<h2 id="virtuoso使用">Virtuoso使用</h2>
-<p>新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
-新库 →右键property查看其它这个库的相关属性
-如何用脚本快速配置工业库：1）找到该脚本liblnit.il
-文件，注意一定是il后缀的，终端打开 pwd查看路径，
-2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
-3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
-文件不一定要勾选</p>
-<h2 id="schematic">Schematic</h2>
-<table>
-<thead>
-<tr class="header">
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>I</td>
-<td>添加元件</td>
-</tr>
-<tr class="even">
-<td>C</td>
-<td>复制</td>
-</tr>
-<tr class="odd">
-<td>M</td>
-<td>移动</td>
-</tr>
-<tr class="even">
-<td>Shift+M</td>
-<td>移动器件但连线保持不变&lt;</td>
-</tr>
-<tr class="odd">
-<td>F</td>
-<td>整体居中显示</td>
-</tr>
-<tr class="even">
-<td>右键拉框</td>
-<td>放大该区域</td>
-</tr>
-<tr class="odd">
-<td>U</td>
-<td>撤销上一次操作</td>
-</tr>
-<tr class="even">
-<td>R</td>
-<td>旋转或</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>高亮选中节点所有连线</td>
-</tr>
-<tr class="even">
-<td>S</td>
-<td>存盘</td>
-</tr>
-<tr class="odd">
-<td>W</td>
-<td>wire</td>
-</tr>
-<tr class="even">
-<td>P</td>
-<td>添加port</td>
-</tr>
-<tr class="odd">
-<td>L</td>
-<td>添加label</td>
-</tr>
-<tr class="even">
-<td>Q</td>
-<td>属性编辑</td>
-</tr>
-<tr class="odd">
-<td>E 查看底层电路</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Ctrl+E 返回顶层电路</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Shift+R</td>
-<td>镜像</td>
-</tr>
-<tr class="even">
-<td>X</td>
-<td>save and check</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="simulation">Simulation</h2>
-<h2 id="layout">Layout</h2>
-<ul>
-<li>F4：单独调线宽模式</li>
-<li>S：移动</li>
-<li>O：放置contact</li>
-<li>P：</li>
-<li>R：</li>
-<li>K：标尺</li>
-</ul>
-<p>AA有源层 NW 为N＃ DNW为P# GT 栅极 SN N型注入 SP为P型注入 M1234
-为金属层 V表示过孔<br />
-DRW表示可以画的层</p>
-<p>先选择元件→connectivity→pick from schematic shift +f 显示所有的层
-ctrl+f 只显示最外层边框 打散层 edit→hercany→flatten→pin</p>
-<p>option→display 更改间距 layout过程中 P+F3可以修改线宽 快捷键K
-调出尺子使用 Shift+K清楚所有标识层 R画矩形的快捷键
-Shift+Z逐步缩小所画的版图 ctrl＋Z逐步放大所画的版图 O快速画出过孔
-点击一下滑轮进行元器件的旋转 延长/拉动
-连线/器件：首先按F4，让状态栏处的“(F)select”变成“(P)select”，接着按S，点击前面选中的器件，然后拉动，就可以延长连线了
-L增加标签</p>
-<h2 id="drccalibre使用">DRC→Calibre使用</h2>
-<h2 id="工艺库文件">工艺库文件</h2>
-<p>tech.db</p>
-<p>techfile.tf</p>
-<p>display.drf</p>
-<ol type="1">
-<li>techfile.tf 内为自然语言，可以用vim等工具直接编辑，tech.db
-经过编译。</li>
-<li>函数 <code>tcLoadTechFile(d_tech t_techfile)</code>
-并不会修改上述任意一个文件，只会写入虚拟内存，需要 save 才能写入 tech.db
-。</li>
-<li>Virtuoso启动时自动加载的不是techfile.tf
-，而是<strong>tech.db</strong></li>
-<li>display.drf中含有一个个的 Packet，理解为颜色包 ，techfile 含有 Layer
-与 Packet 的对应关系。因此 Packet 像是一个“纽带”，把 display.drf
-中的颜色信息跟 techfile 中定义的 Layer Purpose Pair ( lpp )
-联系起来。</li>
-</ol>
-<p><a href="https://www.cnblogs.com/yeungchie/p/13406021.html">Virtuoso
-] display.drf、techfile.tf、tech.db 之间的关系，以及 Packet
-在它们之间的作用 - YEUNGCHIE - 博客园 (cnblogs.com)</a></p>
-<h1 id="数模混合仿真流程">数模混合仿真流程</h1>
-<h2 id="新建cell">1.新建cell</h2>
-<p><strong>file—new—cellview</strong></p>
-<p>cell type：Verilog</p>
-<p>编辑器：text editor</p>
-<h2 id="产生symbol">2.产生symbol</h2>
-<p>按照verilog要求，编写verilog代码并产生symbol</p>
-<h2 id="建立-analog---digital-混合仿真原理图">3.建立 Analog - Digital
-混合仿真原理图</h2>
-<p>新建cell type选择
-schematic。在schematic中导入之前生成的symbol。加入时钟信号，地。暂时不用考虑数字模块的电源电压，后续仿真会设置。如果跟模拟模块联合仿真，按照正常步骤添加模拟symbol即可。</p>
-<p><strong>如果输出端口为多位数据，可以将对应label命名为out&lt;n:0&gt;这种格式，表明输出有n+1位</strong></p>
-<h2 id="建立-analog---digital-混合仿真config文件">4.建立 Analog -
-Digital 混合仿真config文件</h2>
-<p>创建 Cellview ，名字要与混合仿真的schematic的名字相同。Type要选
-config。这样在View中也是 config。 或者在library
-manager界面选中仿真原理图cell后，点击file——new——cellview。此时cell的名称自动为count4_test,但type为config</p>
-<h1 id="cadence-ams数模混合仿真">Cadence AMS数模混合仿真</h1>
-<p>以实现一个全加器为例，复现一次混合信号电路的仿真过程。通过Verilog
-实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
-<h2 id="建立数字模块">1、建立数字模块</h2>
-<figure>
-<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<figure>
-<img src="CadenceEDA.assets/20200508220513691.png"
-alt="20200508220513691" />
-<figcaption aria-hidden="true">20200508220513691</figcaption>
-</figure>
-<h1 id="verilog-aams系统设计与仿真">Verilog-A/AMS系统设计与仿真</h1>
-<p>Verilog-ams是Verilog标准的模拟混合信号版本。开发的第一阶段是Verilog-A，描述模拟电路所必需的一组连续时间构造。这是基于SPICE的语言。Verilog-A并不打算直接与Verilog-HDL一起工作。相反，它是一种具有类似语法和相关语义的语言，旨在为模拟系统建模。</p>
-<p>Verilog-A在1996年被OVI标准化。Verilog-AMS的最新版本是2.4，发布于2014年，基于IEEE
-1364-2005。这将是它的最后一个版本，因为从那时起，Verilog已经被SystemVerilog取代。模拟扩展从来没有交给过IEEE。</p>
-<p>工作组目前正在努力使Verilog-AMS与IEEE
-1800的SystemVerilog保持一致，或者在新的SystemVerilog-AMS”标准中包含AMS能力。此外，工作正在进行中，重点关注社区要求的新功能和增强，以改进混合信号设计和验证，以及通过小组委员会将SystemVerilog断言扩展到模拟和混合信号设计。</p>
-<p><a href="https://verilogams.com/index.html">Verilog-A/MS —
-Documentation (verilogams.com)</a>
-Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
-<p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>EDA</tag>
-        <tag>模拟IC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DPI学习笔记</title>
     <url>/2022/10/30/DPI/</url>
     <content><![CDATA[<h1 id="dpi学习笔记">DPI学习笔记</h1>
@@ -817,6 +562,202 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </tags>
   </entry>
   <entry>
+    <title>CadenceEDA</title>
+    <url>/2022/12/09/CadenceEDA/</url>
+    <content><![CDATA[<ul>
+<li><p><strong>IC618</strong> for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+</ul>
+<span id="more"></span>
+<h1 id="第一章virtuoso使用">第一章：Virtuoso使用</h1>
+<h2 id="virtuoso使用">Virtuoso使用</h2>
+<p>新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
+新库 →右键property查看其它这个库的相关属性
+如何用脚本快速配置工业库：1）找到该脚本liblnit.il
+文件，注意一定是il后缀的，终端打开 pwd查看路径，
+2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
+3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
+文件不一定要勾选</p>
+<h2 id="schematic">Schematic</h2>
+<table>
+<thead>
+<tr class="header">
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I</td>
+<td>添加元件</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>复制</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>移动</td>
+</tr>
+<tr class="even">
+<td>Shift+M</td>
+<td>移动器件但连线保持不变&lt;</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>整体居中显示</td>
+</tr>
+<tr class="even">
+<td>右键拉框</td>
+<td>放大该区域</td>
+</tr>
+<tr class="odd">
+<td>U</td>
+<td>撤销上一次操作</td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td>旋转或</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>高亮选中节点所有连线</td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td>存盘</td>
+</tr>
+<tr class="odd">
+<td>W</td>
+<td>wire</td>
+</tr>
+<tr class="even">
+<td>P</td>
+<td>添加port</td>
+</tr>
+<tr class="odd">
+<td>L</td>
+<td>添加label</td>
+</tr>
+<tr class="even">
+<td>Q</td>
+<td>属性编辑</td>
+</tr>
+<tr class="odd">
+<td>E 查看底层电路</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Ctrl+E 返回顶层电路</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Shift+R</td>
+<td>镜像</td>
+</tr>
+<tr class="even">
+<td>X</td>
+<td>save and check</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="simulation">Simulation</h2>
+<h2 id="layout">Layout</h2>
+<ul>
+<li>F4：单独调线宽模式</li>
+<li>S：移动</li>
+<li>O：放置contact</li>
+<li>P：</li>
+<li>R：</li>
+<li>K：标尺</li>
+</ul>
+<p>AA有源层 NW 为N＃ DNW为P# GT 栅极 SN N型注入 SP为P型注入 M1234
+为金属层 V表示过孔<br />
+DRW表示可以画的层</p>
+<p>先选择元件→connectivity→pick from schematic shift +f 显示所有的层
+ctrl+f 只显示最外层边框 打散层 edit→hercany→flatten→pin</p>
+<p>option→display 更改间距 layout过程中 P+F3可以修改线宽 快捷键K
+调出尺子使用 Shift+K清楚所有标识层 R画矩形的快捷键
+Shift+Z逐步缩小所画的版图 ctrl＋Z逐步放大所画的版图 O快速画出过孔
+点击一下滑轮进行元器件的旋转 延长/拉动
+连线/器件：首先按F4，让状态栏处的“(F)select”变成“(P)select”，接着按S，点击前面选中的器件，然后拉动，就可以延长连线了
+L增加标签</p>
+<h2 id="drccalibre使用">DRC→Calibre使用</h2>
+<h2 id="工艺库文件">工艺库文件</h2>
+<p>tech.db</p>
+<p>techfile.tf</p>
+<p>display.drf</p>
+<ol type="1">
+<li>techfile.tf 内为自然语言，可以用vim等工具直接编辑，tech.db
+经过编译。</li>
+<li>函数 <code>tcLoadTechFile(d_tech t_techfile)</code>
+并不会修改上述任意一个文件，只会写入虚拟内存，需要 save 才能写入 tech.db
+。</li>
+<li>Virtuoso启动时自动加载的不是techfile.tf
+，而是<strong>tech.db</strong></li>
+<li>display.drf中含有一个个的 Packet，理解为颜色包 ，techfile 含有 Layer
+与 Packet 的对应关系。因此 Packet 像是一个“纽带”，把 display.drf
+中的颜色信息跟 techfile 中定义的 Layer Purpose Pair ( lpp )
+联系起来。</li>
+</ol>
+<p><a href="https://www.cnblogs.com/yeungchie/p/13406021.html">Virtuoso
+] display.drf、techfile.tf、tech.db 之间的关系，以及 Packet
+在它们之间的作用 - YEUNGCHIE - 博客园 (cnblogs.com)</a></p>
+<h1 id="数模混合仿真流程">数模混合仿真流程</h1>
+<h2 id="新建cell">1.新建cell</h2>
+<p><strong>file—new—cellview</strong></p>
+<p>cell type：Verilog</p>
+<p>编辑器：text editor</p>
+<h2 id="产生symbol">2.产生symbol</h2>
+<p>按照verilog要求，编写verilog代码并产生symbol</p>
+<h2 id="建立-analog---digital-混合仿真原理图">3.建立 Analog - Digital
+混合仿真原理图</h2>
+<p>新建cell type选择
+schematic。在schematic中导入之前生成的symbol。加入时钟信号，地。暂时不用考虑数字模块的电源电压，后续仿真会设置。如果跟模拟模块联合仿真，按照正常步骤添加模拟symbol即可。</p>
+<p><strong>如果输出端口为多位数据，可以将对应label命名为out&lt;n:0&gt;这种格式，表明输出有n+1位</strong></p>
+<h2 id="建立-analog---digital-混合仿真config文件">4.建立 Analog -
+Digital 混合仿真config文件</h2>
+<p>创建 Cellview ，名字要与混合仿真的schematic的名字相同。Type要选
+config。这样在View中也是 config。 或者在library
+manager界面选中仿真原理图cell后，点击file——new——cellview。此时cell的名称自动为count4_test,但type为config</p>
+<h1 id="cadence-ams数模混合仿真">Cadence AMS数模混合仿真</h1>
+<p>以实现一个全加器为例，复现一次混合信号电路的仿真过程。通过Verilog
+实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
+<h2 id="建立数字模块">1、建立数字模块</h2>
+<figure>
+<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img src="CadenceEDA.assets/20200508220513691.png"
+alt="20200508220513691" />
+<figcaption aria-hidden="true">20200508220513691</figcaption>
+</figure>
+<h1 id="verilog-aams系统设计与仿真">Verilog-A/AMS系统设计与仿真</h1>
+<p>Verilog-ams是Verilog标准的模拟混合信号版本。开发的第一阶段是Verilog-A，描述模拟电路所必需的一组连续时间构造。这是基于SPICE的语言。Verilog-A并不打算直接与Verilog-HDL一起工作。相反，它是一种具有类似语法和相关语义的语言，旨在为模拟系统建模。</p>
+<p>Verilog-A在1996年被OVI标准化。Verilog-AMS的最新版本是2.4，发布于2014年，基于IEEE
+1364-2005。这将是它的最后一个版本，因为从那时起，Verilog已经被SystemVerilog取代。模拟扩展从来没有交给过IEEE。</p>
+<p>工作组目前正在努力使Verilog-AMS与IEEE
+1800的SystemVerilog保持一致，或者在新的SystemVerilog-AMS”标准中包含AMS能力。此外，工作正在进行中，重点关注社区要求的新功能和增强，以改进混合信号设计和验证，以及通过小组委员会将SystemVerilog断言扩展到模拟和混合信号设计。</p>
+<p><a href="https://verilogams.com/index.html">Verilog-A/MS —
+Documentation (verilogams.com)</a>
+Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
+<p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>EDA</tag>
+        <tag>模拟IC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git</title>
     <url>/2022/10/19/Git/</url>
     <content><![CDATA[<h1 id="git">Git</h1>
@@ -835,6 +776,65 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       <categories>
         <category>工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>3D堆叠</title>
+    <url>/2023/03/03/3D%E5%A0%86%E5%8F%A0/</url>
+    <content><![CDATA[<h1 id="d堆叠的出现"><strong>3D堆叠的出现</strong></h1>
+<p>现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。</p>
+<p>近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在<strong>硅载片（silicon
+interposer）</strong>上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。</p>
+<p>而传统的3D
+IC技术则是将多块芯片堆叠在一起，并使用<strong>TSV技术</strong>将不同的芯片做互联。目前，3D
+IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在<strong>HBM内存</strong>中，多块内存之间使用3D
+IC集成，而内存与主芯片之间则使用2.5D技术集成在一起。</p>
+<p>通过调整放置在一个芯片封装中的芯粒数量，就可以创建不同规模的系统，大大提升了系统设计的灵活性和可扩展性，同时也大大降低了研发成本，缩短了研发周期。</p>
+<span id="more"></span>
+<h1 id="什么是3d堆叠技术"><strong>什么是3D堆叠技术？</strong></h1>
+<p>3D堆叠技术是利用堆叠技术或通过互连和其他微加工技术在芯片或结构的<strong>Z轴方向上形成三维集成</strong>，信号连接以及晶圆级，芯片级和硅盖封装具有不同的功能。针对包装和可靠性技术的三维堆叠处理技术。该技术用于微系统集成，是在片上系统（SOC）和多芯片模块（MCM）之后开发的先进的系统级封装制造技术。</p>
+<p>所谓的3D堆叠技术其实很好理解，就是在原本的封装体里面，封装进两个以上不同功能的芯片，一般都是在不改变原本的封装体积大小，而在垂直方向进行的芯片叠放，这种技术所带来的特点就是改变了原有的在单位面积上不断增加晶体管的方式，而是在垂直方向上进行芯片叠放，自然也会实现芯片的功能多样化。</p>
+<p>总体上看，3D堆叠技术在<strong>集成度、性能、功耗</strong>等方面更具优势，同时设计自由度更高，开发时间更短，是各封装技术中最具发展前景的一种。当前，随着高效能运算、人工智能等应用兴起，加上用于提供多个晶圆垂直通信的TSV技术愈来愈成熟，可以看到越来越多的CPU、GPU和存储器开始采用3D堆叠技术。</p>
+<p>在传统的SiP封装系统中，任何芯片堆栈都可以称为3D，因为在Z轴上功能和信号都有扩展，无论堆栈位于IC内部还是外部。</p>
+<h1 id="amd-的-zen-3"><strong>AMD 的 Zen 3</strong></h1>
+<figure>
+<img src="3D堆叠.assets/v2-e97d3c77e5f25517bb8a3cbc6bf750bb_720w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>AMD 的 3D V-Cache 技术将一个 64 MB的 SRAM 缓存 [红色]
+和两个空白结构小芯片连接到 Zen 3 计算小芯片上。</p>
+<p>尽管Zen 2和新的Zen
+3处理器内核都使用相同的台积电制造工艺制造——因此具有相同尺寸的晶体管、互连和其他一切——AMD
+进行了如此多的架构改动，这让他们即使没有额外的高速缓存的前提下，Zen
+3也能平均提供 19% 的性能提升。其中一个架构瑰宝是包含一组硅通孔
+(TSV)，垂直互连直接穿过大部分硅。TSV 构建在 Zen 3 的L3
+级别缓存中，它位于计算小芯片的中间，并在其所有八个内核之间共享。</p>
+<p>在用于数据繁重工作负载的处理器中，Zen 3 晶圆的背面被减薄，直到 TSV
+暴露出来。然后使用所谓的混合键合将一个 64 兆字节的 SRAM
+小芯片键合到那些暴露的 TSV
+上——这一过程类似于将铜冷焊在一起。结果是一组密集的连接可以紧密到 9
+微米。最后，为了结构稳定性和热传导，附加空白硅芯片以覆盖 Zen 3 CPU
+芯片的其余部分。</p>
+<p>通过将额外的内存设置在 CPU
+芯片旁边来添加额外的内存不是一种选择，因为数据需要很长时间才能到达处理器内核。“尽管
+L3 [缓存] 大小增加了三倍，但 3D V-Cache 仅增加了四个 [时钟]
+周期的延迟——这只能通过 3D 堆叠来实现，” AMD 高级设计工程师 John
+Wuu表示。</p>
+<p>更大的缓存在高端游戏中占有一席之地。使用台式机锐龙 CPU 和 3D V-Cache
+可将 1080p 的游戏速度平均提高
+15%。它也适用于更严肃的工作，将困难的半导体设计计算的运行时间缩短了
+66%。</p>
+<p>与缩小逻辑的能力相比，业界缩小 SRAM
+的能力正在放缓。因此，您可以预期未来的 SRAM
+扩展包将继续使用更成熟的制造工艺制造，而计算芯片则被推向摩尔定律的前沿。</p>
+<p>台积电3D WoW硅晶圆堆叠技术</p>
+]]></content>
+      <categories>
+        <category>微电子工艺</category>
+      </categories>
+      <tags>
+        <tag>3D堆叠</tag>
+      </tags>
   </entry>
   <entry>
     <title>IC后端</title>
@@ -877,6 +877,20 @@ alt="img" /><strong>HLP</strong>，high performance low power；
       <tags>
         <tag>人工智能</tag>
         <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -984,20 +998,6 @@ href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
       <tags>
         <tag>SRAM</tag>
         <tag>存储器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2045,112 +2045,6 @@ $@ $</em>.o $(RM) $*.o</p>
       </categories>
       <tags>
         <tag>Makefile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-<span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -3873,6 +3767,197 @@ role="doc-backlink">↩︎</a></p></li>
       </tags>
   </entry>
   <entry>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
+<span id="more"></span>
+<p>​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梅森旋转算法</title>
+    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
+<p>梅森数：形如<span
+class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
+<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
+<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
+<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
+<span id="more"></span>
+<p>本原多项式：一个 m 阶的不可约多项式 <span
+class="math inline">\(\large f(x)\)</span>，如果 <span
+class="math inline">\(\large f(x)\)</span> 整除 <span
+class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
+class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
+<figure>
+<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
+<figcaption aria-hidden="true">查看源图像</figcaption>
+</figure>
+<p>线性反馈移位寄存器LFSR：</p>
+<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
+<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
+class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<figure>
+<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>梅森素数</tag>
+        <tag>伪随机数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>总线</title>
     <url>/2022/11/20/%E6%80%BB%E7%BA%BF/</url>
     <content><![CDATA[<h1 id="什么是总线">什么是总线？</h1>
@@ -4304,91 +4389,6 @@ alt="img" />
       <tags>
         <tag>AXI</tag>
         <tag>PCle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梅森旋转算法</title>
-    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
-<p>梅森数：形如<span
-class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
-<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
-<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
-<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
-<span id="more"></span>
-<p>本原多项式：一个 m 阶的不可约多项式 <span
-class="math inline">\(\large f(x)\)</span>，如果 <span
-class="math inline">\(\large f(x)\)</span> 整除 <span
-class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
-class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
-<figure>
-<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
-<figcaption aria-hidden="true">查看源图像</figcaption>
-</figure>
-<p>线性反馈移位寄存器LFSR：</p>
-<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
-<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
-class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<figure>
-<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>梅森素数</tag>
-        <tag>伪随机数</tag>
       </tags>
   </entry>
   <entry>

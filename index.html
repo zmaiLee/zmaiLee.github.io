@@ -1,1291 +1,360 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zmailee.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="HUSTer19. ICdesign &amp; Computer Architecture">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Mai's blog - try my best</title><meta name="author" content="zmaiLee"><meta name="copyright" content="zmaiLee"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HUSTer19. ICdesign &amp; Computer Architecture">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mai&#39;s blog">
 <meta property="og:url" content="https://zmailee.github.io/index.html">
 <meta property="og:site_name" content="Mai&#39;s blog">
 <meta property="og:description" content="HUSTer19. ICdesign &amp; Computer Architecture">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:author" content="zmaiLee">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://zmailee.github.io/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
-  <title>Mai's blog</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmailee.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mai\'s blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-03-04 10:06:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="Mai's blog" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-     <a href="https://zmailee.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Mai's blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">try my best</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-  <a href="https://github.com/zmaiLee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2023/03/03/3D%E5%A0%86%E5%8F%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/" class="post-title-link" itemprop="url">3D堆叠</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-03-03 15:17:23 / 修改时间：15:28:28" itemprop="dateCreated datePublished" datetime="2023-03-03T15:17:23+08:00">2023-03-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E7%94%B5%E5%AD%90%E5%B7%A5%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">微电子工艺</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="d堆叠的出现"><strong>3D堆叠的出现</strong></h1>
-<p>现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。</p>
-<p>近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在<strong>硅载片（silicon
-interposer）</strong>上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。</p>
-<p>而传统的3D
-IC技术则是将多块芯片堆叠在一起，并使用<strong>TSV技术</strong>将不同的芯片做互联。目前，3D
-IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在<strong>HBM内存</strong>中，多块内存之间使用3D
-IC集成，而内存与主芯片之间则使用2.5D技术集成在一起。</p>
-<p>通过调整放置在一个芯片封装中的芯粒数量，就可以创建不同规模的系统，大大提升了系统设计的灵活性和可扩展性，同时也大大降低了研发成本，缩短了研发周期。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2023/03/02/Transformer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/02/Transformer/" class="post-title-link" itemprop="url">Transformer</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-03-02 09:38:40 / 修改时间：20:54:57" itemprop="dateCreated datePublished" datetime="2023-03-02T09:38:40+08:00">2023-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/02/Transformer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">SRAM设计</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-12 22:57:04" itemprop="dateCreated datePublished" datetime="2022-12-12T22:57:04+08:00">2022-12-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-13 15:53:41" itemprop="dateModified" datetime="2022-12-13T15:53:41+08:00">2022-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IC/" itemprop="url" rel="index"><span itemprop="name">IC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一章概述">第一章：概述</h1>
-<p>静态随机存取存储器（Static Random-Access
-Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
-memory）。</p>
-<p>SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
-，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。</p>
-<h1 id="第二章译码器设计">第二章：译码器设计</h1>
-<figure>
-<img src="SRAM设计.assets/640.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为<strong>多输入逻辑电路驱动能力同尺寸下驱动能力下降</strong>，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为<strong>最小位负载最大，因为它不是关键路径，高位的地址译码速度远慢于低位的。</strong></p>
-<figure>
-<img src="SRAM设计.assets/640-16709157046853.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h1 id="第二章存储单元设计">第二章：存储单元设计</h1>
-<p>存储单元应该具有良好的可读写性及一定的驱动能力。存储单元尺寸应当越小越好，以达到较高的密度，同时让字线和位线的负载降低到最低。</p>
-<h2 id="传统6管单元结构">传统6管单元结构</h2>
-<p>一对交叉耦合的反相器组成，写操作采用互拉方式的6管单元。对于大规模的存储器部件，单个的位线结构可有效减小系统的面积与功耗，所以<strong>写操作采用单端输入，局部反向对偶写入方式</strong>，如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161472316.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如下图a所示为读操作，字线WL有效为1，此时保存在里面的值为Q＝1，M1、M4管导通，Q的值通过M6出现在位线BL上。对读操作，一般取<span
-class="math inline">\(W1&gt;1.2×W5\)</span>。</p>
-<p>如下图b所示为写操作，假设Q＝1，WL有效为1，要写入0值，即BL＝0，强制Q、Q非实现电平翻转。对写操作,一般取<span
-class="math inline">\(W4&lt;1.8×W6\)</span>。</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161753489.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>存储体位单元用来保存存储器部件的数据或状态信息，对存储部件的读/写归根结底是对存储体位单元的读/写。存储部件的存储单元应该具有良好的可读写性及一定的驱动能力。存储体位单元版图如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-167091654628112.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h2
-id="基于sram的改进型三态存体"><strong>基于SRAM的改进型三态存体</strong></h2>
-<p>基于SRAM的改进型三态存体（加入了N23管），如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091668263415.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在数据写入时，读写信号为0，关断存储体，在需要写入的数据稳定后，读写信号受控变为1，存储体存值。比如，若存储体数据原端存值为0，在进行写入操作的时候，存储体被关断，这样存储的这个0也就没有任何竞争力了，这就消除了写入弱1时可能产生的竞争，而且在写入弱1时，P8、P9和N18三个管子，还起到了对这个弱1的反馈加强作用；若存储体数据原端存值为1（DaIn=1），在进行写入操作的时候，存储体被关断，虽然此时P管和N三个管子对这个1有保持作用，但是写入的是强0，可以很容易的通过增大写入管尺寸增大0的竞争力，把0写入存储体。</p>
-<p><strong>GR存储单元</strong></p>
-<p>下图所示为一种存储单元CMOS电路图（GR存储单元），采用单端读写技术，并由一个方向信号WR非通过一个NMOS传输管N3对存储元的读写进行三态控制。这里所谓单端读写指的是读操作和写操作都只在D端进行，单元的读/写方向由WR非进行三态控制。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091670822518.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在对存储单元进行写操作时，
-WR非为0，N3关断，反馈维持电路P2、N2失效；进行读操作时，WR非为1，N3打开，反馈管P2、N2起作用，驱动数据输出。与传统的6T、4TSRAM双端读写结构相比，这种存储单元结构采用的这种单端读写技术显着减少了位线数目，而且对应的读写端口逻辑也大大减少，有利于大规模寄存器文件设计面积的优化及功耗的降低。而且通过对读写进行三态控制，在对存储单元进行写操作时就不必克服反馈保持电路的影响，可以比较容易的将数据写入，而且写操作驱动电路的尺寸也可因此做的相对较小，有利于提高集成度，降低电路面积和功耗；另外，存储元中的反馈管P2、N2并没有按照传统设计思想设计为弱管，而是将其设计为正常尺寸，十分有利于提高存储单元的抗干扰能力及输出驱动能力，加快数据的读出速度。电路中的晶体管尺寸的设计结合读写控制逻辑进行，以保证良好的可读写性。</p>
-<h1 id="第三章读写逻辑设计">第三章：读写逻辑设计</h1>
-<h2 id="读出逻辑电路"><strong>读出逻辑电路</strong></h2>
-<p>在大型存储器部件中，<strong>译码逻辑的延迟对整体存储器部件的读写延迟有重要的影响</strong>。随着存储器部件规模的增大，译码逻辑产生的字线的负载越来越大，而字线本身的走线负载也很大，这在超深亚微米设计下更为明显。为有效减小译码字线的延时，最直接的方法就是<strong>减少字线的负载单元以及自身走线长度</strong>，分开字线结构（Divided
-Word-Line
-Structure，DWL）就采用了这一思想。在大型存储器部件设计中，将存储体阵列分为左右两半，<strong>把行译码器及其驱动放置在阵列的中间，字线产生后向左右两侧驱动</strong>，从而大大减小了走线长度，减小了字线延迟。减小走线延迟的另一个方法是采用低电阻/电容率的金属走线，即提高字线的走线层数。</p>
-<p>在存储器部件的读数据通路设计时通常采用<strong>低摆幅差分信号技术</strong>，但由于大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常<strong>采用大增益的差分敏感放大器对读出数据进行驱动</strong>。具体设计时需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。位线上的最大的非常规噪声之一是与相邻位线之间的电容耦合，在设计时通常采用<strong>“螺旋”位线结构</strong>，在位线的传输方向上阶段性的交换两者的位置，可有效平衡相邻位线的电平变化对本单元造成的耦合影响。</p>
-<h3 id="预充电路">预充电路</h3>
-<p>为提高存储器部件存储单元的读出速度，在读操作之前两个位线上的电压应平衡，防止内建偏压。原则上，<strong>应使两个位线在足够高的电压上平衡以防止读干扰</strong>，因为当字线有效时，如果两个位线同时为0，会造成破坏性读出，所以<strong>通常把两位线都预充到VDD以达到平衡</strong>。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091697426221.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示，预充可通过静态上拉和时钟电路两种方式实现。对于静态上拉预充，不必设立重负载的预充时钟信号，但预充管一直处于开启状态，所以设计时上拉管的尺寸不能太大，否则会影响正常的读出操作。而对于<strong>时钟控制预充</strong>，则可以把上拉管设计得比较大以使位线电压快速达到平衡，而且在两位线间增加一个传输管，进一步加快平衡速度，但这种方案会显著的加大时钟信号的负载和功耗，很难建立精确的预充时序关系。</p>
-<h3 id="敏感放大器">敏感放大器</h3>
-<p>由于阵列单元的尺寸很小，而且微处理器的时钟周期很短，在读访问时位线可能仅仅泻放了100～200mv的电压，将这一很小的电压差可靠有效的放大是存储部件设计中的一个关键技术。目前已提出了多种电路结构解决这一问题，包括电流差分放大、电流镜以及上面的电压差分放大等，所有这些方法的前提就是必须保证产生一个精确的电压偏差，以确保最终敏感放大电路的正确操作。在大型微处理器设计中，密集的电源及地栅格间的电平转换噪音使得产生并保证一个精确的参考电压非常困难。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091716062524.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图图所示是结合了时钟预充的位线差分放大电路。在大型存储器部件设计中，结合多体结构，读出位线也要进行层次化设计，采用级联分开位线策略实现，每一级都有各自的敏感放大电路。</p>
-<p>存储器部件的读出逻辑对于整个存储器部件的性能起着重要的作用，它是外部读出端口与内部存储单元之间的桥梁，这一部分电路的设计性能将直接关系到系统的性能。</p>
-<p>大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常采用大增益的差分敏感放大器对读出数据进行驱动，如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091720695327.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>使用灵敏放大电路实现读出的过程有2步，首先是预充，然后是求值。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091724717830.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示中(a)和(b)分别表示预充电路和灵敏放大电路，预充可通过静态上拉和时钟电路控制两种方式实现。</p>
-<p>但是要使差分敏感放大器工作良好需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除了总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。</p>
-<p>​
-寄存器文件设计中可以使用另一种方式来实现读出结构，该结构没有常规的差分敏感放大器。如果不使用传统的灵敏放大技术实现又要提高读出电路的性能，首先想到的就是使用动态电路来实现读出电路。由于在数据读取过程中，存储阵列只有一个单元的数据是可以输出的，其他单元的输出端口是关闭的，这也是灵敏放大技术中通过该单元使能位线，通过电压差灵敏放大求值。如果不使用灵敏放大技术，那就只能通过逻辑表达式的方法求出这个输出的值来。</p>
-<p>该结构在存储单元数据输出时需要进行与后级相关的预处理，该预处理电路是设计读出逻辑的必需部分，通过该电路完成一些必要的信号控制和转换功能。基于求值逻辑的读出电路，必须具有一定的逻辑特性才能进行求值读出。</p>
-<h2 id="写入逻辑电路"><strong>写入逻辑电路</strong></h2>
-<p>写通路电路的功能是将写位线数据写入阵列存储单元，更新存储单元的数据。</p>
-<p>最简单的写放大电路可以是一个<strong>反相器</strong>，要能够在指定时钟内将选定位线拉低至VSS，更新存储单元，完成写操作。写入逻辑设计的复杂性在于：写操作完成后，被拉低到VSS的位线必须能够在下次读之前恢复到VDD，这一操作的复杂性因所采用的预充方案的不同而有所区别：如果采用时钟信号预充，这一点可以自动完成；而如果采用静态预充，设计者必须根据阵列存储元的下拉管和传输管的尺寸来选择预充管的尺寸才能确保读操作的正确性。静态预充电路可能无法在下次读操作前将位线全摆幅恢复到VDD，这种情况下就可能需要写放大电路将选定位线恢复到VDD。</p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
-版图基本知识_江南小作坊的博客-CSDN博客_版图基础知识</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/12/11/%E7%89%88%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/11/%E7%89%88%E5%9B%BE/" class="post-title-link" itemprop="url">版图</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-12-11 20:13:51 / 修改时间：20:19:22" itemprop="dateCreated datePublished" datetime="2022-12-11T20:13:51+08:00">2022-12-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="bb">bb</h1>
-<h1 id="mos管结构">MOS管结构</h1>
-<figure>
-<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>NWELL：</strong>N阱</p>
-<p><strong>GT：</strong>poly，多晶硅栅</p>
-<p><strong>SP：</strong>P+，</p>
-<p><strong>SN：</strong>N+</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/12/09/CadenceEDA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/09/CadenceEDA/" class="post-title-link" itemprop="url">CadenceEDA</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-09 17:52:27" itemprop="dateCreated datePublished" datetime="2022-12-09T17:52:27+08:00">2022-12-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-26 15:18:36" itemprop="dateModified" datetime="2023-02-26T15:18:36+08:00">2023-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p><strong>IC618</strong> for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/09/CadenceEDA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/" class="post-title-link" itemprop="url">异步复位同步撤离</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-30 20:53:01 / 修改时间：21:08:11" itemprop="dateCreated datePublished" datetime="2022-11-30T20:53:01+08:00">2022-11-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IC/" itemprop="url" rel="index"><span itemprop="name">IC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="同步复位">1 同步复位</h1>
-<h2 id="优点">1.1 优点</h2>
-<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
-<h2 id="缺点">1.2 缺点</h2>
-<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
-<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/27/Skew%20Number%20System/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/27/Skew%20Number%20System/" class="post-title-link" itemprop="url">Skew Number System</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-27 17:02:52 / 修改时间：17:22:36" itemprop="dateCreated datePublished" datetime="2022-11-27T17:02:52+08:00">2022-11-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/" class="post-title-link" itemprop="url">高速缓存与一致性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-26 18:40:14" itemprop="dateCreated datePublished" datetime="2022-11-26T18:40:14+08:00">2022-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-29 23:53:36" itemprop="dateModified" datetime="2022-11-29T23:53:36+08:00">2022-11-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Arch/" itemprop="url" rel="index"><span itemprop="name">Arch</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="cache的基本原理">Cache的基本原理</h1>
-<p>Cache指的是高速缓存简称缓存，原始意义是指访问速度比一般随机存取存储器（RAM）快的一种RAM，通常它不像系统主存那样使用DRAM技术，而使用昂贵但较快速的SRAM技术。</p>
-<p>在CPU中，Cache是介于内存和处理器之间的缓存，用于存放CPU即将可能使用的数据，当CPU要使用的数据在Cache中取到时，便不再需要到内存去存取数据，从而减少处理器访问内存的次数。
-提供“缓存”的目的是为了让数据访问的速度适应CPU的处理速度，由于CPU的运行速度远快于存储器的存储速度，当处理器通过内存存取一次数据将耗费数十个时钟周期，而处理器访问Cache则只需要一个或者几个时钟周期，所以Cache的出现极大的减小了CPU运行速度和存储速度的差距。设想一下一个主频2GHz的4-way超标量处理器访问一个100ns的DRAM,
-在访问一次DRAM时间内，处理器内部可以执行800条指令，这是不可以接受的，所以就有了和处理器一样工艺制造的L1Cache，紧密耦合在处理器内，得以让处理器能够直接访问Cache得到数据。虽然Cache能极大的提升处理器的性能，但是在一块芯片中，Cache的容量大小一般只有1KB到32KB，而这相较于内存存储的几个GB甚至TB的数据来说，Cache的容量是微乎其微的,Cache只能缓存内存的一小部分数据，但是Cache依然能够让处理器取到大部分需要的数据，其中的原理是内存中“程序执行与数据访问的局域性行为”，即一定程序执行时间和空间内，被访问的代码集中于一部分，所以Cache中缓存的数据都是被近期访问过数据或者可能会被访问的数据，这样就使得Cache的命中率大大提高。</p>
-<figure>
-<img
-src="高速缓存与一致性.assets/v2-bc15d8c0612599fc3de51c4382e07aa5_r.jpg"
-alt="v2-bc15d8c0612599fc3de51c4382e07aa5_r" />
-<figcaption
-aria-hidden="true">v2-bc15d8c0612599fc3de51c4382e07aa5_r</figcaption>
-</figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/20/%E6%80%BB%E7%BA%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/20/%E6%80%BB%E7%BA%BF/" class="post-title-link" itemprop="url">总线</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-20 17:35:24" itemprop="dateCreated datePublished" datetime="2022-11-20T17:35:24+08:00">2022-11-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-02 15:41:14" itemprop="dateModified" datetime="2022-12-02T15:41:14+08:00">2022-12-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IC/" itemprop="url" rel="index"><span itemprop="name">IC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="什么是总线">什么是总线？</h1>
-<p>总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线，它是由导线组成的传输线束，
-按照计算机所传输的信息种类，计算机的总线可以划分为数据总线、地址总线和控制总线，分别用来传输数据、数据地址和控制信号。总线是一种内部结构，它是CPU、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。在计算机系统中，各个部件之间传送信息的公共通路叫总线，微型计算机是以总线结构来连接各个功能部件的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/20/%E6%80%BB%E7%BA%BF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zmailee.github.io/2022/11/19/Makefile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="zmaiLee">
-      <meta itemprop="description" content="HUSTer19. ICdesign & Computer Architecture">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mai's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/19/Makefile/" class="post-title-link" itemprop="url">Makefile学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-19 16:26:36 / 修改时间：17:12:10" itemprop="dateCreated datePublished" datetime="2022-11-19T16:26:36+08:00">2022-11-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="makefile学习笔记">Makefile学习笔记</h1>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Check for sanity to avoid later confusion</span><br><span class="hljs-keyword">ifneq</span> (<span class="hljs-variable">$(words <span class="hljs-variable">$(CURDIR)</span>)</span>,1)<br> <span class="hljs-variable">$(<span class="hljs-built_in">error</span> Unsupported: GNU Make cannot build in directories containing spaces, build elsewhere: &#x27;<span class="hljs-variable">$(CURDIR)</span>&#x27;)</span><br><span class="hljs-keyword">endif</span><br><br><span class="hljs-comment"># This is intended to be a minimal example.  Before copying this to start a</span><br><span class="hljs-comment"># real project, it is better to start with a more complete example,</span><br><span class="hljs-comment"># e.g. examples/make_tracing_c.</span><br><br><span class="hljs-comment"># If $VERILATOR_ROOT isn&#x27;t in the environment, we assume it is part of a</span><br><span class="hljs-comment"># package install, and verilator is in your path. Otherwise find the</span><br><span class="hljs-comment"># binary relative to $VERILATOR_ROOT (such as when inside the git sources).</span><br><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(VERILATOR_ROOT)</span>,)<br>VERILATOR = verilator<br><span class="hljs-keyword">else</span><br><span class="hljs-keyword">export</span> VERILATOR_ROOT<br>VERILATOR = <span class="hljs-variable">$(VERILATOR_ROOT)</span>/bin/verilator<br><span class="hljs-keyword">endif</span><br><br><span class="hljs-section">default:</span><br>	@echo <span class="hljs-string">&quot;-- Verilator hello-world simple example&quot;</span><br>	@echo <span class="hljs-string">&quot;-- VERILATE &amp; BUILD --------&quot;</span><br>	<span class="hljs-variable">$(VERILATOR)</span> -cc --exe --build -j top.v sim_main.cpp<br>	@echo <span class="hljs-string">&quot;-- RUN ---------------------&quot;</span><br>	obj_dir/Vtop<br>	@echo <span class="hljs-string">&quot;-- DONE --------------------&quot;</span><br>	@echo <span class="hljs-string">&quot;Note: Once this example is understood, see examples/make_tracing_c.&quot;</span><br>	@echo <span class="hljs-string">&quot;Note: Also see the EXAMPLE section in the verilator manpage/document.&quot;</span><br><br></code></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/19/Makefile/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-      
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="zmaiLee"
-      src="/images/head.jpg">
-  <p class="site-author-name" itemprop="name">zmaiLee</p>
-  <div class="site-description" itemprop="description">HUSTer19. ICdesign & Computer Architecture</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <span class="site-state-item-count">17</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">22</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zmaiLee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zmaiLee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/qq_45631071" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45631071" rel="noopener" target="_blank"><i class="crosshairs fa-fw"></i>CSDN</a>
-      </span>
-  </div>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" /><link rel="alternate" href="/atom.xml" title="Mai's blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Mai's blog"><span class="site-name">Mai's blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Mai's blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/" title="3D堆叠">3D堆叠</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-03-03T07:17:23.252Z" title="发表于 2023-03-03 15:17:23">2023-03-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BE%AE%E7%94%B5%E5%AD%90%E5%B7%A5%E8%89%BA/">微电子工艺</a></span></div><div class="content">3D堆叠的出现
+现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。
+近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在硅载片（silicon
+interposer）上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。
+而传统的3D
+IC技术则是将多块芯片堆叠在一起，并使用TSV技术将不同的芯片做互联。目前，3D
+IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在HBM内存中，多块内存之间使用3D
+IC集成，而内存与主芯片之间则使用2. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/02/Transformer/" title="Transformer">Transformer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-03-02T01:38:40.575Z" title="发表于 2023-03-02 09:38:40">2023-03-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">Self-Attention自注意力机制
+
+
+self-attention
+
+
+​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系
+权重如何计算？
+
+
+微信截图_20230302134556
 
 
 
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=386538&auto=1&height=66"></iframe>
-      </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+1
+
+每个词都有一个编码后的词向量，以及用来询问其他词的Q向量，和用来回答的K向量。\(X_i\)与\(X_j\)的关系可以通过\(Q_i·K_j\)得到，内积值即score，再经过softmax就是权值，权值用于对value进行加权求和，得到当前词的特征表达。
 
 
-      </div>
-    </main>
+微信截图_20230302143353
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+Multi-Headed机制
 
-        
 
-<div class="copyright">
-  
-  &copy; 2022 – 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">劢</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+微信截图_20230302152054
 
 
 
+微信截图_20230302152255
 
 
 
+微信截图_20230302152505
 
+一般用8个head
 
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+不同的注意力结果
+得到的特征向量表达也不相同
 
 
 
+微信截图_20230302155945
 
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
+位置信息表达
 
 
+微信截图_20230302160219
+
+连接与层归一化
+
+
+微 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/" title="SRAM设计">SRAM设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-12T14:57:04.669Z" title="发表于 2022-12-12 22:57:04">2022-12-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IC/">IC</a></span></div><div class="content">第一章：概述
+静态随机存取存储器（Static Random-Access
+Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
+memory）。
+SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
+，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。
+第二章：译码器设计
+
+
+图片
+
+上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为多输入逻辑电路驱动能力同尺寸下驱动能力下降，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为最小位负载最大，因为它不 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/11/%E7%89%88%E5%9B%BE/" title="版图">版图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-11T12:13:51.445Z" title="发表于 2022-12-11 20:13:51">2022-12-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">bb
+MOS管结构
+
+
+img
+
+NWELL：N阱
+GT：poly，多晶硅栅
+SP：P+，
+SN：N+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/09/CadenceEDA/" title="CadenceEDA">CadenceEDA</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-09T09:52:27.596Z" title="发表于 2022-12-09 17:52:27">2022-12-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">
+IC618 for xxx
+xxx for xxx
+xxx for xxx
+
+
+第一章：Virtuoso使用
+Virtuoso使用
+新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
+新库 →右键property查看其它这个库的相关属性
+如何用脚本快速配置工业库：1）找到该脚本liblnit.il
+文件，注意一定是il后缀的，终端打开 pwd查看路径，
+2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
+3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
+文件不一定要勾选
+Schematic
 
 
 
-
-
-
+快捷键
+作用
 
 
 
 
+I
+添加元件
 
-  
 
-  
+C
+复制
 
-  
-<div class="moon-menu">
+
+M
+移动
+
+
+Shift+M
+移动器件但连线保持不变&lt;
+
+
+F
+整体居中显示
+
+
+右键拉框
+放大该区域
+
+
+U
+撤销上一次操作
+
+
+R
+旋转或
+
+
+9
+高亮选中节点所有连线
+
+
+S
+存盘 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/" title="异步复位同步撤离">异步复位同步撤离</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-30T12:53:01.931Z" title="发表于 2022-11-30 20:53:01">2022-11-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IC/">IC</a></span></div><div class="content">1 同步复位
+1.1 优点
+一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。
+1.2 缺点
+复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
+大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。
+
+2 异步复位
+2.1 recovery time和removal
+time
+在同步电路中，输入数据需要与时钟满足setup time和hold
+time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足recovery
+time和removal
+time才能有效进行复位操作和复位释放操作，防止输出亚稳态。
+
+
+img
+
+recovery
+time（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
+time，类似于同步时钟的setup time ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/27/Skew%20Number%20System/" title="Skew Number System">Skew Number System</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-27T09:02:52.013Z" title="发表于 2022-11-27 17:02:52">2022-11-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">偏斜二进制系统
+\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/26/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E4%B8%80%E8%87%B4%E6%80%A7/" title="高速缓存与一致性">高速缓存与一致性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-26T10:40:14.257Z" title="发表于 2022-11-26 18:40:14">2022-11-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Arch/">Arch</a></span></div><div class="content">Cache的基本原理
+Cache指的是高速缓存简称缓存，原始意义是指访问速度比一般随机存取存储器（RAM）快的一种RAM，通常它不像系统主存那样使用DRAM技术，而使用昂贵但较快速的SRAM技术。
+在CPU中，Cache是介于内存和处理器之间的缓存，用于存放CPU即将可能使用的数据，当CPU要使用的数据在Cache中取到时，便不再需要到内存去存取数据，从而减少处理器访问内存的次数。
+提供“缓存”的目的是为了让数据访问的速度适应CPU的处理速度，由于CPU的运行速度远快于存储器的存储速度，当处理器通过内存存取一次数据将耗费数十个时钟周期，而处理器访问Cache则只需要一个或者几个时钟周期，所以Cache的出现极大的减小了CPU运行速度和存储速度的差距。设想一下一个主频2GHz的4-way超标量处理器访问一个100ns的DRAM,
+在访问一次DRAM时间内，处理器内部可以执行800条指令，这是不可以接受的，所以就有了和处理器一样工艺制造的L1Cache，紧密耦合在处理器内，得以让处理器能够直接访问Cache得到数据。虽然Cache能极大的提升处理器的性能，但是在一块芯片中，Cach ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/20/%E6%80%BB%E7%BA%BF/" title="总线">总线</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-20T09:35:24.993Z" title="发表于 2022-11-20 17:35:24">2022-11-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IC/">IC</a></span></div><div class="content">什么是总线？
+总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线，它是由导线组成的传输线束，
+按照计算机所传输的信息种类，计算机的总线可以划分为数据总线、地址总线和控制总线，分别用来传输数据、数据地址和控制信号。总线是一种内部结构，它是CPU、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。在计算机系统中，各个部件之间传送信息的公共通路叫总线，微型计算机是以总线结构来连接各个功能部件的。
+
+AXI总线
+
+AMBA手册
+总线中文手册及总结
+深入AXI4总线
+
+VALID/READY 握手机制
+VALID/READY
+作为一种双向流控机制，可以使发送接收双方都有能力控制传输速率。
+发送方置高 VALID
+信号表示发送方已经将数据，地址或者控制信息已经就绪，并保持于消息总线上。
+接收方置高 READY
+信号表示接收方已经做好接收的准备。
+当双方的 VALID/READY
+信号同时为高，在时钟上升沿，完成一次数据传输。所有数据传输完毕后，双方同时置低自己的信号 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/19/Makefile/" title="Makefile学习笔记">Makefile学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-19T08:26:36.585Z" title="发表于 2022-11-19 16:26:36">2022-11-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">Makefile学习笔记
+1234567891011121314151617181920212223242526272829# Check for sanity to avoid later confusionifneq ($(words $(CURDIR)),1) $(error Unsupported: GNU Make cannot build in directories containing spaces, build elsewhere: &#x27;$(CURDIR)&#x27;)endif# This is intended to be a minimal example.  Before copying this to start a# real project, it is better to start with a more complete example,# e.g. examples/make_tracing_c.# If $VERILATOR_ROOT isn&#x27;t in the environment, we assume it is par ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">zmaiLee</div><div class="author-info__description">HUSTer19. ICdesign & Computer Architecture</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/" title="3D堆叠">3D堆叠</a><time datetime="2023-03-03T07:17:23.252Z" title="发表于 2023-03-03 15:17:23">2023-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/Transformer/" title="Transformer">Transformer</a><time datetime="2023-03-02T01:38:40.575Z" title="发表于 2023-03-02 09:38:40">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/" title="SRAM设计">SRAM设计</a><time datetime="2022-12-12T14:57:04.669Z" title="发表于 2022-12-12 22:57:04">2022-12-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/11/%E7%89%88%E5%9B%BE/" title="版图">版图</a><time datetime="2022-12-11T12:13:51.445Z" title="发表于 2022-12-11 20:13:51">2022-12-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/09/CadenceEDA/" title="CadenceEDA">CadenceEDA</a><time datetime="2022-12-09T09:52:27.596Z" title="发表于 2022-12-09 17:52:27">2022-12-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Arch/"><span class="card-category-list-name">Arch</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IC/"><span class="card-category-list-name">IC</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">基础课程</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BE%AE%E7%94%B5%E5%AD%90%E5%B7%A5%E8%89%BA/"><span class="card-category-list-name">微电子工艺</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">算法</span><span class="card-category-list-count">4</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/SystemVerilog/" style="font-size: 1.1em; color: #999">SystemVerilog</a> <a href="/tags/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 1.1em; color: #999">伪随机数</a> <a href="/tags/EDA/" style="font-size: 1.5em; color: #99a9bf">EDA</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.5em; color: #99a9bf">人工智能</a> <a href="/tags/%E6%95%B0%E5%AD%97IC/" style="font-size: 1.1em; color: #999">数字IC</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/PCle/" style="font-size: 1.5em; color: #99a9bf">PCle</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="font-size: 1.5em; color: #99a9bf">计算机体系结构</a> <a href="/tags/Skew-Number/" style="font-size: 1.1em; color: #999">Skew Number</a> <a href="/tags/Cache/" style="font-size: 1.1em; color: #999">Cache</a> <a href="/tags/3D%E5%A0%86%E5%8F%A0/" style="font-size: 1.1em; color: #999">3D堆叠</a> <a href="/tags/%E5%AD%98%E5%82%A8%E5%99%A8/" style="font-size: 1.1em; color: #999">存储器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Makefile/" style="font-size: 1.1em; color: #999">Makefile</a> <a href="/tags/%E6%A2%85%E6%A3%AE%E7%B4%A0%E6%95%B0/" style="font-size: 1.1em; color: #999">梅森素数</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/DPI-C/" style="font-size: 1.1em; color: #999">DPI-C</a> <a href="/tags/%E7%89%88%E5%9B%BE/" style="font-size: 1.1em; color: #999">版图</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/%E6%A8%A1%E6%8B%9FIC/" style="font-size: 1.1em; color: #999">模拟IC</a> <a href="/tags/SRAM/" style="font-size: 1.1em; color: #999">SRAM</a> <a href="/tags/%E5%A4%8D%E4%BD%8D/" style="font-size: 1.1em; color: #999">复位</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">17</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-04T02:06:03.413Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By zmaiLee</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div id="moon-menu-item-back2bottom" class="moon-menu-item">
@@ -1305,6 +374,4 @@ aria-hidden="true">v2-bc15d8c0612599fc3de51c4382e07aa5_r</figcaption>
       <div class="moon-menu-text"></div>
     </div>
   </div>
-</div><script src="/js/injector.js"></script>
-</body>
-</html>
+</div><script src="/js/injector.js"></script></body></html>
