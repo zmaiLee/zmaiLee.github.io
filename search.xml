@@ -1,6 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>3D堆叠</title>
+    <url>/2023/03/03/3D%E5%A0%86%E5%8F%A0/</url>
+    <content><![CDATA[<h1 id="d堆叠的出现"><strong>3D堆叠的出现</strong></h1>
+<p>现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。</p>
+<p>近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在<strong>硅载片（silicon
+interposer）</strong>上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。</p>
+<p>而传统的3D
+IC技术则是将多块芯片堆叠在一起，并使用<strong>TSV技术</strong>将不同的芯片做互联。目前，3D
+IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在<strong>HBM内存</strong>中，多块内存之间使用3D
+IC集成，而内存与主芯片之间则使用2.5D技术集成在一起。</p>
+<p>通过调整放置在一个芯片封装中的芯粒数量，就可以创建不同规模的系统，大大提升了系统设计的灵活性和可扩展性，同时也大大降低了研发成本，缩短了研发周期。</p>
+<span id="more"></span>
+<h1 id="什么是3d堆叠技术"><strong>什么是3D堆叠技术？</strong></h1>
+<p>3D堆叠技术是利用堆叠技术或通过互连和其他微加工技术在芯片或结构的<strong>Z轴方向上形成三维集成</strong>，信号连接以及晶圆级，芯片级和硅盖封装具有不同的功能。针对包装和可靠性技术的三维堆叠处理技术。该技术用于微系统集成，是在片上系统（SOC）和多芯片模块（MCM）之后开发的先进的系统级封装制造技术。</p>
+<p>所谓的3D堆叠技术其实很好理解，就是在原本的封装体里面，封装进两个以上不同功能的芯片，一般都是在不改变原本的封装体积大小，而在垂直方向进行的芯片叠放，这种技术所带来的特点就是改变了原有的在单位面积上不断增加晶体管的方式，而是在垂直方向上进行芯片叠放，自然也会实现芯片的功能多样化。</p>
+<p>总体上看，3D堆叠技术在<strong>集成度、性能、功耗</strong>等方面更具优势，同时设计自由度更高，开发时间更短，是各封装技术中最具发展前景的一种。当前，随着高效能运算、人工智能等应用兴起，加上用于提供多个晶圆垂直通信的TSV技术愈来愈成熟，可以看到越来越多的CPU、GPU和存储器开始采用3D堆叠技术。</p>
+<p>在传统的SiP封装系统中，任何芯片堆栈都可以称为3D，因为在Z轴上功能和信号都有扩展，无论堆栈位于IC内部还是外部。</p>
+<h1 id="amd-的-zen-3"><strong>AMD 的 Zen 3</strong></h1>
+<figure>
+<img src="3D堆叠.assets/v2-e97d3c77e5f25517bb8a3cbc6bf750bb_720w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>AMD 的 3D V-Cache 技术将一个 64 MB的 SRAM 缓存 [红色]
+和两个空白结构小芯片连接到 Zen 3 计算小芯片上。</p>
+<p>尽管Zen 2和新的Zen
+3处理器内核都使用相同的台积电制造工艺制造——因此具有相同尺寸的晶体管、互连和其他一切——AMD
+进行了如此多的架构改动，这让他们即使没有额外的高速缓存的前提下，Zen
+3也能平均提供 19% 的性能提升。其中一个架构瑰宝是包含一组硅通孔
+(TSV)，垂直互连直接穿过大部分硅。TSV 构建在 Zen 3 的L3
+级别缓存中，它位于计算小芯片的中间，并在其所有八个内核之间共享。</p>
+<p>在用于数据繁重工作负载的处理器中，Zen 3 晶圆的背面被减薄，直到 TSV
+暴露出来。然后使用所谓的混合键合将一个 64 兆字节的 SRAM
+小芯片键合到那些暴露的 TSV
+上——这一过程类似于将铜冷焊在一起。结果是一组密集的连接可以紧密到 9
+微米。最后，为了结构稳定性和热传导，附加空白硅芯片以覆盖 Zen 3 CPU
+芯片的其余部分。</p>
+<p>通过将额外的内存设置在 CPU
+芯片旁边来添加额外的内存不是一种选择，因为数据需要很长时间才能到达处理器内核。“尽管
+L3 [缓存] 大小增加了三倍，但 3D V-Cache 仅增加了四个 [时钟]
+周期的延迟——这只能通过 3D 堆叠来实现，” AMD 高级设计工程师 John
+Wuu表示。</p>
+<p>更大的缓存在高端游戏中占有一席之地。使用台式机锐龙 CPU 和 3D V-Cache
+可将 1080p 的游戏速度平均提高
+15%。它也适用于更严肃的工作，将困难的半导体设计计算的运行时间缩短了
+66%。</p>
+<p>与缩小逻辑的能力相比，业界缩小 SRAM
+的能力正在放缓。因此，您可以预期未来的 SRAM
+扩展包将继续使用更成熟的制造工艺制造，而计算芯片则被推向摩尔定律的前沿。</p>
+<p>台积电3D WoW硅晶圆堆叠技术</p>
+]]></content>
+      <categories>
+        <category>微电子工艺</category>
+      </categories>
+      <tags>
+        <tag>3D堆叠</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CadenceEDA</title>
+    <url>/2022/12/09/CadenceEDA/</url>
+    <content><![CDATA[<ul>
+<li><p><strong>IC618</strong> for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+<li><p>xxx for xxx</p></li>
+</ul>
+<span id="more"></span>
+<h1 id="第一章virtuoso使用">第一章：Virtuoso使用</h1>
+<h2 id="virtuoso使用">Virtuoso使用</h2>
+<p>新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
+新库 →右键property查看其它这个库的相关属性
+如何用脚本快速配置工业库：1）找到该脚本liblnit.il
+文件，注意一定是il后缀的，终端打开 pwd查看路径，
+2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
+3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
+文件不一定要勾选</p>
+<h2 id="schematic">Schematic</h2>
+<table>
+<thead>
+<tr class="header">
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I</td>
+<td>添加元件</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>复制</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>移动</td>
+</tr>
+<tr class="even">
+<td>Shift+M</td>
+<td>移动器件但连线保持不变&lt;</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>整体居中显示</td>
+</tr>
+<tr class="even">
+<td>右键拉框</td>
+<td>放大该区域</td>
+</tr>
+<tr class="odd">
+<td>U</td>
+<td>撤销上一次操作</td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td>旋转或</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>高亮选中节点所有连线</td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td>存盘</td>
+</tr>
+<tr class="odd">
+<td>W</td>
+<td>wire</td>
+</tr>
+<tr class="even">
+<td>P</td>
+<td>添加port</td>
+</tr>
+<tr class="odd">
+<td>L</td>
+<td>添加label</td>
+</tr>
+<tr class="even">
+<td>Q</td>
+<td>属性编辑</td>
+</tr>
+<tr class="odd">
+<td>E 查看底层电路</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Ctrl+E 返回顶层电路</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Shift+R</td>
+<td>镜像</td>
+</tr>
+<tr class="even">
+<td>X</td>
+<td>save and check</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="simulation">Simulation</h2>
+<h2 id="layout">Layout</h2>
+<ul>
+<li>F4：单独调线宽模式</li>
+<li>S：移动</li>
+<li>O：放置contact</li>
+<li>P：</li>
+<li>R：</li>
+<li>K：标尺</li>
+</ul>
+<p>AA有源层 NW 为N＃ DNW为P# GT 栅极 SN N型注入 SP为P型注入 M1234
+为金属层 V表示过孔<br />
+DRW表示可以画的层</p>
+<p>先选择元件→connectivity→pick from schematic shift +f 显示所有的层
+ctrl+f 只显示最外层边框 打散层 edit→hercany→flatten→pin</p>
+<p>option→display 更改间距 layout过程中 P+F3可以修改线宽 快捷键K
+调出尺子使用 Shift+K清楚所有标识层 R画矩形的快捷键
+Shift+Z逐步缩小所画的版图 ctrl＋Z逐步放大所画的版图 O快速画出过孔
+点击一下滑轮进行元器件的旋转 延长/拉动
+连线/器件：首先按F4，让状态栏处的“(F)select”变成“(P)select”，接着按S，点击前面选中的器件，然后拉动，就可以延长连线了
+L增加标签</p>
+<h2 id="drccalibre使用">DRC→Calibre使用</h2>
+<h2 id="工艺库文件">工艺库文件</h2>
+<p>tech.db</p>
+<p>techfile.tf</p>
+<p>display.drf</p>
+<ol type="1">
+<li>techfile.tf 内为自然语言，可以用vim等工具直接编辑，tech.db
+经过编译。</li>
+<li>函数 <code>tcLoadTechFile(d_tech t_techfile)</code>
+并不会修改上述任意一个文件，只会写入虚拟内存，需要 save 才能写入 tech.db
+。</li>
+<li>Virtuoso启动时自动加载的不是techfile.tf
+，而是<strong>tech.db</strong></li>
+<li>display.drf中含有一个个的 Packet，理解为颜色包 ，techfile 含有 Layer
+与 Packet 的对应关系。因此 Packet 像是一个“纽带”，把 display.drf
+中的颜色信息跟 techfile 中定义的 Layer Purpose Pair ( lpp )
+联系起来。</li>
+</ol>
+<p><a href="https://www.cnblogs.com/yeungchie/p/13406021.html">Virtuoso
+] display.drf、techfile.tf、tech.db 之间的关系，以及 Packet
+在它们之间的作用 - YEUNGCHIE - 博客园 (cnblogs.com)</a></p>
+<h1 id="数模混合仿真流程">数模混合仿真流程</h1>
+<h2 id="新建cell">1.新建cell</h2>
+<p><strong>file—new—cellview</strong></p>
+<p>cell type：Verilog</p>
+<p>编辑器：text editor</p>
+<h2 id="产生symbol">2.产生symbol</h2>
+<p>按照verilog要求，编写verilog代码并产生symbol</p>
+<h2 id="建立-analog---digital-混合仿真原理图">3.建立 Analog - Digital
+混合仿真原理图</h2>
+<p>新建cell type选择
+schematic。在schematic中导入之前生成的symbol。加入时钟信号，地。暂时不用考虑数字模块的电源电压，后续仿真会设置。如果跟模拟模块联合仿真，按照正常步骤添加模拟symbol即可。</p>
+<p><strong>如果输出端口为多位数据，可以将对应label命名为out&lt;n:0&gt;这种格式，表明输出有n+1位</strong></p>
+<h2 id="建立-analog---digital-混合仿真config文件">4.建立 Analog -
+Digital 混合仿真config文件</h2>
+<p>创建 Cellview ，名字要与混合仿真的schematic的名字相同。Type要选
+config。这样在View中也是 config。 或者在library
+manager界面选中仿真原理图cell后，点击file——new——cellview。此时cell的名称自动为count4_test,但type为config</p>
+<h1 id="cadence-ams数模混合仿真">Cadence AMS数模混合仿真</h1>
+<p>以实现一个全加器为例，复现一次混合信号电路的仿真过程。通过Verilog
+实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
+<h2 id="建立数字模块">1、建立数字模块</h2>
+<figure>
+<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img src="CadenceEDA.assets/20200508220513691.png"
+alt="20200508220513691" />
+<figcaption aria-hidden="true">20200508220513691</figcaption>
+</figure>
+<h1 id="verilog-aams系统设计与仿真">Verilog-A/AMS系统设计与仿真</h1>
+<p>Verilog-ams是Verilog标准的模拟混合信号版本。开发的第一阶段是Verilog-A，描述模拟电路所必需的一组连续时间构造。这是基于SPICE的语言。Verilog-A并不打算直接与Verilog-HDL一起工作。相反，它是一种具有类似语法和相关语义的语言，旨在为模拟系统建模。</p>
+<p>Verilog-A在1996年被OVI标准化。Verilog-AMS的最新版本是2.4，发布于2014年，基于IEEE
+1364-2005。这将是它的最后一个版本，因为从那时起，Verilog已经被SystemVerilog取代。模拟扩展从来没有交给过IEEE。</p>
+<p>工作组目前正在努力使Verilog-AMS与IEEE
+1800的SystemVerilog保持一致，或者在新的SystemVerilog-AMS”标准中包含AMS能力。此外，工作正在进行中，重点关注社区要求的新功能和增强，以改进混合信号设计和验证，以及通过小组委员会将SystemVerilog断言扩展到模拟和混合信号设计。</p>
+<p><a href="https://verilogams.com/index.html">Verilog-A/MS —
+Documentation (verilogams.com)</a>
+Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
+<p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>EDA</tag>
+        <tag>模拟IC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git</title>
+    <url>/2022/10/19/Git/</url>
+    <content><![CDATA[<h1 id="git">Git</h1>
+<p>用git执行下面语句时报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
+<span id="more"></span>
+<p>1.使用强制push的方法，这样会使远程修改丢失</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
+<p>2.先将远程repository修改pull下来再push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p>结果又报refusing to merge unrelated histories</p>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DPI学习笔记</title>
     <url>/2022/10/30/DPI/</url>
     <content><![CDATA[<h1 id="dpi学习笔记">DPI学习笔记</h1>
@@ -562,281 +837,6 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </tags>
   </entry>
   <entry>
-    <title>CadenceEDA</title>
-    <url>/2022/12/09/CadenceEDA/</url>
-    <content><![CDATA[<ul>
-<li><p><strong>IC618</strong> for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-<li><p>xxx for xxx</p></li>
-</ul>
-<span id="more"></span>
-<h1 id="第一章virtuoso使用">第一章：Virtuoso使用</h1>
-<h2 id="virtuoso使用">Virtuoso使用</h2>
-<p>新项目attach工艺库 tools→ tech file manager→attach→可以重新关联工艺库
-新库 →右键property查看其它这个库的相关属性
-如何用脚本快速配置工业库：1）找到该脚本liblnit.il
-文件，注意一定是il后缀的，终端打开 pwd查看路径，
-2）在virturoso的CIS窗口，输入 load "pwd路径+liblnit.il"
-3）既可以自动配置库 Tips:选中某个库时候，可以不用勾选其他的库，ckt
-文件不一定要勾选</p>
-<h2 id="schematic">Schematic</h2>
-<table>
-<thead>
-<tr class="header">
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>I</td>
-<td>添加元件</td>
-</tr>
-<tr class="even">
-<td>C</td>
-<td>复制</td>
-</tr>
-<tr class="odd">
-<td>M</td>
-<td>移动</td>
-</tr>
-<tr class="even">
-<td>Shift+M</td>
-<td>移动器件但连线保持不变&lt;</td>
-</tr>
-<tr class="odd">
-<td>F</td>
-<td>整体居中显示</td>
-</tr>
-<tr class="even">
-<td>右键拉框</td>
-<td>放大该区域</td>
-</tr>
-<tr class="odd">
-<td>U</td>
-<td>撤销上一次操作</td>
-</tr>
-<tr class="even">
-<td>R</td>
-<td>旋转或</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>高亮选中节点所有连线</td>
-</tr>
-<tr class="even">
-<td>S</td>
-<td>存盘</td>
-</tr>
-<tr class="odd">
-<td>W</td>
-<td>wire</td>
-</tr>
-<tr class="even">
-<td>P</td>
-<td>添加port</td>
-</tr>
-<tr class="odd">
-<td>L</td>
-<td>添加label</td>
-</tr>
-<tr class="even">
-<td>Q</td>
-<td>属性编辑</td>
-</tr>
-<tr class="odd">
-<td>E 查看底层电路</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Ctrl+E 返回顶层电路</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Shift+R</td>
-<td>镜像</td>
-</tr>
-<tr class="even">
-<td>X</td>
-<td>save and check</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="simulation">Simulation</h2>
-<h2 id="layout">Layout</h2>
-<ul>
-<li>F4：单独调线宽模式</li>
-<li>S：移动</li>
-<li>O：放置contact</li>
-<li>P：</li>
-<li>R：</li>
-<li>K：标尺</li>
-</ul>
-<p>AA有源层 NW 为N＃ DNW为P# GT 栅极 SN N型注入 SP为P型注入 M1234
-为金属层 V表示过孔<br />
-DRW表示可以画的层</p>
-<p>先选择元件→connectivity→pick from schematic shift +f 显示所有的层
-ctrl+f 只显示最外层边框 打散层 edit→hercany→flatten→pin</p>
-<p>option→display 更改间距 layout过程中 P+F3可以修改线宽 快捷键K
-调出尺子使用 Shift+K清楚所有标识层 R画矩形的快捷键
-Shift+Z逐步缩小所画的版图 ctrl＋Z逐步放大所画的版图 O快速画出过孔
-点击一下滑轮进行元器件的旋转 延长/拉动
-连线/器件：首先按F4，让状态栏处的“(F)select”变成“(P)select”，接着按S，点击前面选中的器件，然后拉动，就可以延长连线了
-L增加标签</p>
-<h2 id="drccalibre使用">DRC→Calibre使用</h2>
-<h2 id="工艺库文件">工艺库文件</h2>
-<p>tech.db</p>
-<p>techfile.tf</p>
-<p>display.drf</p>
-<ol type="1">
-<li>techfile.tf 内为自然语言，可以用vim等工具直接编辑，tech.db
-经过编译。</li>
-<li>函数 <code>tcLoadTechFile(d_tech t_techfile)</code>
-并不会修改上述任意一个文件，只会写入虚拟内存，需要 save 才能写入 tech.db
-。</li>
-<li>Virtuoso启动时自动加载的不是techfile.tf
-，而是<strong>tech.db</strong></li>
-<li>display.drf中含有一个个的 Packet，理解为颜色包 ，techfile 含有 Layer
-与 Packet 的对应关系。因此 Packet 像是一个“纽带”，把 display.drf
-中的颜色信息跟 techfile 中定义的 Layer Purpose Pair ( lpp )
-联系起来。</li>
-</ol>
-<p><a href="https://www.cnblogs.com/yeungchie/p/13406021.html">Virtuoso
-] display.drf、techfile.tf、tech.db 之间的关系，以及 Packet
-在它们之间的作用 - YEUNGCHIE - 博客园 (cnblogs.com)</a></p>
-<h1 id="数模混合仿真流程">数模混合仿真流程</h1>
-<h2 id="新建cell">1.新建cell</h2>
-<p><strong>file—new—cellview</strong></p>
-<p>cell type：Verilog</p>
-<p>编辑器：text editor</p>
-<h2 id="产生symbol">2.产生symbol</h2>
-<p>按照verilog要求，编写verilog代码并产生symbol</p>
-<h2 id="建立-analog---digital-混合仿真原理图">3.建立 Analog - Digital
-混合仿真原理图</h2>
-<p>新建cell type选择
-schematic。在schematic中导入之前生成的symbol。加入时钟信号，地。暂时不用考虑数字模块的电源电压，后续仿真会设置。如果跟模拟模块联合仿真，按照正常步骤添加模拟symbol即可。</p>
-<p><strong>如果输出端口为多位数据，可以将对应label命名为out&lt;n:0&gt;这种格式，表明输出有n+1位</strong></p>
-<h2 id="建立-analog---digital-混合仿真config文件">4.建立 Analog -
-Digital 混合仿真config文件</h2>
-<p>创建 Cellview ，名字要与混合仿真的schematic的名字相同。Type要选
-config。这样在View中也是 config。 或者在library
-manager界面选中仿真原理图cell后，点击file——new——cellview。此时cell的名称自动为count4_test,但type为config</p>
-<h1 id="cadence-ams数模混合仿真">Cadence AMS数模混合仿真</h1>
-<p>以实现一个全加器为例，复现一次混合信号电路的仿真过程。通过Verilog
-实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
-<h2 id="建立数字模块">1、建立数字模块</h2>
-<figure>
-<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<figure>
-<img src="CadenceEDA.assets/20200508220513691.png"
-alt="20200508220513691" />
-<figcaption aria-hidden="true">20200508220513691</figcaption>
-</figure>
-<h1 id="verilog-aams系统设计与仿真">Verilog-A/AMS系统设计与仿真</h1>
-<p>Verilog-ams是Verilog标准的模拟混合信号版本。开发的第一阶段是Verilog-A，描述模拟电路所必需的一组连续时间构造。这是基于SPICE的语言。Verilog-A并不打算直接与Verilog-HDL一起工作。相反，它是一种具有类似语法和相关语义的语言，旨在为模拟系统建模。</p>
-<p>Verilog-A在1996年被OVI标准化。Verilog-AMS的最新版本是2.4，发布于2014年，基于IEEE
-1364-2005。这将是它的最后一个版本，因为从那时起，Verilog已经被SystemVerilog取代。模拟扩展从来没有交给过IEEE。</p>
-<p>工作组目前正在努力使Verilog-AMS与IEEE
-1800的SystemVerilog保持一致，或者在新的SystemVerilog-AMS”标准中包含AMS能力。此外，工作正在进行中，重点关注社区要求的新功能和增强，以改进混合信号设计和验证，以及通过小组委员会将SystemVerilog断言扩展到模拟和混合信号设计。</p>
-<p><a href="https://verilogams.com/index.html">Verilog-A/MS —
-Documentation (verilogams.com)</a>
-Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
-<p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>EDA</tag>
-        <tag>模拟IC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git</title>
-    <url>/2022/10/19/Git/</url>
-    <content><![CDATA[<h1 id="git">Git</h1>
-<p>用git执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
-<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
-<span id="more"></span>
-<p>1.使用强制push的方法，这样会使远程修改丢失</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
-<p>2.先将远程repository修改pull下来再push</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>结果又报refusing to merge unrelated histories</p>
-<p>解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>3D堆叠</title>
-    <url>/2023/03/03/3D%E5%A0%86%E5%8F%A0/</url>
-    <content><![CDATA[<h1 id="d堆叠的出现"><strong>3D堆叠的出现</strong></h1>
-<p>现代芯片的功能越来越复杂，芯片尺寸也越来越大，导致工艺技术越来越复杂，由此带来了成本问题：不但制造成本高，设计成本也越来越高。为了应对这个问题，很多人想到了使用模块化设计方法，即把功能块分离成小型模块，做成一个个高良率、低成本的芯粒，然后根据需要灵活组装起来，即把芯片合理剪裁到各种不同的应用。</p>
-<p>近年来，学术界和产业界都在进行芯粒的研发工作。芯粒一般可以通过2.5D架构的中介层来组装或堆叠。2.5D技术是指将多块芯片粒在<strong>硅载片（silicon
-interposer）</strong>上使用互联线连接在一起，由于硅载片上的互联线密度可以远高于传统PCB上的互联线密度，因此可以实现高性能互联。其典型的技术即TSMC推出的CoWoS，InFO以及Intel的EMIB等技术。</p>
-<p>而传统的3D
-IC技术则是将多块芯片堆叠在一起，并使用<strong>TSV技术</strong>将不同的芯片做互联。目前，3D
-IC主要用在内存芯片之间的堆叠架构和传感器的堆叠，而2.5D技术则已经广泛应用在多款高端芯片组中。另外3D和2.5D之间也不是完全对立，例如在<strong>HBM内存</strong>中，多块内存之间使用3D
-IC集成，而内存与主芯片之间则使用2.5D技术集成在一起。</p>
-<p>通过调整放置在一个芯片封装中的芯粒数量，就可以创建不同规模的系统，大大提升了系统设计的灵活性和可扩展性，同时也大大降低了研发成本，缩短了研发周期。</p>
-<span id="more"></span>
-<h1 id="什么是3d堆叠技术"><strong>什么是3D堆叠技术？</strong></h1>
-<p>3D堆叠技术是利用堆叠技术或通过互连和其他微加工技术在芯片或结构的<strong>Z轴方向上形成三维集成</strong>，信号连接以及晶圆级，芯片级和硅盖封装具有不同的功能。针对包装和可靠性技术的三维堆叠处理技术。该技术用于微系统集成，是在片上系统（SOC）和多芯片模块（MCM）之后开发的先进的系统级封装制造技术。</p>
-<p>所谓的3D堆叠技术其实很好理解，就是在原本的封装体里面，封装进两个以上不同功能的芯片，一般都是在不改变原本的封装体积大小，而在垂直方向进行的芯片叠放，这种技术所带来的特点就是改变了原有的在单位面积上不断增加晶体管的方式，而是在垂直方向上进行芯片叠放，自然也会实现芯片的功能多样化。</p>
-<p>总体上看，3D堆叠技术在<strong>集成度、性能、功耗</strong>等方面更具优势，同时设计自由度更高，开发时间更短，是各封装技术中最具发展前景的一种。当前，随着高效能运算、人工智能等应用兴起，加上用于提供多个晶圆垂直通信的TSV技术愈来愈成熟，可以看到越来越多的CPU、GPU和存储器开始采用3D堆叠技术。</p>
-<p>在传统的SiP封装系统中，任何芯片堆栈都可以称为3D，因为在Z轴上功能和信号都有扩展，无论堆栈位于IC内部还是外部。</p>
-<h1 id="amd-的-zen-3"><strong>AMD 的 Zen 3</strong></h1>
-<figure>
-<img src="3D堆叠.assets/v2-e97d3c77e5f25517bb8a3cbc6bf750bb_720w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>AMD 的 3D V-Cache 技术将一个 64 MB的 SRAM 缓存 [红色]
-和两个空白结构小芯片连接到 Zen 3 计算小芯片上。</p>
-<p>尽管Zen 2和新的Zen
-3处理器内核都使用相同的台积电制造工艺制造——因此具有相同尺寸的晶体管、互连和其他一切——AMD
-进行了如此多的架构改动，这让他们即使没有额外的高速缓存的前提下，Zen
-3也能平均提供 19% 的性能提升。其中一个架构瑰宝是包含一组硅通孔
-(TSV)，垂直互连直接穿过大部分硅。TSV 构建在 Zen 3 的L3
-级别缓存中，它位于计算小芯片的中间，并在其所有八个内核之间共享。</p>
-<p>在用于数据繁重工作负载的处理器中，Zen 3 晶圆的背面被减薄，直到 TSV
-暴露出来。然后使用所谓的混合键合将一个 64 兆字节的 SRAM
-小芯片键合到那些暴露的 TSV
-上——这一过程类似于将铜冷焊在一起。结果是一组密集的连接可以紧密到 9
-微米。最后，为了结构稳定性和热传导，附加空白硅芯片以覆盖 Zen 3 CPU
-芯片的其余部分。</p>
-<p>通过将额外的内存设置在 CPU
-芯片旁边来添加额外的内存不是一种选择，因为数据需要很长时间才能到达处理器内核。“尽管
-L3 [缓存] 大小增加了三倍，但 3D V-Cache 仅增加了四个 [时钟]
-周期的延迟——这只能通过 3D 堆叠来实现，” AMD 高级设计工程师 John
-Wuu表示。</p>
-<p>更大的缓存在高端游戏中占有一席之地。使用台式机锐龙 CPU 和 3D V-Cache
-可将 1080p 的游戏速度平均提高
-15%。它也适用于更严肃的工作，将困难的半导体设计计算的运行时间缩短了
-66%。</p>
-<p>与缩小逻辑的能力相比，业界缩小 SRAM
-的能力正在放缓。因此，您可以预期未来的 SRAM
-扩展包将继续使用更成熟的制造工艺制造，而计算芯片则被推向摩尔定律的前沿。</p>
-<p>台积电3D WoW硅晶圆堆叠技术</p>
-]]></content>
-      <categories>
-        <category>微电子工艺</category>
-      </categories>
-      <tags>
-        <tag>3D堆叠</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IC后端</title>
     <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
     <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
@@ -877,127 +877,6 @@ alt="img" /><strong>HLP</strong>，high performance low power；
       <tags>
         <tag>人工智能</tag>
         <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SRAM设计</title>
-    <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p>静态随机存取存储器（Static Random-Access
-Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
-memory）。</p>
-<p>SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
-，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。</p>
-<h1 id="第二章译码器设计">第二章：译码器设计</h1>
-<figure>
-<img src="SRAM设计.assets/640.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为<strong>多输入逻辑电路驱动能力同尺寸下驱动能力下降</strong>，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为<strong>最小位负载最大，因为它不是关键路径，高位的地址译码速度远慢于低位的。</strong></p>
-<figure>
-<img src="SRAM设计.assets/640-16709157046853.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h1 id="第二章存储单元设计">第二章：存储单元设计</h1>
-<p>存储单元应该具有良好的可读写性及一定的驱动能力。存储单元尺寸应当越小越好，以达到较高的密度，同时让字线和位线的负载降低到最低。</p>
-<h2 id="传统6管单元结构">传统6管单元结构</h2>
-<p>一对交叉耦合的反相器组成，写操作采用互拉方式的6管单元。对于大规模的存储器部件，单个的位线结构可有效减小系统的面积与功耗，所以<strong>写操作采用单端输入，局部反向对偶写入方式</strong>，如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161472316.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如下图a所示为读操作，字线WL有效为1，此时保存在里面的值为Q＝1，M1、M4管导通，Q的值通过M6出现在位线BL上。对读操作，一般取<span
-class="math inline">\(W1&gt;1.2×W5\)</span>。</p>
-<p>如下图b所示为写操作，假设Q＝1，WL有效为1，要写入0值，即BL＝0，强制Q、Q非实现电平翻转。对写操作,一般取<span
-class="math inline">\(W4&lt;1.8×W6\)</span>。</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161753489.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>存储体位单元用来保存存储器部件的数据或状态信息，对存储部件的读/写归根结底是对存储体位单元的读/写。存储部件的存储单元应该具有良好的可读写性及一定的驱动能力。存储体位单元版图如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-167091654628112.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h2
-id="基于sram的改进型三态存体"><strong>基于SRAM的改进型三态存体</strong></h2>
-<p>基于SRAM的改进型三态存体（加入了N23管），如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091668263415.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在数据写入时，读写信号为0，关断存储体，在需要写入的数据稳定后，读写信号受控变为1，存储体存值。比如，若存储体数据原端存值为0，在进行写入操作的时候，存储体被关断，这样存储的这个0也就没有任何竞争力了，这就消除了写入弱1时可能产生的竞争，而且在写入弱1时，P8、P9和N18三个管子，还起到了对这个弱1的反馈加强作用；若存储体数据原端存值为1（DaIn=1），在进行写入操作的时候，存储体被关断，虽然此时P管和N三个管子对这个1有保持作用，但是写入的是强0，可以很容易的通过增大写入管尺寸增大0的竞争力，把0写入存储体。</p>
-<p><strong>GR存储单元</strong></p>
-<p>下图所示为一种存储单元CMOS电路图（GR存储单元），采用单端读写技术，并由一个方向信号WR非通过一个NMOS传输管N3对存储元的读写进行三态控制。这里所谓单端读写指的是读操作和写操作都只在D端进行，单元的读/写方向由WR非进行三态控制。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091670822518.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在对存储单元进行写操作时，
-WR非为0，N3关断，反馈维持电路P2、N2失效；进行读操作时，WR非为1，N3打开，反馈管P2、N2起作用，驱动数据输出。与传统的6T、4TSRAM双端读写结构相比，这种存储单元结构采用的这种单端读写技术显着减少了位线数目，而且对应的读写端口逻辑也大大减少，有利于大规模寄存器文件设计面积的优化及功耗的降低。而且通过对读写进行三态控制，在对存储单元进行写操作时就不必克服反馈保持电路的影响，可以比较容易的将数据写入，而且写操作驱动电路的尺寸也可因此做的相对较小，有利于提高集成度，降低电路面积和功耗；另外，存储元中的反馈管P2、N2并没有按照传统设计思想设计为弱管，而是将其设计为正常尺寸，十分有利于提高存储单元的抗干扰能力及输出驱动能力，加快数据的读出速度。电路中的晶体管尺寸的设计结合读写控制逻辑进行，以保证良好的可读写性。</p>
-<h1 id="第三章读写逻辑设计">第三章：读写逻辑设计</h1>
-<h2 id="读出逻辑电路"><strong>读出逻辑电路</strong></h2>
-<p>在大型存储器部件中，<strong>译码逻辑的延迟对整体存储器部件的读写延迟有重要的影响</strong>。随着存储器部件规模的增大，译码逻辑产生的字线的负载越来越大，而字线本身的走线负载也很大，这在超深亚微米设计下更为明显。为有效减小译码字线的延时，最直接的方法就是<strong>减少字线的负载单元以及自身走线长度</strong>，分开字线结构（Divided
-Word-Line
-Structure，DWL）就采用了这一思想。在大型存储器部件设计中，将存储体阵列分为左右两半，<strong>把行译码器及其驱动放置在阵列的中间，字线产生后向左右两侧驱动</strong>，从而大大减小了走线长度，减小了字线延迟。减小走线延迟的另一个方法是采用低电阻/电容率的金属走线，即提高字线的走线层数。</p>
-<p>在存储器部件的读数据通路设计时通常采用<strong>低摆幅差分信号技术</strong>，但由于大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常<strong>采用大增益的差分敏感放大器对读出数据进行驱动</strong>。具体设计时需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。位线上的最大的非常规噪声之一是与相邻位线之间的电容耦合，在设计时通常采用<strong>“螺旋”位线结构</strong>，在位线的传输方向上阶段性的交换两者的位置，可有效平衡相邻位线的电平变化对本单元造成的耦合影响。</p>
-<h3 id="预充电路">预充电路</h3>
-<p>为提高存储器部件存储单元的读出速度，在读操作之前两个位线上的电压应平衡，防止内建偏压。原则上，<strong>应使两个位线在足够高的电压上平衡以防止读干扰</strong>，因为当字线有效时，如果两个位线同时为0，会造成破坏性读出，所以<strong>通常把两位线都预充到VDD以达到平衡</strong>。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091697426221.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示，预充可通过静态上拉和时钟电路两种方式实现。对于静态上拉预充，不必设立重负载的预充时钟信号，但预充管一直处于开启状态，所以设计时上拉管的尺寸不能太大，否则会影响正常的读出操作。而对于<strong>时钟控制预充</strong>，则可以把上拉管设计得比较大以使位线电压快速达到平衡，而且在两位线间增加一个传输管，进一步加快平衡速度，但这种方案会显著的加大时钟信号的负载和功耗，很难建立精确的预充时序关系。</p>
-<h3 id="敏感放大器">敏感放大器</h3>
-<p>由于阵列单元的尺寸很小，而且微处理器的时钟周期很短，在读访问时位线可能仅仅泻放了100～200mv的电压，将这一很小的电压差可靠有效的放大是存储部件设计中的一个关键技术。目前已提出了多种电路结构解决这一问题，包括电流差分放大、电流镜以及上面的电压差分放大等，所有这些方法的前提就是必须保证产生一个精确的电压偏差，以确保最终敏感放大电路的正确操作。在大型微处理器设计中，密集的电源及地栅格间的电平转换噪音使得产生并保证一个精确的参考电压非常困难。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091716062524.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图图所示是结合了时钟预充的位线差分放大电路。在大型存储器部件设计中，结合多体结构，读出位线也要进行层次化设计，采用级联分开位线策略实现，每一级都有各自的敏感放大电路。</p>
-<p>存储器部件的读出逻辑对于整个存储器部件的性能起着重要的作用，它是外部读出端口与内部存储单元之间的桥梁，这一部分电路的设计性能将直接关系到系统的性能。</p>
-<p>大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常采用大增益的差分敏感放大器对读出数据进行驱动，如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091720695327.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>使用灵敏放大电路实现读出的过程有2步，首先是预充，然后是求值。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091724717830.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示中(a)和(b)分别表示预充电路和灵敏放大电路，预充可通过静态上拉和时钟电路控制两种方式实现。</p>
-<p>但是要使差分敏感放大器工作良好需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除了总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。</p>
-<p>​
-寄存器文件设计中可以使用另一种方式来实现读出结构，该结构没有常规的差分敏感放大器。如果不使用传统的灵敏放大技术实现又要提高读出电路的性能，首先想到的就是使用动态电路来实现读出电路。由于在数据读取过程中，存储阵列只有一个单元的数据是可以输出的，其他单元的输出端口是关闭的，这也是灵敏放大技术中通过该单元使能位线，通过电压差灵敏放大求值。如果不使用灵敏放大技术，那就只能通过逻辑表达式的方法求出这个输出的值来。</p>
-<p>该结构在存储单元数据输出时需要进行与后级相关的预处理，该预处理电路是设计读出逻辑的必需部分，通过该电路完成一些必要的信号控制和转换功能。基于求值逻辑的读出电路，必须具有一定的逻辑特性才能进行求值读出。</p>
-<h2 id="写入逻辑电路"><strong>写入逻辑电路</strong></h2>
-<p>写通路电路的功能是将写位线数据写入阵列存储单元，更新存储单元的数据。</p>
-<p>最简单的写放大电路可以是一个<strong>反相器</strong>，要能够在指定时钟内将选定位线拉低至VSS，更新存储单元，完成写操作。写入逻辑设计的复杂性在于：写操作完成后，被拉低到VSS的位线必须能够在下次读之前恢复到VDD，这一操作的复杂性因所采用的预充方案的不同而有所区别：如果采用时钟信号预充，这一点可以自动完成；而如果采用静态预充，设计者必须根据阵列存储元的下拉管和传输管的尺寸来选择预充管的尺寸才能确保读操作的正确性。静态预充电路可能无法在下次读操作前将位线全摆幅恢复到VDD，这种情况下就可能需要写放大电路将选定位线恢复到VDD。</p>
-<p><a
-href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
-版图基本知识_江南小作坊的博客-CSDN博客_版图基础知识</a></p>
-]]></content>
-      <categories>
-        <category>IC</category>
-      </categories>
-      <tags>
-        <tag>SRAM</tag>
-        <tag>存储器</tag>
       </tags>
   </entry>
   <entry>
@@ -2048,6 +1927,127 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Skew Number</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SRAM设计</title>
+    <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p>静态随机存取存储器（Static Random-Access
+Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
+memory）。</p>
+<p>SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
+，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。</p>
+<h1 id="第二章译码器设计">第二章：译码器设计</h1>
+<figure>
+<img src="SRAM设计.assets/640.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为<strong>多输入逻辑电路驱动能力同尺寸下驱动能力下降</strong>，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为<strong>最小位负载最大，因为它不是关键路径，高位的地址译码速度远慢于低位的。</strong></p>
+<figure>
+<img src="SRAM设计.assets/640-16709157046853.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<h1 id="第二章存储单元设计">第二章：存储单元设计</h1>
+<p>存储单元应该具有良好的可读写性及一定的驱动能力。存储单元尺寸应当越小越好，以达到较高的密度，同时让字线和位线的负载降低到最低。</p>
+<h2 id="传统6管单元结构">传统6管单元结构</h2>
+<p>一对交叉耦合的反相器组成，写操作采用互拉方式的6管单元。对于大规模的存储器部件，单个的位线结构可有效减小系统的面积与功耗，所以<strong>写操作采用单端输入，局部反向对偶写入方式</strong>，如下图所示</p>
+<figure>
+<img src="SRAM设计.assets/640-16709161472316.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如下图a所示为读操作，字线WL有效为1，此时保存在里面的值为Q＝1，M1、M4管导通，Q的值通过M6出现在位线BL上。对读操作，一般取<span
+class="math inline">\(W1&gt;1.2×W5\)</span>。</p>
+<p>如下图b所示为写操作，假设Q＝1，WL有效为1，要写入0值，即BL＝0，强制Q、Q非实现电平翻转。对写操作,一般取<span
+class="math inline">\(W4&lt;1.8×W6\)</span>。</p>
+<figure>
+<img src="SRAM设计.assets/640-16709161753489.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>存储体位单元用来保存存储器部件的数据或状态信息，对存储部件的读/写归根结底是对存储体位单元的读/写。存储部件的存储单元应该具有良好的可读写性及一定的驱动能力。存储体位单元版图如下图所示</p>
+<figure>
+<img src="SRAM设计.assets/640-167091654628112.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<h2
+id="基于sram的改进型三态存体"><strong>基于SRAM的改进型三态存体</strong></h2>
+<p>基于SRAM的改进型三态存体（加入了N23管），如下图所示。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091668263415.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>在数据写入时，读写信号为0，关断存储体，在需要写入的数据稳定后，读写信号受控变为1，存储体存值。比如，若存储体数据原端存值为0，在进行写入操作的时候，存储体被关断，这样存储的这个0也就没有任何竞争力了，这就消除了写入弱1时可能产生的竞争，而且在写入弱1时，P8、P9和N18三个管子，还起到了对这个弱1的反馈加强作用；若存储体数据原端存值为1（DaIn=1），在进行写入操作的时候，存储体被关断，虽然此时P管和N三个管子对这个1有保持作用，但是写入的是强0，可以很容易的通过增大写入管尺寸增大0的竞争力，把0写入存储体。</p>
+<p><strong>GR存储单元</strong></p>
+<p>下图所示为一种存储单元CMOS电路图（GR存储单元），采用单端读写技术，并由一个方向信号WR非通过一个NMOS传输管N3对存储元的读写进行三态控制。这里所谓单端读写指的是读操作和写操作都只在D端进行，单元的读/写方向由WR非进行三态控制。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091670822518.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>在对存储单元进行写操作时，
+WR非为0，N3关断，反馈维持电路P2、N2失效；进行读操作时，WR非为1，N3打开，反馈管P2、N2起作用，驱动数据输出。与传统的6T、4TSRAM双端读写结构相比，这种存储单元结构采用的这种单端读写技术显着减少了位线数目，而且对应的读写端口逻辑也大大减少，有利于大规模寄存器文件设计面积的优化及功耗的降低。而且通过对读写进行三态控制，在对存储单元进行写操作时就不必克服反馈保持电路的影响，可以比较容易的将数据写入，而且写操作驱动电路的尺寸也可因此做的相对较小，有利于提高集成度，降低电路面积和功耗；另外，存储元中的反馈管P2、N2并没有按照传统设计思想设计为弱管，而是将其设计为正常尺寸，十分有利于提高存储单元的抗干扰能力及输出驱动能力，加快数据的读出速度。电路中的晶体管尺寸的设计结合读写控制逻辑进行，以保证良好的可读写性。</p>
+<h1 id="第三章读写逻辑设计">第三章：读写逻辑设计</h1>
+<h2 id="读出逻辑电路"><strong>读出逻辑电路</strong></h2>
+<p>在大型存储器部件中，<strong>译码逻辑的延迟对整体存储器部件的读写延迟有重要的影响</strong>。随着存储器部件规模的增大，译码逻辑产生的字线的负载越来越大，而字线本身的走线负载也很大，这在超深亚微米设计下更为明显。为有效减小译码字线的延时，最直接的方法就是<strong>减少字线的负载单元以及自身走线长度</strong>，分开字线结构（Divided
+Word-Line
+Structure，DWL）就采用了这一思想。在大型存储器部件设计中，将存储体阵列分为左右两半，<strong>把行译码器及其驱动放置在阵列的中间，字线产生后向左右两侧驱动</strong>，从而大大减小了走线长度，减小了字线延迟。减小走线延迟的另一个方法是采用低电阻/电容率的金属走线，即提高字线的走线层数。</p>
+<p>在存储器部件的读数据通路设计时通常采用<strong>低摆幅差分信号技术</strong>，但由于大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常<strong>采用大增益的差分敏感放大器对读出数据进行驱动</strong>。具体设计时需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。位线上的最大的非常规噪声之一是与相邻位线之间的电容耦合，在设计时通常采用<strong>“螺旋”位线结构</strong>，在位线的传输方向上阶段性的交换两者的位置，可有效平衡相邻位线的电平变化对本单元造成的耦合影响。</p>
+<h3 id="预充电路">预充电路</h3>
+<p>为提高存储器部件存储单元的读出速度，在读操作之前两个位线上的电压应平衡，防止内建偏压。原则上，<strong>应使两个位线在足够高的电压上平衡以防止读干扰</strong>，因为当字线有效时，如果两个位线同时为0，会造成破坏性读出，所以<strong>通常把两位线都预充到VDD以达到平衡</strong>。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091697426221.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图所示，预充可通过静态上拉和时钟电路两种方式实现。对于静态上拉预充，不必设立重负载的预充时钟信号，但预充管一直处于开启状态，所以设计时上拉管的尺寸不能太大，否则会影响正常的读出操作。而对于<strong>时钟控制预充</strong>，则可以把上拉管设计得比较大以使位线电压快速达到平衡，而且在两位线间增加一个传输管，进一步加快平衡速度，但这种方案会显著的加大时钟信号的负载和功耗，很难建立精确的预充时序关系。</p>
+<h3 id="敏感放大器">敏感放大器</h3>
+<p>由于阵列单元的尺寸很小，而且微处理器的时钟周期很短，在读访问时位线可能仅仅泻放了100～200mv的电压，将这一很小的电压差可靠有效的放大是存储部件设计中的一个关键技术。目前已提出了多种电路结构解决这一问题，包括电流差分放大、电流镜以及上面的电压差分放大等，所有这些方法的前提就是必须保证产生一个精确的电压偏差，以确保最终敏感放大电路的正确操作。在大型微处理器设计中，密集的电源及地栅格间的电平转换噪音使得产生并保证一个精确的参考电压非常困难。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091716062524.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图图所示是结合了时钟预充的位线差分放大电路。在大型存储器部件设计中，结合多体结构，读出位线也要进行层次化设计，采用级联分开位线策略实现，每一级都有各自的敏感放大电路。</p>
+<p>存储器部件的读出逻辑对于整个存储器部件的性能起着重要的作用，它是外部读出端口与内部存储单元之间的桥梁，这一部分电路的设计性能将直接关系到系统的性能。</p>
+<p>大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常采用大增益的差分敏感放大器对读出数据进行驱动，如下图所示。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091720695327.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>使用灵敏放大电路实现读出的过程有2步，首先是预充，然后是求值。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091724717830.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图所示中(a)和(b)分别表示预充电路和灵敏放大电路，预充可通过静态上拉和时钟电路控制两种方式实现。</p>
+<p>但是要使差分敏感放大器工作良好需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除了总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。</p>
+<p>​
+寄存器文件设计中可以使用另一种方式来实现读出结构，该结构没有常规的差分敏感放大器。如果不使用传统的灵敏放大技术实现又要提高读出电路的性能，首先想到的就是使用动态电路来实现读出电路。由于在数据读取过程中，存储阵列只有一个单元的数据是可以输出的，其他单元的输出端口是关闭的，这也是灵敏放大技术中通过该单元使能位线，通过电压差灵敏放大求值。如果不使用灵敏放大技术，那就只能通过逻辑表达式的方法求出这个输出的值来。</p>
+<p>该结构在存储单元数据输出时需要进行与后级相关的预处理，该预处理电路是设计读出逻辑的必需部分，通过该电路完成一些必要的信号控制和转换功能。基于求值逻辑的读出电路，必须具有一定的逻辑特性才能进行求值读出。</p>
+<h2 id="写入逻辑电路"><strong>写入逻辑电路</strong></h2>
+<p>写通路电路的功能是将写位线数据写入阵列存储单元，更新存储单元的数据。</p>
+<p>最简单的写放大电路可以是一个<strong>反相器</strong>，要能够在指定时钟内将选定位线拉低至VSS，更新存储单元，完成写操作。写入逻辑设计的复杂性在于：写操作完成后，被拉低到VSS的位线必须能够在下次读之前恢复到VDD，这一操作的复杂性因所采用的预充方案的不同而有所区别：如果采用时钟信号预充，这一点可以自动完成；而如果采用静态预充，设计者必须根据阵列存储元的下拉管和传输管的尺寸来选择预充管的尺寸才能确保读操作的正确性。静态预充电路可能无法在下次读操作前将位线全摆幅恢复到VDD，这种情况下就可能需要写放大电路将选定位线恢复到VDD。</p>
+<p><a
+href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
+版图基本知识_江南小作坊的博客-CSDN博客_版图基础知识</a></p>
+]]></content>
+      <categories>
+        <category>IC</category>
+      </categories>
+      <tags>
+        <tag>SRAM</tag>
+        <tag>存储器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2510,92 +2510,132 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
-    <title>异步复位同步撤离</title>
-    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
-    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
-<h2 id="优点">1.1 优点</h2>
-<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
-<h2 id="缺点">1.2 缺点</h2>
-<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
-<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
 <span id="more"></span>
-<h1 id="异步复位">2 异步复位</h1>
-<h2 id="recovery-time和removal-time">2.1 recovery time和removal
-time</h2>
-<p>在同步电路中，输入数据需要与时钟满足setup time和hold
-time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
-time</strong>和<strong>removal
-time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
-<figure>
-<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>recovery
-time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
-time，类似于同步时钟的setup time。</p>
-<p><strong>removal
-time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
-time(去除时间)。类似同步时钟hold time。</p>
-<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
-time和removal
-time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
-time和removal
-time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
-<h2 id="优点-1">2.2 优点</h2>
-<ul>
-<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
-<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
-</ul>
-<h2 id="缺点-1">2.3 缺点</h2>
-<ul>
-<li>复位信号容易受到毛刺的影响。</li>
-<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
-</ul>
-<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
-<p>Synchronized Asynchronous
-Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
-<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
 <p>​
-异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
-<p>​
-同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
 <figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
 </figure>
 <figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
-alt="在这里插入图片描述" />
-<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
 </figure>
-<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
-<p>注意：
-既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
-<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
-<p>​ 只适用于不带PLL的系统。</p>
-<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
-<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
-<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
-<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
-<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>3D堆叠</title>
+    <url>/2023/03/04/User%20Guide/</url>
+    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
+<p>Front-matter 是 markdown 文件最上方以 ---
+分隔的区域，用於指定個別檔案的變數。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
+<h2 id="page-front-matter">Page Front-matter</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
 <figure>
 <img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/home.webp"
+alt="home" />
+<figcaption aria-hidden="true">home</figcaption>
 </figure>
 ]]></content>
       <categories>
-        <category>IC</category>
+        <category>微电子工艺</category>
       </categories>
       <tags>
-        <tag>复位</tag>
+        <tag>3D堆叠</tag>
       </tags>
   </entry>
   <entry>
@@ -3767,194 +3807,92 @@ role="doc-backlink">↩︎</a></p></li>
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
+    <title>异步复位同步撤离</title>
+    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
+    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
+<h2 id="优点">1.1 优点</h2>
+<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
+<h2 id="缺点">1.2 缺点</h2>
+<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
+<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
 <span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
+<h1 id="异步复位">2 异步复位</h1>
+<h2 id="recovery-time和removal-time">2.1 recovery time和removal
+time</h2>
+<p>在同步电路中，输入数据需要与时钟满足setup time和hold
+time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
+time</strong>和<strong>removal
+time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
 <figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梅森旋转算法</title>
-    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
-<p>梅森数：形如<span
-class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
-<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
-<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
-<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
-<span id="more"></span>
-<p>本原多项式：一个 m 阶的不可约多项式 <span
-class="math inline">\(\large f(x)\)</span>，如果 <span
-class="math inline">\(\large f(x)\)</span> 整除 <span
-class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
-class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
-<figure>
-<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
-<figcaption aria-hidden="true">查看源图像</figcaption>
-</figure>
-<p>线性反馈移位寄存器LFSR：</p>
-<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
-<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
-class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<figure>
-<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
+<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
-<h1 id="verilog实现">Verilog实现</h1>
+<p><strong>recovery
+time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
+time，类似于同步时钟的setup time。</p>
+<p><strong>removal
+time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
+time(去除时间)。类似同步时钟hold time。</p>
+<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
+time和removal
+time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
+time和removal
+time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
+<h2 id="优点-1">2.2 优点</h2>
+<ul>
+<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
+<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
+</ul>
+<h2 id="缺点-1">2.3 缺点</h2>
+<ul>
+<li>复位信号容易受到毛刺的影响。</li>
+<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
+</ul>
+<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
+<p>Synchronized Asynchronous
+Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
+<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
+<p>​
+异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
+<p>​
+同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
+<p>注意：
+既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
+<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
+<p>​ 只适用于不带PLL的系统。</p>
+<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
+<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
+<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
+<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
+<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
 ]]></content>
       <categories>
-        <category>算法</category>
+        <category>IC</category>
       </categories>
       <tags>
-        <tag>梅森素数</tag>
-        <tag>伪随机数</tag>
+        <tag>复位</tag>
       </tags>
   </entry>
   <entry>
@@ -4389,6 +4327,91 @@ alt="img" />
       <tags>
         <tag>AXI</tag>
         <tag>PCle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梅森旋转算法</title>
+    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
+<p>梅森数：形如<span
+class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
+<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
+<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
+<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
+<span id="more"></span>
+<p>本原多项式：一个 m 阶的不可约多项式 <span
+class="math inline">\(\large f(x)\)</span>，如果 <span
+class="math inline">\(\large f(x)\)</span> 整除 <span
+class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
+class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
+<figure>
+<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
+<figcaption aria-hidden="true">查看源图像</figcaption>
+</figure>
+<p>线性反馈移位寄存器LFSR：</p>
+<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
+<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
+class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<figure>
+<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>梅森素数</tag>
+        <tag>伪随机数</tag>
       </tags>
   </entry>
   <entry>
