@@ -60,6 +60,26 @@ Wuu表示。</p>
       </tags>
   </entry>
   <entry>
+    <title>Git</title>
+    <url>/2022/10/19/Git/</url>
+    <content><![CDATA[<h1 id="git">Git</h1>
+<p>用git执行下面语句时报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
+<span id="more"></span>
+<p>1.使用强制push的方法，这样会使远程修改丢失</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
+<p>2.先将远程repository修改pull下来再push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p>结果又报refusing to merge unrelated histories</p>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CadenceEDA</title>
     <url>/2022/12/09/CadenceEDA/</url>
     <content><![CDATA[<ul>
@@ -857,40 +877,6 @@ alt="img" /><strong>HLP</strong>，high performance low power；
       <tags>
         <tag>人工智能</tag>
         <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git</title>
-    <url>/2022/10/19/Git/</url>
-    <content><![CDATA[<h1 id="git">Git</h1>
-<p>用git执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
-<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
-<span id="more"></span>
-<p>1.使用强制push的方法，这样会使远程修改丢失</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
-<p>2.先将远程repository修改pull下来再push</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>结果又报refusing to merge unrelated histories</p>
-<p>解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2048,132 +2034,17 @@ href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-<span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
 ]]></content>
       <categories>
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3D堆叠</title>
-    <url>/2023/03/04/User%20Guide/</url>
-    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
-<p>Front-matter 是 markdown 文件最上方以 ---
-分隔的区域，用於指定個別檔案的變數。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
-<h2 id="page-front-matter">Page Front-matter</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
-<figure>
-<img
-src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/home.webp"
-alt="home" />
-<figcaption aria-hidden="true">home</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>微电子工艺</category>
-      </categories>
-      <tags>
-        <tag>3D堆叠</tag>
+        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2639,557 +2510,109 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
-    <title>异步复位同步撤离</title>
-    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
-    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
-<h2 id="优点">1.1 优点</h2>
-<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
-<h2 id="缺点">1.2 缺点</h2>
-<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
-<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
-<span id="more"></span>
-<h1 id="异步复位">2 异步复位</h1>
-<h2 id="recovery-time和removal-time">2.1 recovery time和removal
-time</h2>
-<p>在同步电路中，输入数据需要与时钟满足setup time和hold
-time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
-time</strong>和<strong>removal
-time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
 <figure>
-<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
 </figure>
-<p><strong>recovery
-time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
-time，类似于同步时钟的setup time。</p>
-<p><strong>removal
-time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
-time(去除时间)。类似同步时钟hold time。</p>
-<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
-time和removal
-time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
-time和removal
-time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
-<h2 id="优点-1">2.2 优点</h2>
-<ul>
-<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
-<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
-</ul>
-<h2 id="缺点-1">2.3 缺点</h2>
-<ul>
-<li>复位信号容易受到毛刺的影响。</li>
-<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
-</ul>
-<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
-<p>Synchronized Asynchronous
-Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
-<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
+<span id="more"></span>
 <p>​
-异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
-<p>​
-同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
 <figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
 </figure>
 <figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
-alt="在这里插入图片描述" />
-<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
 </figure>
-<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
-<p>注意：
-既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
-<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
-<p>​ 只适用于不带PLL的系统。</p>
-<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
-<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
-<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
-<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
-<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
 <figure>
-<img
-src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
 </figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
 ]]></content>
       <categories>
-        <category>IC</category>
+        <category>算法</category>
       </categories>
       <tags>
-        <tag>复位</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>总线</title>
-    <url>/2022/11/20/%E6%80%BB%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="什么是总线">什么是总线？</h1>
-<p>总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线，它是由导线组成的传输线束，
-按照计算机所传输的信息种类，计算机的总线可以划分为数据总线、地址总线和控制总线，分别用来传输数据、数据地址和控制信号。总线是一种内部结构，它是CPU、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。在计算机系统中，各个部件之间传送信息的公共通路叫总线，微型计算机是以总线结构来连接各个功能部件的。</p>
-<span id="more"></span>
-<h1 id="axi总线">AXI总线</h1>
-<ul>
-<li><a
-href="https://developer.arm.com/Architectures/AMBA"><strong>AMBA手册</strong></a></li>
-<li><a
-href="https://www.lzrnote.cn/2021/10/08/axi总线总结/"><strong>总线中文手册及总结</strong></a></li>
-<li><a
-href="https://zhuanlan.zhihu.com/p/44766356"><strong>深入AXI4总线</strong></a></li>
-</ul>
-<h2 id="validready-握手机制">VALID/READY 握手机制</h2>
-<p>VALID/READY
-作为一种双向流控机制，可以使发送接收双方都有能力控制传输速率。</p>
-<p><strong>发送方</strong>置高 <strong>VALID</strong>
-信号表示发送方已经将数据，地址或者控制信息已经就绪，并保持于消息总线上。</p>
-<p><strong>接收方</strong>置高 <strong>READY</strong>
-信号表示接收方已经做好接收的准备。</p>
-<p>当双方的 VALID/READY
-信号同时为高，在时钟上升沿，完成一次数据传输。所有数据传输完毕后，双方同时置低自己的信号。</p>
-<p>所谓的<strong>双向流控</strong>机制，指的是发送方通过置起 VALID
-信号控制发送的时机与速度，接收方也可以通过 READY
-信号的置起与否控制接收速度。发送方拥有传输的主动权，但接收方在不具备接收能力时，也能够置低信号停止传输，反压发送方。</p>
-<p>VALID 信号一旦置起就不能置低，直到完成握手（handshake
-occurs）。在设计接收方逻辑时，检测到 VALID
-信号置起，如果系统正忙，完全可以让发送方等待，发送方在完成传输之前都不会置低
-VALID
-信号，不需要考虑发送方撤销传输的可能。协议另外规定：发送方不能通过等待接收方
-READY 信号来确定置起 VALID 信号的时机。</p>
-<p>换句话说，发送方准备发送，置起 VALID
-信号是完全<strong>主动与独立</strong>的过程。接收方 READY
-信号按照协议可以依赖发送方 VALID
-信号，但如果此时发送方也依赖接收方信号，就会造成死锁的情况，所以协议在这里强调了
-VALID 信号的主动性。</p>
-<p>接收方可以置起 READY 之后发现：其实我好像还挺忙，然后置低 READY
-信号。只要此时 VALID 信号没有置起，这种操作是完全可以。</p>
-<p>READY 信号原则上由接收方自身的接收状况以及 VALID
-信号控制。（或者仅由接收方自身的接收状况决定）协议中没有规定 READY
-信号的默认状态，即未进行传输时的电平状态（default value）。</p>
-<p>协议建议 AW/AR READY
-信号的默认电平为高电平。若默认电平为低，则每次传输至少需要 2
-个周期才能完成，第一个周期置高 VALID 信号，第二个周期从机才会置高 READY
-信号。相当于每次传输增加 1
-个周期时间开销，这在某些情况下会对传输效率有较大的影响。</p>
-<h2 id="axi4-lite">AXI4-Lite</h2>
-<h2 id="axi4">AXI4</h2>
-<p>AXI4协议分为以下几个通道：</p>
-<ul>
-<li>AR：读地址通道</li>
-<li>R ：读数据通道</li>
-<li>AW：写地址通道</li>
-<li>W ：写数据通道</li>
-<li>B ：写反馈通道</li>
-</ul>
-<h3 id="araw通道">AR/AW通道：</h3>
-<p>Master-&gt;Slave信号:</p>
-<ul>
-<li><code>A[RW]ADDR</code>：读写的字节地址</li>
-<li><code>A[RW]LEN</code>：读写的传输次数，次数定义为<code>A[RW]LEN+1</code>。</li>
-<li><code>A[RW]SIZE</code>：单次传输的数据大小，字节数定义为<code>2 ** A[RW]SIZE</code>，且不可超过数据总线宽度。</li>
-<li><code>A[RW]BURST</code>：突发传输类型（INCR与WARP模式可以一次地址握手完成多次不同地址的数据传输，提高Cache替换效率，若只需要实现AXI4Lite可直接使用FIXED模式）</li>
-<li><code>A[RW]VALID</code>：读写的有效性</li>
-</ul>
-<p>此外，这里依据Slave支持的特性不同可能还有<code>A[RW]CACHE</code>、<code>A[RW]PROT</code>、<code>A[RW]PROT</code>、<code>A[RW]QOS</code>信号，这些信号我们可暂时忽略，直接assign为0即可。</p>
-<p>如果总线支持<code>A[RW]ID</code>，则需要对于不同的设备传输正确的ID信息。例如你的CPU的I-Cache与D-Cache独立，且都使用AXI访问总线，你就可以在CPU核里面写一个AXI
-Crossbar，并使用不同的ID区分设备，在握手时仲裁，并在数据返回时发送给对应的设备。</p>
-<p>Slave-&gt;Master:</p>
-<ul>
-<li><code>A[RW]READY</code>：地址握手完成</li>
-</ul>
-<p>地址握手流程：</p>
-<ol type="1">
-<li>初始状态，Master端<code>A[RW]VALID</code>
-<strong>必须</strong>为0，Slave端<code>A[RW]READY</code>只要不是复位状态<strong>可以</strong>为1，以便Slave单周期握手。</li>
-<li>Master填写正确填写<code>A[RW]ADDR</code>、<code>A[RW]SIZE</code>等信号，并将<code>A[RW]VALID</code>设置为1。</li>
-<li>当某一时刻的<strong>时钟上升沿之前</strong>出现<code>A[RW]VALID</code>与<code>A[RW]READY</code>都为1时，地址握手结束。此时Master端<strong>必须在时钟上升沿之后</strong>将<code>A[RW]VALID</code>信号置0或发送新的请求。否则Slave端将认为同一个地址请求发送了2次，并做出2次响应。</li>
-</ol>
-<h3 id="r通道">R通道：</h3>
-<p>Slave-&gt;Master信号：</p>
-<ul>
-<li><code>RDATA</code>：读取数据结果</li>
-<li><code>RLAST</code>：标记最后一次读数据传输
-可用于检验COUNT是否一致</li>
-<li><code>RRESP</code>：读数据的反馈，用于传输总线错误。
-简单核的实现可以在总线错误时不产生异常，只需要确保软件访问物理内存地址一定正确即可。</li>
-<li><code>RVALID</code>：读数据有效</li>
-</ul>
-<p><code>RID</code>用于与<code>ARID</code>对应，用于标识对应的请求。</p>
-<p>Master-&gt;Slave信号：</p>
-<ul>
-<li><code>RREADY</code>：本次读数据传输完成</li>
-</ul>
-<h3 id="w通道">W通道：</h3>
-<p>Master-&gt;Slave信号：</p>
-<ul>
-<li><code>WDATA</code>：写数据</li>
-<li><code>WSTRB</code>：写掩码</li>
-<li><code>WLAST</code>：标记最后一次写数据传输（可用于检验COUNT是否一致）</li>
-<li><code>WVALID</code>：写数据有效</li>
-</ul>
-<p>注：AXI3存在WID，AXI4省略了WID。因为AXI不允许Master先握手AW再握手W这样的操作，因此WID显得无意义。</p>
-<p>Slave-&gt;Master信号：</p>
-<ul>
-<li><code>WREADY</code>：本次写数据传输完成</li>
-</ul>
-<h3 id="b通道">B通道：</h3>
-<p>Slave-&gt;Master信号：</p>
-<ul>
-<li><code>BID</code>：与AWID对应，表示对应写请求的反馈。</li>
-<li><code>BRESP</code>：写数据的反馈，与<code>RRESP</code>一样，用于传输总线错误。</li>
-<li><code>BVALID</code>：写反馈有效</li>
-</ul>
-<p>Master-&gt;Slave信号：</p>
-<ul>
-<li><code>BREADY</code>：本次写反馈传输完成</li>
-</ul>
-<h3 id="burst类型">Burst类型</h3>
-<p>AXI4支持突发传输，实现一次地址握手传输多个数据，避免将大量时间花在地址握手传输上。</p>
-<p>尽管AR与R通道以及AW与W通道的分离看似地址与数据可以流水化传输，但是对于许多硬件Slave设备而言，往往地址握手后一段时间才能读写第一个数据（例如DDR内存），这便是突发传输能够加速的原因。</p>
-<p>AXI4支持以下3种BURST类型：</p>
-<ol type="1">
-<li><p>FIXED</p>
-<p>每次都操作[<code>A[RW]ADDR</code> +:
-<code>A[RW]SIZE</code>]部分。</p></li>
-<li><p>INCR</p>
-<p>从<code>A[RW]ADDR</code>开始，
-每次操作地址递增<code>A[RW]SIZE</code>。</p>
-<p>如果某一时刻操作的地址越过了总线宽度范围，则本次只传输到结束位置，下次传输地址从对齐总线宽度的地方开始。</p>
-<p>例如某一时刻操作地址=5，总线宽度8字节，每次传输字节数为4，则本次操作传输字节5-7部分，下次传输8-11部分。</p></li>
-<li><p>WARP</p>
-<p>类似INCR类型，用于传输一段2的整数幂字节的地址范围，但可以通过设置<code>A[RW]ADDR</code>决定起始地址。</p>
-<p>但这一类型的Burst对于发送的地址存在一定限制，详情请大家自己看AMBA文档。</p>
-<p>具体地址计算细节请自行阅读<a
-href="https://developer.arm.com/Architectures/AMBA">AMBA文档</a>的A3.Transcation
-structure部分。</p></li>
-</ol>
-<h4 id="narrow-burst">Narrow Burst</h4>
-<p>当<code>A[RW]SIZE</code>指定的单次传输数据大小<strong>小于</strong>总线数据宽度时，这种Burst称为Narrow
-Burst。</p>
-<p>对于Narrow
-Burst，无论是读写请求，数据都出现在<code>[RW]DATA</code>对应访问地址%总线宽度的位置。</p>
-<p>举个例子：使用INCR
-Burst读取内存地址[6]、[7]、[8]，每次读取1字节。总线<code>RDATA</code>宽度为64位。</p>
-<p>按照以下方式发送AR请求：</p>
-<ul>
-<li>ARADDR=6</li>
-<li>ARSIZE=0（1 Bytes）</li>
-<li>ARLEN=2（3 Bursts）</li>
-<li>ARBURST=1（INCR）</li>
-</ul>
-<p>SLAVE会在R通道传回3个请求，分别是：</p>
-<ul>
-<li><p>第一次传输：</p>
-<p>Slave读取[6]地址，有效数据在<code>RDATA</code>的<code>[55:48]</code>部分。</p></li>
-<li><p>第二次传输</p>
-<p>Slave读取[7]地址，有效数据在<code>RDATA</code>的<code>[63:56]</code>部分。</p></li>
-<li><p>第三次传输：</p>
-<p>Slave读取[8]地址，有效数据在<code>RDATA</code>的<code>[7:0]</code>部分。</p></li>
-</ul>
-<h3 id="axi4注意事项">AXI4注意事项</h3>
-<ol type="1">
-<li><p>所有通道的<code>VALID</code>与<code>READY</code>之间不能有组合逻辑。无论对于Master端还是Slave端。如果想要单周期握手，对于AR、AW、W通道，Slave可以选择默认状态下将<code>READY</code>置1。对于R、B通道，Master可以选择默认状态下将<code>READY</code>置1。</p></li>
-<li><p>对于写请求，不可等待<code>AW</code>握手完成后再升高<code>WVALID</code>。因为AXI协议允许Slave设备等待<code>AWVALID</code>与<code>WVALID</code>都为1后，再升高<code>AWREADY</code>。如果这么做或许部分SoC上能运行，但会在使用部分Slave设备时出现死锁（例如Vivado
-Block Memory Generator）。</p></li>
-<li><p>AXI请求不可撤销。</p>
-<p>一旦任何通道的VALID升高后，其数据必须保持不变直到握手结束，包括ID部分和VALID本身。所以只依靠AXI信号实现的纯组合逻辑AXI
-Crossbar一定是不符合规范的。</p></li>
-<li><p>对于外设的MMIO访问，需要根据所对应访存的指令的长度正确填写<code>A[RW]SIZE</code>。</p>
-<p>例如<code>lb</code>与<code>sb</code>指令的<code>A[RW]SIZE</code>必须为0（表示1字节）。不应该在针对MMIO的写请求时使用<code>WSTRB</code>指定要更改的数据范围。对于读请求，也不应该读出整个数据宽度后再选择。因为这两种方式在MMIO设备看来访问的是不同的寄存器。</p></li>
-<li><p>写操作直到BVALID拉高才算结束。</p>
-<p>如果不等待B通道马上在AR通道发出读请求，有可能读到写完成之前的旧值。</p></li>
-</ol>
-<h3 id="写传输操作write-transcation">写传输操作：Write transcation</h3>
-<p>如下图所示，主机首先在写地址通道（AW）上告知从机本次传输操作（transcaction，对应后文中的"传输操作"）的特性，包括地址和控制信息。然后，在写数据通道（W）向从机写入数据，一次传输操作中可能包括多个数据传输。</p>
-<p>最后，从机在接收到写数据后，通过写回复通道（R）将本次传输操作的响应告知主机。主机以收到从机的响应信号，作为本次传输操作结束的标志。<strong>写回复是针对整个传输操作（transcaction）的，而不是针对每个写入数据（data
-transfer），且所有传输操作中，写回复
-与写数据的关系都如下图所示，写回复必然是在收到传输操作中最后一个写数据之后触发。</strong></p>
-<p>但是，写地址与写数据的关系并不局限于一种情况。一般来说，写数据都发生在写地址操作之后，但也不是绝对的，在有些情况下，可以先写数据，或者在同一周期写入数据与地址，都是允许的。这也表现了
-AXI 通道之间的独立性。</p>
-<figure>
-<img src="总线.assets/v2-7c95b31e753dfedfdfb1ad0d890af01e_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<h3 id="读操作read-transcation">读操作：Read transcation</h3>
-<p>读操作只涉及两个通道，首先主机在读地址通道上写入本次Transcation待读取数据的地址以及控制信息。从机在接收到地址后，将该地址上的数据通过读数据通道传输给主机。读操作通道间（ARC&amp;RC）完全独立，从机发出读数据一定发生在主机写入读地址后。</p>
-<figure>
-<img src="总线.assets/v2-f28c75e6e50991c6640e5737af46bdf3_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<h3 id="突发传输burst-transaction">突发传输：Burst Transaction</h3>
-<p>两个 AXI 组件为了传输一组数据而进行的所有交互称为 <strong>AXI
-Transaction</strong>，AXI 传输事务，包括所有 5 个通道上的交互。</p>
-<p>AXI 是一个 burst-based 协议，AXI 传输事务中的数据传输以 burst
-形式组织，称为 <strong>AXI Burst</strong>。每个传输事务包括一至多个
-Burst。每个 Burst 中传输一至多个数据，每个数据传输称为 <strong>AXI
-Transfer</strong>。每个Transfer
-因为使用一个周期，又被称为一拍数据（Beat）。主机可以写入起始地址以及突发传输的长度等信息，从机将起始地址开始，依次接收主机传输的写数据，或者读取连续地址上的数据，作为读数据传输给主机。所以上面两张图中，一次传输操作中（Transcation）
-中包括了一次地址与控制信息（Address &amp; Control）、多个数据（data
-transfer）。</p>
-<p>注意：单次 burst 传输中的数据，其地址不能跨越 4KB
-边界。之所以这样规定是为了避免一笔burst交易访问两个slave（每个slave的地址空间是4K/1K对齐的）。4K对齐最大原因是系统中定义一个page大小是4K，而所谓的4K边界是指低12bit为0的地址。</p>
-<p>补充一下：对于一次burst传输，只给出首地址，burst内部的地址按照<span
-class="math inline">\(2^{size}\)</span>累加，也就是按每个数据字节数累加，协议之所以这么做，原因是计算机底层存储是按字节存储的。假设传输的数据是32bit，也就是4个字节，那么实际上会分配4个地址给这个32bit数据，所以按照标准的axi协议，相邻的burst首地址按照（awlen+1）*<span
-class="math inline">\(2^{size}\)</span>累加，master发送首地址时要遵循这种方式，slave收到地址后，按照标准协议，解析出的burst内部的地址就是按2^size累加的。这样一来，除非size为0，也就是数据为1个字节，地址才是连续的，否则，解析出的地址不连续，不过可以根据用户侧需求，对标准协议地址进行处理，使之连续。上面说的有点混乱，举个例子：假如awlen为3，也就是一次突发传输4个数据。awsize为2，也就是每个数据4字节，32bit，第一次突发传输首地址awaddr为0。那么，根据标准axi协议，slave解析出的第一个burst四个数对应的地址为0，4，8，12，即按字节数累加。master发送第二个burst时，awaddr必须为16，slave解析第二个burst四个点得到的地址为16，20，24，28。这样就相当于给每个32bit分了四个地址，在底层每个地址存一个字节。应用时，有时不涉及底层的存储，假如只完成一个memory的读写，希望使用连续地址，那么用户可以讲按照标准协议解析出的地址除以4之后使用，则0，4，8，12就变成了0，1，2，3。另外，同一个burst的地址不能跨4K边界，而不是4KB，4KB讲的是容量。这是因为底层page的存储容量为4KB。一个burst内部地址按字节数累加，地址跨4K，也就是操作一个burst的数据时跨了4KB，跨page了，这是不允许的，一个
-burst的数据必须在同一个page里，否则容易出现错误。</p>
-<h3 id="传输事务结构transaction-structure">传输事务结构：Transaction
-structure</h3>
-<h4 id="读写地址结构"><strong>读写地址结构</strong></h4>
-<p>在整个transaction中，主机首先将接下来 burst
-传输的<strong>控制信息</strong>以及<strong>数据首个字节的地址</strong>传输给从机，这个地址被称为起始地址。在本次
-burst
-后续传输期间，从机将根据控制信息计算后续数据的地址。地址通道中传输的控制信息中包括三项突发传输相关的信号(AR/AW
-均一致，下图为以 AR 为例)：</p>
-<figure>
-<img src="总线.assets/v2-7c260f2be1cb05ae5409f4b549ffd3b4_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>（1）LEN</strong>，指一次突发传输中包含的数据传输(transfer)数量。</p>
-<p>在 AXI4 中，INCR 类型最大支持长度为 256，其他类型最大长度为
-16，突发长度至少为 1。Len 信号从零开始表示，实际的长度值为 Len +
-1。突发传输长度在不同burst type下有一些限制，包括：</p>
-<ul>
-<li>对于 WRAP 模式，突发传输长度仅能为2,4,8,16</li>
-<li>在一次突发传输中，地址不能跨越一个 4KB 分区</li>
-<li>一次突发传输不能在完成所有数据传输前提前结束（early
-termination）</li>
-</ul>
-<p>协议中多次<strong>强调</strong>，通信双方都不能在传输事务的所有
-Transfer 完成前提前结束，哪怕发生错误，也得走完整个传输事务的流程。</p>
-<p>但是主机也有办法减少传输的数据。在写传输事务中，发送方可以通过置低所有的写有效位，使写数据无效。在读传输事务中，主机可以直接丢弃读取到的数据。</p>
-<p><strong>（2）SIZE</strong>，指传输中的数据位宽，具体地，是每周期传输数据的字节数量。</p>
-<p>突发传输数据宽度不能超过数据总线本身的位宽。而当数据总线位宽大于突发传输宽度时，将根据协议的相关规定，将数据在部分数据线上传输。突发传输宽度信号
-AXSIZE 位宽为 3bit，表示为：</p>
-<figure>
-<img src="总线.assets/v2-53b57203fc06a4f4b18c2668cc8bc6fd_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>（3）突发传输类型</strong>，类型共有 3 种，分别为 FIXED，INCR
-以及 WRAP，使用 2 位表示。</p>
-<figure>
-<img src="总线.assets/v2-907b3d1e2637ec20fc56acd6c7b8ed88_1440w.jpeg"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>FIXED</strong>：burst
-中所有数据都使用<strong>起始地址</strong>。该模式适合对某个固定地址进行多次数据更新，比如读写一个
-fifo 时，读写地址就是固定的。</p>
-<p><strong>INCR</strong>：后续数据的地址在初始地址的基础上进行递增，<strong>递增幅度与传输宽度相同</strong>。适合对于
-RAM 等通过地址映射（mapped memory）的存储介质进行读写操作。</p>
-<p><strong>WRAP</strong>：首先根据起始地址得到绕回边界地址（wrap
-boundary）与最高地址。当前地址小于最高地址时，WRAP 与 INCR
-类型完全相同，地址递增。但到递增后的地址到达最高地址后，地址直接回到绕回边界地址，再进行递增，就这样循环往复。最高地址由绕回边界地址计算得到：wrap
-boundary + （N_bytes x burst_len）。根据协议，WRAP 适合对 cache
-的访问。</p>
-<p><strong>地址计算参考</strong></p>
-<p>手册在章节 A3
-详细给出了不同的突发传输模式下的地址计算公式与伪代码，有相关需求的读者可以参看这一部分。</p>
-<h4 id="读写数据结构"><strong>读写数据结构</strong></h4>
-<p>在 AXI 数据传输过程中，主要涉及到窄位宽数据传输（Narrow
-Transfer）、非对齐传输（Unaligned
-Transfer）以及混合大小端传输（mix-endianness）等问题。</p>
-<h5 id="narrow-transfer"><strong>（1）Narrow Transfer</strong></h5>
-<p>当本次传输中数据位宽小于通道本身的数据位宽时，称为<strong>窄位宽数据传输</strong>。</p>
-<p>在窄位宽写传输中，主机需要告知从机数据通道中哪些字节是有效的，需要使用到写数据通道中的
-WSTRB 信号。WSTRB 信号中的单个 bit
-置起，表示对应位置上的字节有效，对应关系为：当 WSTRB[n] 为 1
-时，WDATA[8n+7:8n]有效。WSTRB 信号比特位宽等于数据通道位宽的字节数量</p>
-<p>对应于下图的情况中，灰色的部分代表数据无效，第一次的传输中低地址第一字节有效，其他数据无效的
-，WSTRB 信号为 0x01，WSTRB [0] 为 1，即 WDATA[7:0] 有效。</p>
-<figure>
-<img src="总线.assets/v2-f33f82462fb92881289d62c092b2c301_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>从图中我们发现，在每次数据传输中使用的数据总线字节位置（byte
-line）不同，尽管数据以字节为单位，分为多个周期传输，但是数据的位置仍与其地址对应。D[7:0]将写入起始地址
-0x0，故位于最低字节。D[15:8] 将写入地址 0x1，故位于次低字节。</p>
-<p>个人理解该设计的意义在于，当主机是因为从机或者其他客观条件限制，需要进行窄传输时，可以一次性将数据放置于数据总线上，只需在每次传输期间改变
-WSTRB 信号即可。以上图为例，主机将 D[31:0]
-防置于总线，在接下来的四个周期中，仅需对 WSTRB 进行移位，即可依次完成 4
-个字节的传输。</p>
-<p>该结构<strong>有利于 memory
-类型的从机进行写入处理</strong>，这里设想一种实现方式，结合下图讲解，在
-64bit 位宽的总线上进行 32bit 位宽传输，起始地址为 0x4
-。此时假设存储介质位宽与总线位宽一致，为 64 bit。</p>
-<p>在 transfer 1st 中，从机获取整个总线上的 64bit
-数据存储至存储介质中，比如 DDR，并利用 wstrb 作为 mask 信号屏蔽无效的低
-32 bit（比如 DDR 的 DQM 信号）。这时候存储介质的写入地址为
-0x0，但实际只从地址 0x4 开始写入了 32bit 数据。在后续的 transfer
-继续按以上模式工作。窄传输中通过主机来调整有效数据的字节位置，以及给出字节有效信号
-WSTRB，能够使从机无需进行数据重组等工作。</p>
-<figure>
-<img src="总线.assets/v2-57c3410645d9a3c2f41a0138be9ab826_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>注意</strong>：协议未规定窄传输中从机的具体实现，这里举了一个设想的例子</p>
-<p>在读传输中，从机的操作逻辑与写传输中的主机相同，但是从机没有类似
-WSTRB
-的信号。所以<strong>需要主机根据突发传输宽度与总线位宽，计算当前总线中有效数据所在字节位置，读取数据</strong>。</p>
-<p>协议规定在 INCR 和 WRAP 模式中每次使用的 byte line
-必须不同，即<strong>数据位置与地址对应</strong>。而在 FIXED
-模式中，整个传输过程使用相同的 byte line（地址不会变）。</p>
-<h5 id="unaligned-transfer"><strong>（2）Unaligned
-Transfer</strong></h5>
-<p>AXI
-协议支持地址非对齐的传输，允许突发传输的首字节地址，即起始地址与<strong>突发传输位宽</strong>不对齐。举个例子，总线位宽为
-32bit 时，如果起始地址为 0x1002 ，则产生了非对齐现象。与 32bit
-位宽总线对齐的地址需要能被 4 整除，即 ADDR[1:0] = 2'b0。</p>
-<p><strong>注意</strong>：此处对齐与否应该取决于突发传输的宽度，而不是总线位宽。</p>
-<p>对于非对齐传输，主机会进行两项操作：</p>
-<ul>
-<li>即使起始地址非对齐，也保证<strong>所有传输是对齐</strong>的</li>
-<li>在首个 transfer
-中增加填充数据，<strong>将首次传输填充至对齐</strong>，填充数据使用
-WSTRB 信号标记为无效</li>
-</ul>
-<p>我们通过几个例子来说明主机具体的工作：</p>
-<figure>
-<img src="总线.assets/v2-e8aa348f7fbc4a866e902d339175750f_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>起始地址为 0x1，非对齐，但主机通过添加一字节的填充数据将 transfer 1st
-的实际地址调整为对齐的 0x0，并用 WSTRB 信号为 4'b1110
-标识出最低字节上无效的填充数据。</p>
-<p>在读传输中，从机也按照同样的原则，在读数据中填充无效数据实现对齐，由主机自行分离。</p>
-<figure>
-<img src="总线.assets/v2-6317343fab92defb85d0cad2117074ff_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>这个例子是窄传输+非对齐传输，但问题不大，我们根据之前的经验来看下。首先起始地址为不对齐的
-0x07 ，所以首先将首个传输填充至与突发传输位宽 32 bit 对齐：0x07 mod
-4(byte) = 3 byte</p>
-<p>至此非对齐的问题就已经解决了。接下问题就简化为窄传输。32bit 数据在
-64bit 总线上传输，根据我们上一节的分析，在 transfer 1st 中 再填充 4
-个字节。后续的 transfer 中则遵从窄传输的原则即可。</p>
-<h5 id="byte-invarience"><strong>（3）Byte Invarience</strong></h5>
-<p>我们来讨论数据传输结构三个问题中的最后一个：混合的大小端模式。</p>
-<p><strong>大端</strong>认为：<strong>高字节</strong>（MSB）应该存在<strong>低地址</strong>，而<strong>小端</strong>认为<strong>低字节</strong>（LSB）才应该存在<strong>低地址</strong>。</p>
-<p>那么为了能够使大小端模式在存储中共存，AXI
-协议设计了一种字节顺序恒定（Byte-invariant）的大小端传输方案。对于存储中包括多个字节的数据结构（单字节自然不存在大小端问题）：</p>
-<ul>
-<li>无论大小端模式，每个数据结构存储空间的分配方式是相同的</li>
-<li>该数据结构按照其大小端模式决定字节存储的地址顺序</li>
-<li>在传输过程中不考虑数据结构的大小端，按照字节原先存储的顺序，原样传输并存放至对端</li>
-</ul>
-<p>该模式的意义在传输双方均不对数据结构的大小端进行解析转换，而严格按照字节的存储顺序进行传输并转存，防止大小端共存产生<strong>数据覆盖</strong>。</p>
-<h4 id="读写回复结构"><strong>读写回复结构</strong></h4>
-<p>读写传输事务（Transaction）都存在 2bit 位宽的回复信号
-RRESP/BRESP，分别存在 4 种回复情况，分别为</p>
-<ul>
-<li><p>OKAY ，常规访问成功</p></li>
-<li><p>EXOKAY，独占访问成功</p></li>
-<li><p>SLVERR，从机错误，尽管从机接收到了访问请求，但因为种种原因向主机返回了一个错误状态，AXI
-传输事务的回复由应用具体决定，可能包括以下错误场景：</p></li>
-<li><ul>
-<li>FIFO 或者缓冲区溢出</li>
-<li>主机发起了不支持的传输位宽</li>
-<li>尝试向读保护的地址写入数据</li>
-<li>超时</li>
-</ul></li>
-<li><p>DECERR，解码错误，一般由 interconnect
-组件产生，表示主机发送的传输事务地址无效，无法将传输事务发送给某个从机。</p></li>
-</ul>
-<p><strong>注意</strong>：在写传输事务中，单个写回复针对的是整个
-burst，而不是 burst 中单个
-transfer。但是在读传输事务中，从机可以为突发传输中每一个读传输数据产生不同的读回复信号。</p>
-<h3 id="事务类型与属性">事务类型与属性</h3>
-<p>AXI 协议中定义了一组信号表示读写传输事务的类型，分别为 ARCACHE 以及
-AWCACHE，合称为 AXCACHE。两者控制了</p>
-<ul>
-<li>传输事务在整个系统中如何进行（How a transaction progresses through
-the system）</li>
-<li>系统缓存对传输事务的操作（How any system-level caches handle the
-transaction）</li>
-</ul>
-<p>AXI 协议中存在两类从机：存储从机（Memory
-Slave）与外设从机（Peripheral Slave）。</p>
-<p>我们协议中传输事务属性主要是为存储从机准备，<strong>存储从机必须支持所有的事务属性信号</strong>。而对于外设从机，支持哪些属性信号，就看着办了，协议只有一个要求：外设从机必须完成整个传输事务，哪怕存在其不支持的某个事务属性信号。</p>
-<p>外设从机对于属性信号的支持以及相应的访问方式由具体实现决定，一般设计者会将支持的方式列于该从机的规格书中，从机也只对所支持访问方式进行正确响应。极端情况下，从机接收到一个不支持的访问方式，这是可以的。但是一定要完成这次的传输事务，以防止整个系统死锁。协议也不要求从机支持复活机制。（continued
-correct operation is <strong>not required</strong>）</p>
-<h4 id="系统级缓存">系统级缓存</h4>
-<p><strong>注意：AXI
-协议缓存相关机制是针对处理器的系统级缓存的一种实现</strong></p>
-<p>所谓系统级缓存（system level
-cache）区别于处理器内部的缓存，系统级缓存提高整个系统访问外部存储的速度。当系统级缓存连接在处理器核与外部存储之间时，可以被看做处理器核外部的
-L2 缓存，如下图所示</p>
-<figure>
-<img src="总线.assets/v2-eb053295f403d5230c57f64f63f1e228_1440w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p>处理器核、系统缓存以及外部存储控制器通过 AXI 总线接口互联。L1
-缓存位于处理器核内部。当处理器访问外部存储中的数据，在 L1
-缓存中缺失时，向外部缓存发起传输事务。传输事务在通过系统缓存时，如果该事务命中缓存表项，即可直接得到结果，避免访问外部存储带来的缺失代价。</p>
-<h4 id="存储相关属性信号">存储相关属性信号</h4>
-<h2 id="axi-vip">AXI VIP</h2>
-<p>AXI Verification IP (AXI VIP) 是支持用户对 AXI4 和 AXI4-Lite
-进行仿真的 IP。它还可作为 AXI Protocol Checker 来使用。</p>
-<p>此IP只是仿真IP，将不进行综合（它将在Pass-through配置中被连线所替代）。</p>
-<p>AXI VIP IP 核用途如下：</p>
-<ul>
-<li><p>生成 Master AXI 指令和写内容</p></li>
-<li><p>生成 Slave AXI 读内容和写响应</p></li>
-<li><p>检查 AXI 传输是否符合协议标准</p></li>
-</ul>
-<p>它支持 5 种不同配置：</p>
-<ul>
-<li><p>AXI Master VIP</p></li>
-<li><p>AXI Pass-through VIP（无/有内存模型）</p></li>
-<li><p>AXI Slave VIP（无/有内存模型）</p></li>
-</ul>
-<h1 id="soc-simulator">SoC Simulator</h1>
-<p>一个简单易用的软件定义AXI Slave设备框架</p>
-]]></content>
-      <categories>
-        <category>IC</category>
-      </categories>
-      <tags>
-        <tag>AXI</tag>
-        <tag>PCle</tag>
+        <tag>算法</tag>
+        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -4358,6 +3781,639 @@ role="doc-backlink">↩︎</a></p></li>
 ]]></content>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>User Guide</title>
+    <url>/2023/03/04/User%20Guide/</url>
+    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
+<p>Front-matter 是 markdown 文件最上方以 ---
+分隔的区域，用於指定個別檔案的變數。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
+<h2 id="page-front-matter">Page Front-matter</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>异步复位同步撤离</title>
+    <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
+    <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
+<h2 id="优点">1.1 优点</h2>
+<p>一般能够确保电路是百分之百同步的。确保复位只发生在有效时钟沿，可以作为过滤掉毛刺的手段。</p>
+<h2 id="缺点">1.2 缺点</h2>
+<p>复位信号的有效时长必须大于时钟周期，才能真正被系统识别并完成复位。同时还要考虑如：时钟偏移、组合逻辑路径延时、复位延时等因素。
+<strong>大多数的厂商目标库内的触发器都只有异步复位端口，采用同步复位的话，就会耗费较多的逻辑资源。</strong></p>
+<span id="more"></span>
+<h1 id="异步复位">2 异步复位</h1>
+<h2 id="recovery-time和removal-time">2.1 recovery time和removal
+time</h2>
+<p>在同步电路中，输入数据需要与时钟满足setup time和hold
+time才能进行数据的正常传输，防止亚稳态。同样的道理，对于一个异步复位寄存器来说，同样异步复位信号同样需要和时钟满足<strong>recovery
+time</strong>和<strong>removal
+time</strong>才能有效进行复位操作和复位释放操作，防止输出亚稳态。</p>
+<figure>
+<img src="异步复位同步撤离.assets/27ae96e33de2f650b59996834cd1d472.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>recovery
+time</strong>（恢复时间）：撤销复位时，恢复到非复位状态的电平必须在时钟有效沿来临之前的一段时间到来，才能保证时钟能有效恢复到非复位状态，此段时间为recovery
+time，类似于同步时钟的setup time。</p>
+<p><strong>removal
+time</strong>（去除时间）：复位时，在时钟有效沿来临之后复位信号还需要保持复位状态的一段时间为去除时间removal
+time(去除时间)。类似同步时钟hold time。</p>
+<p>复位信号的操作（无论是复位还是释放）如果在时钟的recovery
+time和removal
+time之间的时间窗口内，都会产生亚稳态。异步复位信号一般会持续相对较长的时间，保证寄存器能复位完成。但是由于复位信号是异步的，我们不知道它会在什么时刻被释放。如果异步复位信号撤销时，不满足recovery
+time和removal
+time时，可能会造成亚稳态。显然，并不是复位信号撤销时才可能出现亚稳态，复位信号一开始出现时，同样可能会存在亚稳态，只不过异步复位信号持续时间长，即使第一个周期出现了亚稳态（即第一个周期复位未成功），下一个时钟周期也不会再出现亚稳态了。如果复位信号的变化只持续刚刚一个时钟周期，那么复位信号开始和撤销时都可能会出现亚稳态。</p>
+<h2 id="优点-1">2.2 优点</h2>
+<ul>
+<li>异步复位信号识别方便，而且可以<strong>很方便的使用全局复位</strong>。</li>
+<li>由于大多数的厂商目标库内的触发器都有异步复位端口，可以<strong>节约逻辑资源</strong>。</li>
+</ul>
+<h2 id="缺点-1">2.3 缺点</h2>
+<ul>
+<li>复位信号容易受到毛刺的影响。</li>
+<li>复位结束时刻恰在亚稳态窗口内时，无法决定现在的复位状态是1还是0，会导致亚稳态。</li>
+</ul>
+<h1 id="异步复位同步释放"><strong>3 异步复位同步释放</strong></h1>
+<p>Synchronized Asynchronous
+Reset，就是在复位信号到来的时候不受时钟信号的同步，而是在复位信号释放的时候受到时钟信号的同步。</p>
+<p>电路目的：防止复位信号撤除时产生亚稳态事件。</p>
+<p>​
+异步复位：显而易见，reset_n异步复位后，rst_n将拉低，即实现异步复位。</p>
+<p>​
+同步释放：这个是关键，看如何实现同步释放，即当复位信号reset_n撤除时，由于双缓冲电路（双寄存器）的作用，rst_n复位信号不会随着reset_n的撤除而撤除。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//Synchronized Asynchronous Reset：只适用于没有PLL的系统复位信号的设置</span><br><span class="hljs-keyword">module</span> sync_async_reset(clock,reset_n,rst_n);<br><br>  <span class="hljs-keyword">input</span> clock, reset_n;<br>  <span class="hljs-keyword">output</span> rst_n;<br>  <span class="hljs-keyword">reg</span> rst_nr1, rst_nr2;<br>  <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clock <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> reset_n) <span class="hljs-keyword">begin</span><br>      <span class="hljs-keyword">if</span>(!reset_n) <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>          rst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;		<span class="hljs-comment">//异步复位</span><br>      <span class="hljs-keyword">end</span><br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>      rst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>      rst_nr2 &lt;= rst_nr1;		  <span class="hljs-comment">//同步释放</span><br>    <span class="hljs-keyword">end</span><br>  <span class="hljs-keyword">end</span><br><br>  <span class="hljs-keyword">assign</span> rst_n = rst_nr2;			<span class="hljs-comment">//新的系统复位信号rst_n	</span><br><span class="hljs-comment">//信号rst_n作为新的系统复位信号，后续可以用来直接“异步复位”</span><br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjUxODU1OA==,size_16,color_FFFFFF,t_70.png"
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>当异步复位信号撤销时，用来同步的第二个寄存器输入的数据仍然是0，因此第二个寄存器是不会出现亚稳态的。第一个寄存器虽然可能出现亚稳态，即使其出现了亚稳态，这个亚稳态还需要通过第二个寄存器，这时第二个寄存器就起到了打拍的作用。也就是说，第二级的亚稳态只可能是上一级寄存器传播过来的，但是这个亚稳态经过第二级寄存器后，其大概率已经稳定下来了，就算稳定下来不为1，也就相当与复位信号多持续了一个周期而已。因此我们可以看出，使用异步复位同步释放时，异步复位撤销后是需要额外等待一个时钟周期的，否则会激励可能会被复位信号覆盖掉。</p>
+<p>注意：
+既解决了同步复位的资源消耗问题，又解决了异步复位的亚稳态问题，其根本思想是异步信号同步化；</p>
+<p>​ 新的系统复位信号可以直接用来“异步复位”；</p>
+<p>​ 只适用于不带PLL的系统。</p>
+<h1 id="pll配置后的复位设计">4 PLL配置后的复位设计</h1>
+<p>​ 当多个时钟都是用PLL产生时，它们的系统复位信号采用如下设计：</p>
+<p>①先用FPGA的外部输入时钟clk将FPGA的输入复位信号rst_n做异步复位、同步释放处理（注意采用反逻辑），然后这个复位信号输入PLL，同时将clk也输入PLL。设计的初衷是在PLL输出有效时钟之前，系统的其他部分都保持复位状态。</p>
+<p>②PLL的输出<strong>locked信号</strong>在PLL有效输出前一直时低电平，PLL输出稳定有效之后才会拉高该信号，所以这里就把前面提到的FPGA外部输入复位信号rst_n和这个locked信号相与作为整个系统的复位信号。</p>
+<p>③这个复位信号也需要让合适的PLL输出时钟异步复位、同步释放处理一下。也就是说，为了达到可靠稳定的复位信号，该设计中对复位信号进行了两次处理，分别是在PLL输出前和PLL输出后。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> sys_ctrl(clk,rst_n,sys_rst_n,clk_25m,clk_100m);<br> <br>	<span class="hljs-keyword">input</span> clk;			<span class="hljs-comment">//FPGA输入时钟信号</span><br>	<span class="hljs-keyword">input</span> rst_n;		<span class="hljs-comment">//系统硬件复位信号</span><br>	<span class="hljs-keyword">output</span> sys_rst_n;	<span class="hljs-comment">//系统复位信号，低有效	 </span><br>	<span class="hljs-keyword">output</span> clk_25m, clk_100m;<br>	<br>	<span class="hljs-keyword">reg</span> rst_r1, rst_r2;<br>	<span class="hljs-keyword">reg</span> sysrst_nr1, sysrst_nr2;<br>	<span class="hljs-keyword">wire</span> pll_rst;<br>	<span class="hljs-keyword">wire</span> locked;		<span class="hljs-comment">//输出信号有效标志，高表示PLL输出有效</span><br>	<span class="hljs-keyword">wire</span> sysrst_nr0;<br>	<span class="hljs-keyword">wire</span> sys_rst_n;		<span class="hljs-comment">//系统复位信号，低有效</span><br>	<br>	<span class="hljs-comment">//第一个异步复位同步释放</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> rst_n)<br>		<span class="hljs-keyword">if</span>(!rst_n) <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			rst_r2 &lt;= <span class="hljs-number">1&#x27;b1</span>;		<span class="hljs-comment">//注意这里是“反”逻辑</span><br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			rst_r1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			rst_r2 &lt;= rst_r1;<br>		<span class="hljs-keyword">end</span><br>	 <br>	<span class="hljs-keyword">assign</span> pll_rst = rst_r2;	<span class="hljs-comment">//PLL的复位信号</span><br>	<br>	PLL_ctrl uut_PLL_ctrl(<br>		<span class="hljs-variable">.areset</span>(pll_rst),<br>		<span class="hljs-variable">.inclk0</span>(clk),<br>		<span class="hljs-variable">.c0</span>(clk_25m),<br>		<span class="hljs-variable">.c1</span>(clk_100m),<br>		<span class="hljs-variable">.locked</span>(locked)<br>	);<br>	<br>	<span class="hljs-keyword">assign</span> sysrst_nr0 = rst_n &amp; locked;		<span class="hljs-comment">//&quot;与&quot;逻辑</span><br>	<br>	<span class="hljs-comment">//第二个异步复位同步释放</span><br>	<span class="hljs-comment">//注意这里的同步时钟为合适的PLL输出时钟</span><br>	<span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk_100m <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> sysrst_nr0)<br>		<span class="hljs-keyword">if</span>(!sysrst_nr0) <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>			sysrst_nr2 &lt;= <span class="hljs-number">1&#x27;b0</span>;<br>		<span class="hljs-keyword">end</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>			sysrst_nr1 &lt;= <span class="hljs-number">1&#x27;b1</span>;<br>			sysrst_nr2 &lt;= sysrst_nr1;<br>		<span class="hljs-keyword">end</span><br>	<br>	<span class="hljs-comment">//信号sys_rst_n作为新的系统复位信号，后续可用作异步复位</span><br>	<span class="hljs-keyword">assign</span> sys_rst_n = sysrst_nr2;<br> <br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<figure>
+<img
+src="异步复位同步撤离.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tpZXpoYW5nMTk5Mw==,size_16,color_FFFFFF,t_70-16698136856697.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>IC</category>
+      </categories>
+      <tags>
+        <tag>复位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>总线</title>
+    <url>/2022/11/20/%E6%80%BB%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="什么是总线">什么是总线？</h1>
+<p>总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线，它是由导线组成的传输线束，
+按照计算机所传输的信息种类，计算机的总线可以划分为数据总线、地址总线和控制总线，分别用来传输数据、数据地址和控制信号。总线是一种内部结构，它是CPU、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。在计算机系统中，各个部件之间传送信息的公共通路叫总线，微型计算机是以总线结构来连接各个功能部件的。</p>
+<span id="more"></span>
+<h1 id="axi总线">AXI总线</h1>
+<ul>
+<li><a
+href="https://developer.arm.com/Architectures/AMBA"><strong>AMBA手册</strong></a></li>
+<li><a
+href="https://www.lzrnote.cn/2021/10/08/axi总线总结/"><strong>总线中文手册及总结</strong></a></li>
+<li><a
+href="https://zhuanlan.zhihu.com/p/44766356"><strong>深入AXI4总线</strong></a></li>
+</ul>
+<h2 id="validready-握手机制">VALID/READY 握手机制</h2>
+<p>VALID/READY
+作为一种双向流控机制，可以使发送接收双方都有能力控制传输速率。</p>
+<p><strong>发送方</strong>置高 <strong>VALID</strong>
+信号表示发送方已经将数据，地址或者控制信息已经就绪，并保持于消息总线上。</p>
+<p><strong>接收方</strong>置高 <strong>READY</strong>
+信号表示接收方已经做好接收的准备。</p>
+<p>当双方的 VALID/READY
+信号同时为高，在时钟上升沿，完成一次数据传输。所有数据传输完毕后，双方同时置低自己的信号。</p>
+<p>所谓的<strong>双向流控</strong>机制，指的是发送方通过置起 VALID
+信号控制发送的时机与速度，接收方也可以通过 READY
+信号的置起与否控制接收速度。发送方拥有传输的主动权，但接收方在不具备接收能力时，也能够置低信号停止传输，反压发送方。</p>
+<p>VALID 信号一旦置起就不能置低，直到完成握手（handshake
+occurs）。在设计接收方逻辑时，检测到 VALID
+信号置起，如果系统正忙，完全可以让发送方等待，发送方在完成传输之前都不会置低
+VALID
+信号，不需要考虑发送方撤销传输的可能。协议另外规定：发送方不能通过等待接收方
+READY 信号来确定置起 VALID 信号的时机。</p>
+<p>换句话说，发送方准备发送，置起 VALID
+信号是完全<strong>主动与独立</strong>的过程。接收方 READY
+信号按照协议可以依赖发送方 VALID
+信号，但如果此时发送方也依赖接收方信号，就会造成死锁的情况，所以协议在这里强调了
+VALID 信号的主动性。</p>
+<p>接收方可以置起 READY 之后发现：其实我好像还挺忙，然后置低 READY
+信号。只要此时 VALID 信号没有置起，这种操作是完全可以。</p>
+<p>READY 信号原则上由接收方自身的接收状况以及 VALID
+信号控制。（或者仅由接收方自身的接收状况决定）协议中没有规定 READY
+信号的默认状态，即未进行传输时的电平状态（default value）。</p>
+<p>协议建议 AW/AR READY
+信号的默认电平为高电平。若默认电平为低，则每次传输至少需要 2
+个周期才能完成，第一个周期置高 VALID 信号，第二个周期从机才会置高 READY
+信号。相当于每次传输增加 1
+个周期时间开销，这在某些情况下会对传输效率有较大的影响。</p>
+<h2 id="axi4-lite">AXI4-Lite</h2>
+<h2 id="axi4">AXI4</h2>
+<p>AXI4协议分为以下几个通道：</p>
+<ul>
+<li>AR：读地址通道</li>
+<li>R ：读数据通道</li>
+<li>AW：写地址通道</li>
+<li>W ：写数据通道</li>
+<li>B ：写反馈通道</li>
+</ul>
+<h3 id="araw通道">AR/AW通道：</h3>
+<p>Master-&gt;Slave信号:</p>
+<ul>
+<li><code>A[RW]ADDR</code>：读写的字节地址</li>
+<li><code>A[RW]LEN</code>：读写的传输次数，次数定义为<code>A[RW]LEN+1</code>。</li>
+<li><code>A[RW]SIZE</code>：单次传输的数据大小，字节数定义为<code>2 ** A[RW]SIZE</code>，且不可超过数据总线宽度。</li>
+<li><code>A[RW]BURST</code>：突发传输类型（INCR与WARP模式可以一次地址握手完成多次不同地址的数据传输，提高Cache替换效率，若只需要实现AXI4Lite可直接使用FIXED模式）</li>
+<li><code>A[RW]VALID</code>：读写的有效性</li>
+</ul>
+<p>此外，这里依据Slave支持的特性不同可能还有<code>A[RW]CACHE</code>、<code>A[RW]PROT</code>、<code>A[RW]PROT</code>、<code>A[RW]QOS</code>信号，这些信号我们可暂时忽略，直接assign为0即可。</p>
+<p>如果总线支持<code>A[RW]ID</code>，则需要对于不同的设备传输正确的ID信息。例如你的CPU的I-Cache与D-Cache独立，且都使用AXI访问总线，你就可以在CPU核里面写一个AXI
+Crossbar，并使用不同的ID区分设备，在握手时仲裁，并在数据返回时发送给对应的设备。</p>
+<p>Slave-&gt;Master:</p>
+<ul>
+<li><code>A[RW]READY</code>：地址握手完成</li>
+</ul>
+<p>地址握手流程：</p>
+<ol type="1">
+<li>初始状态，Master端<code>A[RW]VALID</code>
+<strong>必须</strong>为0，Slave端<code>A[RW]READY</code>只要不是复位状态<strong>可以</strong>为1，以便Slave单周期握手。</li>
+<li>Master填写正确填写<code>A[RW]ADDR</code>、<code>A[RW]SIZE</code>等信号，并将<code>A[RW]VALID</code>设置为1。</li>
+<li>当某一时刻的<strong>时钟上升沿之前</strong>出现<code>A[RW]VALID</code>与<code>A[RW]READY</code>都为1时，地址握手结束。此时Master端<strong>必须在时钟上升沿之后</strong>将<code>A[RW]VALID</code>信号置0或发送新的请求。否则Slave端将认为同一个地址请求发送了2次，并做出2次响应。</li>
+</ol>
+<h3 id="r通道">R通道：</h3>
+<p>Slave-&gt;Master信号：</p>
+<ul>
+<li><code>RDATA</code>：读取数据结果</li>
+<li><code>RLAST</code>：标记最后一次读数据传输
+可用于检验COUNT是否一致</li>
+<li><code>RRESP</code>：读数据的反馈，用于传输总线错误。
+简单核的实现可以在总线错误时不产生异常，只需要确保软件访问物理内存地址一定正确即可。</li>
+<li><code>RVALID</code>：读数据有效</li>
+</ul>
+<p><code>RID</code>用于与<code>ARID</code>对应，用于标识对应的请求。</p>
+<p>Master-&gt;Slave信号：</p>
+<ul>
+<li><code>RREADY</code>：本次读数据传输完成</li>
+</ul>
+<h3 id="w通道">W通道：</h3>
+<p>Master-&gt;Slave信号：</p>
+<ul>
+<li><code>WDATA</code>：写数据</li>
+<li><code>WSTRB</code>：写掩码</li>
+<li><code>WLAST</code>：标记最后一次写数据传输（可用于检验COUNT是否一致）</li>
+<li><code>WVALID</code>：写数据有效</li>
+</ul>
+<p>注：AXI3存在WID，AXI4省略了WID。因为AXI不允许Master先握手AW再握手W这样的操作，因此WID显得无意义。</p>
+<p>Slave-&gt;Master信号：</p>
+<ul>
+<li><code>WREADY</code>：本次写数据传输完成</li>
+</ul>
+<h3 id="b通道">B通道：</h3>
+<p>Slave-&gt;Master信号：</p>
+<ul>
+<li><code>BID</code>：与AWID对应，表示对应写请求的反馈。</li>
+<li><code>BRESP</code>：写数据的反馈，与<code>RRESP</code>一样，用于传输总线错误。</li>
+<li><code>BVALID</code>：写反馈有效</li>
+</ul>
+<p>Master-&gt;Slave信号：</p>
+<ul>
+<li><code>BREADY</code>：本次写反馈传输完成</li>
+</ul>
+<h3 id="burst类型">Burst类型</h3>
+<p>AXI4支持突发传输，实现一次地址握手传输多个数据，避免将大量时间花在地址握手传输上。</p>
+<p>尽管AR与R通道以及AW与W通道的分离看似地址与数据可以流水化传输，但是对于许多硬件Slave设备而言，往往地址握手后一段时间才能读写第一个数据（例如DDR内存），这便是突发传输能够加速的原因。</p>
+<p>AXI4支持以下3种BURST类型：</p>
+<ol type="1">
+<li><p>FIXED</p>
+<p>每次都操作[<code>A[RW]ADDR</code> +:
+<code>A[RW]SIZE</code>]部分。</p></li>
+<li><p>INCR</p>
+<p>从<code>A[RW]ADDR</code>开始，
+每次操作地址递增<code>A[RW]SIZE</code>。</p>
+<p>如果某一时刻操作的地址越过了总线宽度范围，则本次只传输到结束位置，下次传输地址从对齐总线宽度的地方开始。</p>
+<p>例如某一时刻操作地址=5，总线宽度8字节，每次传输字节数为4，则本次操作传输字节5-7部分，下次传输8-11部分。</p></li>
+<li><p>WARP</p>
+<p>类似INCR类型，用于传输一段2的整数幂字节的地址范围，但可以通过设置<code>A[RW]ADDR</code>决定起始地址。</p>
+<p>但这一类型的Burst对于发送的地址存在一定限制，详情请大家自己看AMBA文档。</p>
+<p>具体地址计算细节请自行阅读<a
+href="https://developer.arm.com/Architectures/AMBA">AMBA文档</a>的A3.Transcation
+structure部分。</p></li>
+</ol>
+<h4 id="narrow-burst">Narrow Burst</h4>
+<p>当<code>A[RW]SIZE</code>指定的单次传输数据大小<strong>小于</strong>总线数据宽度时，这种Burst称为Narrow
+Burst。</p>
+<p>对于Narrow
+Burst，无论是读写请求，数据都出现在<code>[RW]DATA</code>对应访问地址%总线宽度的位置。</p>
+<p>举个例子：使用INCR
+Burst读取内存地址[6]、[7]、[8]，每次读取1字节。总线<code>RDATA</code>宽度为64位。</p>
+<p>按照以下方式发送AR请求：</p>
+<ul>
+<li>ARADDR=6</li>
+<li>ARSIZE=0（1 Bytes）</li>
+<li>ARLEN=2（3 Bursts）</li>
+<li>ARBURST=1（INCR）</li>
+</ul>
+<p>SLAVE会在R通道传回3个请求，分别是：</p>
+<ul>
+<li><p>第一次传输：</p>
+<p>Slave读取[6]地址，有效数据在<code>RDATA</code>的<code>[55:48]</code>部分。</p></li>
+<li><p>第二次传输</p>
+<p>Slave读取[7]地址，有效数据在<code>RDATA</code>的<code>[63:56]</code>部分。</p></li>
+<li><p>第三次传输：</p>
+<p>Slave读取[8]地址，有效数据在<code>RDATA</code>的<code>[7:0]</code>部分。</p></li>
+</ul>
+<h3 id="axi4注意事项">AXI4注意事项</h3>
+<ol type="1">
+<li><p>所有通道的<code>VALID</code>与<code>READY</code>之间不能有组合逻辑。无论对于Master端还是Slave端。如果想要单周期握手，对于AR、AW、W通道，Slave可以选择默认状态下将<code>READY</code>置1。对于R、B通道，Master可以选择默认状态下将<code>READY</code>置1。</p></li>
+<li><p>对于写请求，不可等待<code>AW</code>握手完成后再升高<code>WVALID</code>。因为AXI协议允许Slave设备等待<code>AWVALID</code>与<code>WVALID</code>都为1后，再升高<code>AWREADY</code>。如果这么做或许部分SoC上能运行，但会在使用部分Slave设备时出现死锁（例如Vivado
+Block Memory Generator）。</p></li>
+<li><p>AXI请求不可撤销。</p>
+<p>一旦任何通道的VALID升高后，其数据必须保持不变直到握手结束，包括ID部分和VALID本身。所以只依靠AXI信号实现的纯组合逻辑AXI
+Crossbar一定是不符合规范的。</p></li>
+<li><p>对于外设的MMIO访问，需要根据所对应访存的指令的长度正确填写<code>A[RW]SIZE</code>。</p>
+<p>例如<code>lb</code>与<code>sb</code>指令的<code>A[RW]SIZE</code>必须为0（表示1字节）。不应该在针对MMIO的写请求时使用<code>WSTRB</code>指定要更改的数据范围。对于读请求，也不应该读出整个数据宽度后再选择。因为这两种方式在MMIO设备看来访问的是不同的寄存器。</p></li>
+<li><p>写操作直到BVALID拉高才算结束。</p>
+<p>如果不等待B通道马上在AR通道发出读请求，有可能读到写完成之前的旧值。</p></li>
+</ol>
+<h3 id="写传输操作write-transcation">写传输操作：Write transcation</h3>
+<p>如下图所示，主机首先在写地址通道（AW）上告知从机本次传输操作（transcaction，对应后文中的"传输操作"）的特性，包括地址和控制信息。然后，在写数据通道（W）向从机写入数据，一次传输操作中可能包括多个数据传输。</p>
+<p>最后，从机在接收到写数据后，通过写回复通道（R）将本次传输操作的响应告知主机。主机以收到从机的响应信号，作为本次传输操作结束的标志。<strong>写回复是针对整个传输操作（transcaction）的，而不是针对每个写入数据（data
+transfer），且所有传输操作中，写回复
+与写数据的关系都如下图所示，写回复必然是在收到传输操作中最后一个写数据之后触发。</strong></p>
+<p>但是，写地址与写数据的关系并不局限于一种情况。一般来说，写数据都发生在写地址操作之后，但也不是绝对的，在有些情况下，可以先写数据，或者在同一周期写入数据与地址，都是允许的。这也表现了
+AXI 通道之间的独立性。</p>
+<figure>
+<img src="总线.assets/v2-7c95b31e753dfedfdfb1ad0d890af01e_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h3 id="读操作read-transcation">读操作：Read transcation</h3>
+<p>读操作只涉及两个通道，首先主机在读地址通道上写入本次Transcation待读取数据的地址以及控制信息。从机在接收到地址后，将该地址上的数据通过读数据通道传输给主机。读操作通道间（ARC&amp;RC）完全独立，从机发出读数据一定发生在主机写入读地址后。</p>
+<figure>
+<img src="总线.assets/v2-f28c75e6e50991c6640e5737af46bdf3_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h3 id="突发传输burst-transaction">突发传输：Burst Transaction</h3>
+<p>两个 AXI 组件为了传输一组数据而进行的所有交互称为 <strong>AXI
+Transaction</strong>，AXI 传输事务，包括所有 5 个通道上的交互。</p>
+<p>AXI 是一个 burst-based 协议，AXI 传输事务中的数据传输以 burst
+形式组织，称为 <strong>AXI Burst</strong>。每个传输事务包括一至多个
+Burst。每个 Burst 中传输一至多个数据，每个数据传输称为 <strong>AXI
+Transfer</strong>。每个Transfer
+因为使用一个周期，又被称为一拍数据（Beat）。主机可以写入起始地址以及突发传输的长度等信息，从机将起始地址开始，依次接收主机传输的写数据，或者读取连续地址上的数据，作为读数据传输给主机。所以上面两张图中，一次传输操作中（Transcation）
+中包括了一次地址与控制信息（Address &amp; Control）、多个数据（data
+transfer）。</p>
+<p>注意：单次 burst 传输中的数据，其地址不能跨越 4KB
+边界。之所以这样规定是为了避免一笔burst交易访问两个slave（每个slave的地址空间是4K/1K对齐的）。4K对齐最大原因是系统中定义一个page大小是4K，而所谓的4K边界是指低12bit为0的地址。</p>
+<p>补充一下：对于一次burst传输，只给出首地址，burst内部的地址按照<span
+class="math inline">\(2^{size}\)</span>累加，也就是按每个数据字节数累加，协议之所以这么做，原因是计算机底层存储是按字节存储的。假设传输的数据是32bit，也就是4个字节，那么实际上会分配4个地址给这个32bit数据，所以按照标准的axi协议，相邻的burst首地址按照（awlen+1）*<span
+class="math inline">\(2^{size}\)</span>累加，master发送首地址时要遵循这种方式，slave收到地址后，按照标准协议，解析出的burst内部的地址就是按2^size累加的。这样一来，除非size为0，也就是数据为1个字节，地址才是连续的，否则，解析出的地址不连续，不过可以根据用户侧需求，对标准协议地址进行处理，使之连续。上面说的有点混乱，举个例子：假如awlen为3，也就是一次突发传输4个数据。awsize为2，也就是每个数据4字节，32bit，第一次突发传输首地址awaddr为0。那么，根据标准axi协议，slave解析出的第一个burst四个数对应的地址为0，4，8，12，即按字节数累加。master发送第二个burst时，awaddr必须为16，slave解析第二个burst四个点得到的地址为16，20，24，28。这样就相当于给每个32bit分了四个地址，在底层每个地址存一个字节。应用时，有时不涉及底层的存储，假如只完成一个memory的读写，希望使用连续地址，那么用户可以讲按照标准协议解析出的地址除以4之后使用，则0，4，8，12就变成了0，1，2，3。另外，同一个burst的地址不能跨4K边界，而不是4KB，4KB讲的是容量。这是因为底层page的存储容量为4KB。一个burst内部地址按字节数累加，地址跨4K，也就是操作一个burst的数据时跨了4KB，跨page了，这是不允许的，一个
+burst的数据必须在同一个page里，否则容易出现错误。</p>
+<h3 id="传输事务结构transaction-structure">传输事务结构：Transaction
+structure</h3>
+<h4 id="读写地址结构"><strong>读写地址结构</strong></h4>
+<p>在整个transaction中，主机首先将接下来 burst
+传输的<strong>控制信息</strong>以及<strong>数据首个字节的地址</strong>传输给从机，这个地址被称为起始地址。在本次
+burst
+后续传输期间，从机将根据控制信息计算后续数据的地址。地址通道中传输的控制信息中包括三项突发传输相关的信号(AR/AW
+均一致，下图为以 AR 为例)：</p>
+<figure>
+<img src="总线.assets/v2-7c260f2be1cb05ae5409f4b549ffd3b4_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>（1）LEN</strong>，指一次突发传输中包含的数据传输(transfer)数量。</p>
+<p>在 AXI4 中，INCR 类型最大支持长度为 256，其他类型最大长度为
+16，突发长度至少为 1。Len 信号从零开始表示，实际的长度值为 Len +
+1。突发传输长度在不同burst type下有一些限制，包括：</p>
+<ul>
+<li>对于 WRAP 模式，突发传输长度仅能为2,4,8,16</li>
+<li>在一次突发传输中，地址不能跨越一个 4KB 分区</li>
+<li>一次突发传输不能在完成所有数据传输前提前结束（early
+termination）</li>
+</ul>
+<p>协议中多次<strong>强调</strong>，通信双方都不能在传输事务的所有
+Transfer 完成前提前结束，哪怕发生错误，也得走完整个传输事务的流程。</p>
+<p>但是主机也有办法减少传输的数据。在写传输事务中，发送方可以通过置低所有的写有效位，使写数据无效。在读传输事务中，主机可以直接丢弃读取到的数据。</p>
+<p><strong>（2）SIZE</strong>，指传输中的数据位宽，具体地，是每周期传输数据的字节数量。</p>
+<p>突发传输数据宽度不能超过数据总线本身的位宽。而当数据总线位宽大于突发传输宽度时，将根据协议的相关规定，将数据在部分数据线上传输。突发传输宽度信号
+AXSIZE 位宽为 3bit，表示为：</p>
+<figure>
+<img src="总线.assets/v2-53b57203fc06a4f4b18c2668cc8bc6fd_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>（3）突发传输类型</strong>，类型共有 3 种，分别为 FIXED，INCR
+以及 WRAP，使用 2 位表示。</p>
+<figure>
+<img src="总线.assets/v2-907b3d1e2637ec20fc56acd6c7b8ed88_1440w.jpeg"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>FIXED</strong>：burst
+中所有数据都使用<strong>起始地址</strong>。该模式适合对某个固定地址进行多次数据更新，比如读写一个
+fifo 时，读写地址就是固定的。</p>
+<p><strong>INCR</strong>：后续数据的地址在初始地址的基础上进行递增，<strong>递增幅度与传输宽度相同</strong>。适合对于
+RAM 等通过地址映射（mapped memory）的存储介质进行读写操作。</p>
+<p><strong>WRAP</strong>：首先根据起始地址得到绕回边界地址（wrap
+boundary）与最高地址。当前地址小于最高地址时，WRAP 与 INCR
+类型完全相同，地址递增。但到递增后的地址到达最高地址后，地址直接回到绕回边界地址，再进行递增，就这样循环往复。最高地址由绕回边界地址计算得到：wrap
+boundary + （N_bytes x burst_len）。根据协议，WRAP 适合对 cache
+的访问。</p>
+<p><strong>地址计算参考</strong></p>
+<p>手册在章节 A3
+详细给出了不同的突发传输模式下的地址计算公式与伪代码，有相关需求的读者可以参看这一部分。</p>
+<h4 id="读写数据结构"><strong>读写数据结构</strong></h4>
+<p>在 AXI 数据传输过程中，主要涉及到窄位宽数据传输（Narrow
+Transfer）、非对齐传输（Unaligned
+Transfer）以及混合大小端传输（mix-endianness）等问题。</p>
+<h5 id="narrow-transfer"><strong>（1）Narrow Transfer</strong></h5>
+<p>当本次传输中数据位宽小于通道本身的数据位宽时，称为<strong>窄位宽数据传输</strong>。</p>
+<p>在窄位宽写传输中，主机需要告知从机数据通道中哪些字节是有效的，需要使用到写数据通道中的
+WSTRB 信号。WSTRB 信号中的单个 bit
+置起，表示对应位置上的字节有效，对应关系为：当 WSTRB[n] 为 1
+时，WDATA[8n+7:8n]有效。WSTRB 信号比特位宽等于数据通道位宽的字节数量</p>
+<p>对应于下图的情况中，灰色的部分代表数据无效，第一次的传输中低地址第一字节有效，其他数据无效的
+，WSTRB 信号为 0x01，WSTRB [0] 为 1，即 WDATA[7:0] 有效。</p>
+<figure>
+<img src="总线.assets/v2-f33f82462fb92881289d62c092b2c301_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>从图中我们发现，在每次数据传输中使用的数据总线字节位置（byte
+line）不同，尽管数据以字节为单位，分为多个周期传输，但是数据的位置仍与其地址对应。D[7:0]将写入起始地址
+0x0，故位于最低字节。D[15:8] 将写入地址 0x1，故位于次低字节。</p>
+<p>个人理解该设计的意义在于，当主机是因为从机或者其他客观条件限制，需要进行窄传输时，可以一次性将数据放置于数据总线上，只需在每次传输期间改变
+WSTRB 信号即可。以上图为例，主机将 D[31:0]
+防置于总线，在接下来的四个周期中，仅需对 WSTRB 进行移位，即可依次完成 4
+个字节的传输。</p>
+<p>该结构<strong>有利于 memory
+类型的从机进行写入处理</strong>，这里设想一种实现方式，结合下图讲解，在
+64bit 位宽的总线上进行 32bit 位宽传输，起始地址为 0x4
+。此时假设存储介质位宽与总线位宽一致，为 64 bit。</p>
+<p>在 transfer 1st 中，从机获取整个总线上的 64bit
+数据存储至存储介质中，比如 DDR，并利用 wstrb 作为 mask 信号屏蔽无效的低
+32 bit（比如 DDR 的 DQM 信号）。这时候存储介质的写入地址为
+0x0，但实际只从地址 0x4 开始写入了 32bit 数据。在后续的 transfer
+继续按以上模式工作。窄传输中通过主机来调整有效数据的字节位置，以及给出字节有效信号
+WSTRB，能够使从机无需进行数据重组等工作。</p>
+<figure>
+<img src="总线.assets/v2-57c3410645d9a3c2f41a0138be9ab826_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>注意</strong>：协议未规定窄传输中从机的具体实现，这里举了一个设想的例子</p>
+<p>在读传输中，从机的操作逻辑与写传输中的主机相同，但是从机没有类似
+WSTRB
+的信号。所以<strong>需要主机根据突发传输宽度与总线位宽，计算当前总线中有效数据所在字节位置，读取数据</strong>。</p>
+<p>协议规定在 INCR 和 WRAP 模式中每次使用的 byte line
+必须不同，即<strong>数据位置与地址对应</strong>。而在 FIXED
+模式中，整个传输过程使用相同的 byte line（地址不会变）。</p>
+<h5 id="unaligned-transfer"><strong>（2）Unaligned
+Transfer</strong></h5>
+<p>AXI
+协议支持地址非对齐的传输，允许突发传输的首字节地址，即起始地址与<strong>突发传输位宽</strong>不对齐。举个例子，总线位宽为
+32bit 时，如果起始地址为 0x1002 ，则产生了非对齐现象。与 32bit
+位宽总线对齐的地址需要能被 4 整除，即 ADDR[1:0] = 2'b0。</p>
+<p><strong>注意</strong>：此处对齐与否应该取决于突发传输的宽度，而不是总线位宽。</p>
+<p>对于非对齐传输，主机会进行两项操作：</p>
+<ul>
+<li>即使起始地址非对齐，也保证<strong>所有传输是对齐</strong>的</li>
+<li>在首个 transfer
+中增加填充数据，<strong>将首次传输填充至对齐</strong>，填充数据使用
+WSTRB 信号标记为无效</li>
+</ul>
+<p>我们通过几个例子来说明主机具体的工作：</p>
+<figure>
+<img src="总线.assets/v2-e8aa348f7fbc4a866e902d339175750f_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>起始地址为 0x1，非对齐，但主机通过添加一字节的填充数据将 transfer 1st
+的实际地址调整为对齐的 0x0，并用 WSTRB 信号为 4'b1110
+标识出最低字节上无效的填充数据。</p>
+<p>在读传输中，从机也按照同样的原则，在读数据中填充无效数据实现对齐，由主机自行分离。</p>
+<figure>
+<img src="总线.assets/v2-6317343fab92defb85d0cad2117074ff_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>这个例子是窄传输+非对齐传输，但问题不大，我们根据之前的经验来看下。首先起始地址为不对齐的
+0x07 ，所以首先将首个传输填充至与突发传输位宽 32 bit 对齐：0x07 mod
+4(byte) = 3 byte</p>
+<p>至此非对齐的问题就已经解决了。接下问题就简化为窄传输。32bit 数据在
+64bit 总线上传输，根据我们上一节的分析，在 transfer 1st 中 再填充 4
+个字节。后续的 transfer 中则遵从窄传输的原则即可。</p>
+<h5 id="byte-invarience"><strong>（3）Byte Invarience</strong></h5>
+<p>我们来讨论数据传输结构三个问题中的最后一个：混合的大小端模式。</p>
+<p><strong>大端</strong>认为：<strong>高字节</strong>（MSB）应该存在<strong>低地址</strong>，而<strong>小端</strong>认为<strong>低字节</strong>（LSB）才应该存在<strong>低地址</strong>。</p>
+<p>那么为了能够使大小端模式在存储中共存，AXI
+协议设计了一种字节顺序恒定（Byte-invariant）的大小端传输方案。对于存储中包括多个字节的数据结构（单字节自然不存在大小端问题）：</p>
+<ul>
+<li>无论大小端模式，每个数据结构存储空间的分配方式是相同的</li>
+<li>该数据结构按照其大小端模式决定字节存储的地址顺序</li>
+<li>在传输过程中不考虑数据结构的大小端，按照字节原先存储的顺序，原样传输并存放至对端</li>
+</ul>
+<p>该模式的意义在传输双方均不对数据结构的大小端进行解析转换，而严格按照字节的存储顺序进行传输并转存，防止大小端共存产生<strong>数据覆盖</strong>。</p>
+<h4 id="读写回复结构"><strong>读写回复结构</strong></h4>
+<p>读写传输事务（Transaction）都存在 2bit 位宽的回复信号
+RRESP/BRESP，分别存在 4 种回复情况，分别为</p>
+<ul>
+<li><p>OKAY ，常规访问成功</p></li>
+<li><p>EXOKAY，独占访问成功</p></li>
+<li><p>SLVERR，从机错误，尽管从机接收到了访问请求，但因为种种原因向主机返回了一个错误状态，AXI
+传输事务的回复由应用具体决定，可能包括以下错误场景：</p></li>
+<li><ul>
+<li>FIFO 或者缓冲区溢出</li>
+<li>主机发起了不支持的传输位宽</li>
+<li>尝试向读保护的地址写入数据</li>
+<li>超时</li>
+</ul></li>
+<li><p>DECERR，解码错误，一般由 interconnect
+组件产生，表示主机发送的传输事务地址无效，无法将传输事务发送给某个从机。</p></li>
+</ul>
+<p><strong>注意</strong>：在写传输事务中，单个写回复针对的是整个
+burst，而不是 burst 中单个
+transfer。但是在读传输事务中，从机可以为突发传输中每一个读传输数据产生不同的读回复信号。</p>
+<h3 id="事务类型与属性">事务类型与属性</h3>
+<p>AXI 协议中定义了一组信号表示读写传输事务的类型，分别为 ARCACHE 以及
+AWCACHE，合称为 AXCACHE。两者控制了</p>
+<ul>
+<li>传输事务在整个系统中如何进行（How a transaction progresses through
+the system）</li>
+<li>系统缓存对传输事务的操作（How any system-level caches handle the
+transaction）</li>
+</ul>
+<p>AXI 协议中存在两类从机：存储从机（Memory
+Slave）与外设从机（Peripheral Slave）。</p>
+<p>我们协议中传输事务属性主要是为存储从机准备，<strong>存储从机必须支持所有的事务属性信号</strong>。而对于外设从机，支持哪些属性信号，就看着办了，协议只有一个要求：外设从机必须完成整个传输事务，哪怕存在其不支持的某个事务属性信号。</p>
+<p>外设从机对于属性信号的支持以及相应的访问方式由具体实现决定，一般设计者会将支持的方式列于该从机的规格书中，从机也只对所支持访问方式进行正确响应。极端情况下，从机接收到一个不支持的访问方式，这是可以的。但是一定要完成这次的传输事务，以防止整个系统死锁。协议也不要求从机支持复活机制。（continued
+correct operation is <strong>not required</strong>）</p>
+<h4 id="系统级缓存">系统级缓存</h4>
+<p><strong>注意：AXI
+协议缓存相关机制是针对处理器的系统级缓存的一种实现</strong></p>
+<p>所谓系统级缓存（system level
+cache）区别于处理器内部的缓存，系统级缓存提高整个系统访问外部存储的速度。当系统级缓存连接在处理器核与外部存储之间时，可以被看做处理器核外部的
+L2 缓存，如下图所示</p>
+<figure>
+<img src="总线.assets/v2-eb053295f403d5230c57f64f63f1e228_1440w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>处理器核、系统缓存以及外部存储控制器通过 AXI 总线接口互联。L1
+缓存位于处理器核内部。当处理器访问外部存储中的数据，在 L1
+缓存中缺失时，向外部缓存发起传输事务。传输事务在通过系统缓存时，如果该事务命中缓存表项，即可直接得到结果，避免访问外部存储带来的缺失代价。</p>
+<h4 id="存储相关属性信号">存储相关属性信号</h4>
+<h2 id="axi-vip">AXI VIP</h2>
+<p>AXI Verification IP (AXI VIP) 是支持用户对 AXI4 和 AXI4-Lite
+进行仿真的 IP。它还可作为 AXI Protocol Checker 来使用。</p>
+<p>此IP只是仿真IP，将不进行综合（它将在Pass-through配置中被连线所替代）。</p>
+<p>AXI VIP IP 核用途如下：</p>
+<ul>
+<li><p>生成 Master AXI 指令和写内容</p></li>
+<li><p>生成 Slave AXI 读内容和写响应</p></li>
+<li><p>检查 AXI 传输是否符合协议标准</p></li>
+</ul>
+<p>它支持 5 种不同配置：</p>
+<ul>
+<li><p>AXI Master VIP</p></li>
+<li><p>AXI Pass-through VIP（无/有内存模型）</p></li>
+<li><p>AXI Slave VIP（无/有内存模型）</p></li>
+</ul>
+<h1 id="soc-simulator">SoC Simulator</h1>
+<p>一个简单易用的软件定义AXI Slave设备框架</p>
+]]></content>
+      <categories>
+        <category>IC</category>
+      </categories>
+      <tags>
+        <tag>AXI</tag>
+        <tag>PCle</tag>
       </tags>
   </entry>
   <entry>

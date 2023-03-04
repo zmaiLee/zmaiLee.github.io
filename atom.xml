@@ -6,7 +6,7 @@
   <link href="https://zmailee.github.io/atom.xml" rel="self"/>
   
   <link href="https://zmailee.github.io/"/>
-  <updated>2023-03-04T03:00:12.437Z</updated>
+  <updated>2023-03-04T03:37:22.629Z</updated>
   <id>https://zmailee.github.io/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>3D堆叠</title>
+    <title>User Guide</title>
     <link href="https://zmailee.github.io/2023/03/04/User%20Guide/"/>
     <id>https://zmailee.github.io/2023/03/04/User%20Guide/</id>
     <published>2023-03-04T02:10:01.955Z</published>
-    <updated>2023-03-04T03:00:12.437Z</updated>
+    <updated>2023-03-04T03:37:22.629Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="front-matter">Front-matter</h1><p>Front-matter 是 markdown 文件最上方以 ---分隔的区域，用於指定個別檔案的變數。</p><figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure><h2 id="page-front-matter">Page Front-matter</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure><figure><imgsrc="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/home.webp"alt="home" /><figcaption aria-hidden="true">home</figcaption></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="front-matter">Front-matter</h1><p>Front-matter 是 markdown 文件最上方以 ---分隔的区域，用於指定個別檔案的變數。</p><figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure><h2 id="page-front-matter">Page Front-matter</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure><table><thead><tr class="header"><th>写法</th><th>解释</th></tr></thead><tbody><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr><tr class="even"><td></td><td></td></tr><tr class="odd"><td></td><td></td></tr></tbody></table>]]></content>
     
     
       
@@ -36,10 +36,10 @@
     
     
     
-    <category term="微电子工艺" scheme="https://zmailee.github.io/categories/%E5%BE%AE%E7%94%B5%E5%AD%90%E5%B7%A5%E8%89%BA/"/>
+    <category term="教程" scheme="https://zmailee.github.io/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="3D堆叠" scheme="https://zmailee.github.io/tags/3D%E5%A0%86%E5%8F%A0/"/>
+    <category term="教程" scheme="https://zmailee.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
