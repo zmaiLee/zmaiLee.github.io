@@ -60,26 +60,6 @@ Wuu表示。</p>
       </tags>
   </entry>
   <entry>
-    <title>Git</title>
-    <url>/2022/10/19/Git/</url>
-    <content><![CDATA[<h1 id="git">Git</h1>
-<p>用git执行下面语句时报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
-<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
-<span id="more"></span>
-<p>1.使用强制push的方法，这样会使远程修改丢失</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
-<p>2.先将远程repository修改pull下来再push</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
-<p>结果又报refusing to merge unrelated histories</p>
-<p>解决方案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-  </entry>
-  <entry>
     <title>CadenceEDA</title>
     <url>/2022/12/09/CadenceEDA/</url>
     <content><![CDATA[<ul>
@@ -274,6 +254,26 @@ Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建
         <tag>EDA</tag>
         <tag>模拟IC</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Git</title>
+    <url>/2022/10/19/Git/</url>
+    <content><![CDATA[<h1 id="git">Git</h1>
+<p>用git执行下面语句时报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master<br>error: failed to push some refs to ‘xxxxx’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: ‘git pull …’) before pushing again.<br>hint: See the ‘Note about fast-forwards’ <span class="hljs-keyword">in</span> ‘git push --<span class="hljs-built_in">help</span>’ <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+<p>原因：<strong>Github端已经产生了commit没有同步到本地端</strong></p>
+<span id="more"></span>
+<p>1.使用强制push的方法，这样会使远程修改丢失</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git push -u origin master -f<br></code></pre></td></tr></table></figure>
+<p>2.先将远程repository修改pull下来再push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p>结果又报refusing to merge unrelated histories</p>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git pull origin master --allow-unrelated-histories<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
   </entry>
   <entry>
     <title>DPI学习笔记</title>
@@ -1927,6 +1927,20 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Skew Number</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SRAM设计</title>
     <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
@@ -2031,20 +2045,6 @@ href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
       <tags>
         <tag>SRAM</tag>
         <tag>存储器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2613,6 +2613,85 @@ Twister优点：随机性好，在计算机上容易实现，占用内存较少(
       <tags>
         <tag>算法</tag>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>User Guide</title>
+    <url>/2023/03/04/User%20Guide/</url>
+    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
+<p>Front-matter 是 markdown 文件最上方以 ---
+分隔的区域，用於指定個別檔案的變數。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
+<h2 id="page-front-matter">Page Front-matter</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -3784,85 +3863,6 @@ role="doc-backlink">↩︎</a></p></li>
       </tags>
   </entry>
   <entry>
-    <title>User Guide</title>
-    <url>/2023/03/04/User%20Guide/</url>
-    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
-<p>Front-matter 是 markdown 文件最上方以 ---
-分隔的区域，用於指定個別檔案的變數。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
-<h2 id="page-front-matter">Page Front-matter</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr class="header">
-<th>写法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>异步复位同步撤离</title>
     <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
     <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
@@ -3949,37 +3949,6 @@ alt="img" />
       </categories>
       <tags>
         <tag>复位</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4417,6 +4386,58 @@ alt="img" />
       </tags>
   </entry>
   <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>版图</title>
+    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="bb">bb</h1>
+<h1 id="mos管结构">MOS管结构</h1>
+<figure>
+<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>NWELL：</strong>N阱</p>
+<p><strong>GT：</strong>poly，多晶硅栅</p>
+<p><strong>SP：</strong>P+，</p>
+<p><strong>SN：</strong>N+</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>版图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>梅森旋转算法</title>
     <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="背景知识">背景知识</h1>
@@ -4468,27 +4489,6 @@ alt="img" />
       <tags>
         <tag>梅森素数</tag>
         <tag>伪随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>版图</title>
-    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
-    <content><![CDATA[<h1 id="bb">bb</h1>
-<h1 id="mos管结构">MOS管结构</h1>
-<figure>
-<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>NWELL：</strong>N阱</p>
-<p><strong>GT：</strong>poly，多晶硅栅</p>
-<p><strong>SP：</strong>P+，</p>
-<p><strong>SN：</strong>N+</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>版图</tag>
       </tags>
   </entry>
   <entry>
