@@ -1001,6 +1001,208 @@ href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
       </tags>
   </entry>
   <entry>
+    <title>User Guide</title>
+    <url>/2023/03/04/User%20Guide/</url>
+    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
+<p>Front-matter 是 markdown 文件最上方以 ---
+分隔的区域，用於指定個別檔案的變數。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
+<h2 id="page-front-matter">Page Front-matter</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">写法</th>
+<th style="text-align: left;">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">【必需】頁面標題</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">【必需】頁面創建日期</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">type</td>
+<td
+style="text-align: left;">【必需】標籤、分類和友情鏈接三個頁面需要配置</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">updated</td>
+<td style="text-align: left;">【可選】頁面更新日期</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">description</td>
+<td style="text-align: left;">【可選】頁面描述</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">keywords</td>
+<td style="text-align: left;">【可選】頁面關鍵字</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comments</td>
+<td style="text-align: left;">【可選】顯示頁面評論模塊(默認 true)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">top_img</td>
+<td style="text-align: left;">【可選】頁面頂部圖片</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mathjax</td>
+<td
+style="text-align: left;">【可選】顯示mathjax(當設置mathjax的per_page:
+false時，才需要配置，默認 false)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">katex</td>
+<td style="text-align: left;">【可選】顯示katex(當設置katex的per_page:
+false時，才需要配置，默認 false)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aside</td>
+<td style="text-align: left;">【可選】顯示側邊欄 (默認 true)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aplayer</td>
+<td
+style="text-align: left;">【可選】在需要的頁面加載aplayer的js和css,請參考文章下面的音樂
+配置</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">highlight_shrink</td>
+<td
+style="text-align: left;">【可選】配置代碼框是否展開(true/false)(默認為設置中highlight_shrink的配置)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-front-matter">Post Front-matter</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>tags:<br>categories:<br>keywords:<br>description:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">comments:</span><br><span class="hljs-emphasis">cover:</span><br><span class="hljs-emphasis">toc:</span><br><span class="hljs-emphasis">toc_</span>number:<br>toc<span class="hljs-emphasis">_style_</span>simple:<br>copyright:<br>copyright<span class="hljs-emphasis">_author:</span><br><span class="hljs-emphasis">copyright_</span>author<span class="hljs-emphasis">_href:</span><br><span class="hljs-emphasis">copyright_</span>url:<br>copyright<span class="hljs-emphasis">_info:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br><span class="hljs-section">aside:</span><br><span class="hljs-section">---</span><br></code></pre></td></tr></table></figure>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>title</td>
+<td>【必需】頁面標題</td>
+</tr>
+<tr class="even">
+<td>date</td>
+<td>【必需】頁面創建日期</td>
+</tr>
+<tr class="odd">
+<td>updated</td>
+<td>【可選】頁面更新日期</td>
+</tr>
+<tr class="even">
+<td>tags</td>
+<td>【可選】文章標籤</td>
+</tr>
+<tr class="odd">
+<td>categories</td>
+<td>【可選】文章分類</td>
+</tr>
+<tr class="even">
+<td>keywords</td>
+<td>【可選】文章關鍵字</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>【可選】文章描述</td>
+</tr>
+<tr class="even">
+<td>top_img</td>
+<td>【可選】文章頂部圖片</td>
+</tr>
+<tr class="odd">
+<td>cover</td>
+<td>【可選】文章縮略圖(如果沒有設置top_img,文章頁頂部將顯示縮略圖，可設為false/圖片地址/留空)</td>
+</tr>
+<tr class="even">
+<td>comments</td>
+<td>【可選】顯示文章評論模塊(默認 true)</td>
+</tr>
+<tr class="odd">
+<td>toc</td>
+<td>【可選】顯示文章TOC(默認為設置中toc的enable配置)</td>
+</tr>
+<tr class="even">
+<td>toc_number</td>
+<td>【可選】顯示toc_number(默認為設置中toc的number配置)</td>
+</tr>
+<tr class="odd">
+<td>toc_style_simple</td>
+<td>【可選】顯示 toc 簡潔模式</td>
+</tr>
+<tr class="even">
+<td>copyright</td>
+<td>【可選】顯示文章版權模塊(默認為設置中post_copyright的enable配置)</td>
+</tr>
+<tr class="odd">
+<td>copyright_author</td>
+<td>【可選】文章版權模塊的文章作者</td>
+</tr>
+<tr class="even">
+<td>copyright_author_href</td>
+<td>【可選】文章版權模塊的文章作者鏈接</td>
+</tr>
+<tr class="odd">
+<td>copyright_url</td>
+<td>【可選】文章版權模塊的文章連結鏈接</td>
+</tr>
+<tr class="even">
+<td>copyright_info</td>
+<td>【可選】文章版權模塊的版權聲明文字</td>
+</tr>
+<tr class="odd">
+<td>mathjax</td>
+<td>【可選】顯示mathjax(當設置mathjax的per_page:
+false時，才需要配置，默認 false)</td>
+</tr>
+<tr class="even">
+<td>katex</td>
+<td>【可選】顯示katex(當設置katex的per_page: false時，才需要配置，默認
+false)</td>
+</tr>
+<tr class="odd">
+<td>aplayer</td>
+<td>【可選】在需要的頁面加載aplayer的js和css,請參考文章下面的音樂
+配置</td>
+</tr>
+<tr class="even">
+<td>highlight_shrink</td>
+<td>【可選】配置代碼框是否展開(true/false)(默認為設置中highlight_shrink的配置)</td>
+</tr>
+<tr class="odd">
+<td>aside</td>
+<td>【可選】顯示側邊欄 (默認 true)</td>
+</tr>
+</tbody>
+</table>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Makefile学习笔记</title>
     <url>/2022/11/19/Makefile/</url>
     <content><![CDATA[<h1 id="makefile学习笔记">Makefile学习笔记</h1>
@@ -2048,6 +2250,112 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
+<span id="more"></span>
+<p>​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2510,191 +2818,6 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-<span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>User Guide</title>
-    <url>/2023/03/04/User%20Guide/</url>
-    <content><![CDATA[<h1 id="front-matter">Front-matter</h1>
-<p>Front-matter 是 markdown 文件最上方以 ---
-分隔的区域，用於指定個別檔案的變數。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br></code></pre></td></tr></table></figure>
-<h2 id="page-front-matter">Page Front-matter</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">---<br>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top<span class="hljs-emphasis">_img:</span><br><span class="hljs-emphasis">mathjax:</span><br><span class="hljs-emphasis">katex:</span><br><span class="hljs-emphasis">aside:</span><br><span class="hljs-emphasis">aplayer:</span><br><span class="hljs-emphasis">highlight_</span>shrink:<br>---<br></code></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr class="header">
-<th>写法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>异步复位同步撤离</title>
     <url>/2022/11/30/%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%92%A4%E7%A6%BB/</url>
     <content><![CDATA[<h1 id="同步复位">1 同步复位</h1>
@@ -2781,6 +2904,37 @@ alt="img" />
       </categories>
       <tags>
         <tag>复位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
       </tags>
   </entry>
   <entry>
@@ -3215,6 +3369,81 @@ alt="img" />
       <tags>
         <tag>AXI</tag>
         <tag>PCle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梅森旋转算法</title>
+    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
+<p>梅森数：形如<span
+class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
+<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
+<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
+<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
+<span id="more"></span>
+<p>本原多项式：一个 m 阶的不可约多项式 <span
+class="math inline">\(\large f(x)\)</span>，如果 <span
+class="math inline">\(\large f(x)\)</span> 整除 <span
+class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
+class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
+<figure>
+<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
+<figcaption aria-hidden="true">查看源图像</figcaption>
+</figure>
+<p>线性反馈移位寄存器LFSR：</p>
+<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
+<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
+class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<figure>
+<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>梅森素数</tag>
+        <tag>伪随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>版图</title>
+    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="bb">bb</h1>
+<h1 id="mos管结构">MOS管结构</h1>
+<figure>
+<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>NWELL：</strong>N阱</p>
+<p><strong>GT：</strong>poly，多晶硅栅</p>
+<p><strong>SP：</strong>P+，</p>
+<p><strong>SN：</strong>N+</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>版图</tag>
       </tags>
   </entry>
   <entry>
@@ -4383,112 +4612,6 @@ role="doc-backlink">↩︎</a></p></li>
 ]]></content>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梅森旋转算法</title>
-    <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="背景知识">背景知识</h1>
-<p>梅森数：形如<span
-class="math inline">\(2^p－1\)</span>的一类数，指数p是素数，常记为Mp。</p>
-<p>梅森素数：是素数的梅森数，就称为梅森素数</p>
-<p>真随机数：使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等，这样的随机数发生器叫做物理性随机数发生器。</p>
-<p>伪随机数：按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。用计算机随机函数所产生的“随机数”并不随机，是伪随机数。</p>
-<span id="more"></span>
-<p>本原多项式：一个 m 阶的不可约多项式 <span
-class="math inline">\(\large f(x)\)</span>，如果 <span
-class="math inline">\(\large f(x)\)</span> 整除 <span
-class="math inline">\(\large x^n+ 1\)</span>的最小正整数 n 满足 <span
-class="math inline">\(n = 2^m − 1\)</span> ，则该多项式是本原的。</p>
-<figure>
-<img src="梅森螺旋算法.assets/OIP-C.jpeg" alt="查看源图像" />
-<figcaption aria-hidden="true">查看源图像</figcaption>
-</figure>
-<p>线性反馈移位寄存器LFSR：</p>
-<p><img src="梅森螺旋算法.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdHRsZV9zb2xkaWVy,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述" style="zoom: 33%;" /></p>
-<p>r级线性反馈移位寄存器唯一地表达为𝑟次幂的多项式<span
-class="math inline">\(G(x)=\sum_{i=0}^r{g_ix^i}, g_0=g_r=1\)</span></p>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<figure>
-<img src="梅森螺旋算法.assets/ce74efc0d7db44589e385feaa8b75832.png"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>梅森素数</tag>
-        <tag>伪随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>版图</title>
-    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
-    <content><![CDATA[<h1 id="bb">bb</h1>
-<h1 id="mos管结构">MOS管结构</h1>
-<figure>
-<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>NWELL：</strong>N阱</p>
-<p><strong>GT：</strong>poly，多晶硅栅</p>
-<p><strong>SP：</strong>P+，</p>
-<p><strong>SN：</strong>N+</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>版图</tag>
       </tags>
   </entry>
   <entry>
