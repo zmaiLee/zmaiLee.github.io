@@ -837,6 +837,49 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </categories>
   </entry>
   <entry>
+    <title>IC后端</title>
+    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
+<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
+<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
+Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
+<span id="more"></span>
+<h2 id="pvt">PVT</h2>
+<p>Process、Voltage、Temperature</p>
+<h2 id="multi-channel-library">multi-channel library</h2>
+<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
+SVTmax，性能增加20%，静态功耗增加80%。</p>
+<h2 id="t9t12t">7T/9T/12T</h2>
+<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
+<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
+blocks）、high-density（for highest density in GPU
+blocks）、high-speed（for highest performance in CPU blocks）。</p>
+<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
+pitch=minSpacing+minWidth。</p>
+<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
+<figure>
+<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
+<figcaption aria-hidden="true">这里写图片描述</figcaption>
+</figure>
+<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
+<p><img src="IC后端.assets/SouthEast-16679659616183.png"
+alt="img" /><strong>HLP</strong>，high performance low power；
+<strong>HPC</strong>，high performace compact。
+28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
+<figure>
+<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记</title>
     <url>/2023/03/09/In-Datacenter%20Performance%20Analysis%20of%20a%20Tensor%20Processing%20Unit%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20-%20%E5%89%AF%E6%9C%AC/</url>
     <content><![CDATA[<h1 id="摘要">摘要</h1>
@@ -953,46 +996,124 @@ alt="image-20230309152745995" />
       </tags>
   </entry>
   <entry>
-    <title>IC后端</title>
-    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
-<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
-<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
-Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
-<span id="more"></span>
-<h2 id="pvt">PVT</h2>
-<p>Process、Voltage、Temperature</p>
-<h2 id="multi-channel-library">multi-channel library</h2>
-<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
-SVTmax，性能增加20%，静态功耗增加80%。</p>
-<h2 id="t9t12t">7T/9T/12T</h2>
-<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
-<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
-blocks）、high-density（for highest density in GPU
-blocks）、high-speed（for highest performance in CPU blocks）。</p>
-<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
-pitch=minSpacing+minWidth。</p>
-<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
+    <title>SRAM设计</title>
+    <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p>静态随机存取存储器（Static Random-Access
+Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
+memory）。</p>
+<p>SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
+，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。</p>
+<h1 id="第二章译码器设计">第二章：译码器设计</h1>
 <figure>
-<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
-<figcaption aria-hidden="true">这里写图片描述</figcaption>
+<img src="SRAM设计.assets/640.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
 </figure>
-<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
-<p><img src="IC后端.assets/SouthEast-16679659616183.png"
-alt="img" /><strong>HLP</strong>，high performance low power；
-<strong>HPC</strong>，high performace compact。
-28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
+<p>上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为<strong>多输入逻辑电路驱动能力同尺寸下驱动能力下降</strong>，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为<strong>最小位负载最大，因为它不是关键路径，高位的地址译码速度远慢于低位的。</strong></p>
 <figure>
-<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
+<img src="SRAM设计.assets/640-16709157046853.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
 </figure>
+<h1 id="第二章存储单元设计">第二章：存储单元设计</h1>
+<p>存储单元应该具有良好的可读写性及一定的驱动能力。存储单元尺寸应当越小越好，以达到较高的密度，同时让字线和位线的负载降低到最低。</p>
+<h2 id="传统6管单元结构">传统6管单元结构</h2>
+<p>一对交叉耦合的反相器组成，写操作采用互拉方式的6管单元。对于大规模的存储器部件，单个的位线结构可有效减小系统的面积与功耗，所以<strong>写操作采用单端输入，局部反向对偶写入方式</strong>，如下图所示</p>
+<figure>
+<img src="SRAM设计.assets/640-16709161472316.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如下图a所示为读操作，字线WL有效为1，此时保存在里面的值为Q＝1，M1、M4管导通，Q的值通过M6出现在位线BL上。对读操作，一般取<span
+class="math inline">\(W1&gt;1.2×W5\)</span>。</p>
+<p>如下图b所示为写操作，假设Q＝1，WL有效为1，要写入0值，即BL＝0，强制Q、Q非实现电平翻转。对写操作,一般取<span
+class="math inline">\(W4&lt;1.8×W6\)</span>。</p>
+<figure>
+<img src="SRAM设计.assets/640-16709161753489.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>存储体位单元用来保存存储器部件的数据或状态信息，对存储部件的读/写归根结底是对存储体位单元的读/写。存储部件的存储单元应该具有良好的可读写性及一定的驱动能力。存储体位单元版图如下图所示</p>
+<figure>
+<img src="SRAM设计.assets/640-167091654628112.jpeg" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<h2
+id="基于sram的改进型三态存体"><strong>基于SRAM的改进型三态存体</strong></h2>
+<p>基于SRAM的改进型三态存体（加入了N23管），如下图所示。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091668263415.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>在数据写入时，读写信号为0，关断存储体，在需要写入的数据稳定后，读写信号受控变为1，存储体存值。比如，若存储体数据原端存值为0，在进行写入操作的时候，存储体被关断，这样存储的这个0也就没有任何竞争力了，这就消除了写入弱1时可能产生的竞争，而且在写入弱1时，P8、P9和N18三个管子，还起到了对这个弱1的反馈加强作用；若存储体数据原端存值为1（DaIn=1），在进行写入操作的时候，存储体被关断，虽然此时P管和N三个管子对这个1有保持作用，但是写入的是强0，可以很容易的通过增大写入管尺寸增大0的竞争力，把0写入存储体。</p>
+<p><strong>GR存储单元</strong></p>
+<p>下图所示为一种存储单元CMOS电路图（GR存储单元），采用单端读写技术，并由一个方向信号WR非通过一个NMOS传输管N3对存储元的读写进行三态控制。这里所谓单端读写指的是读操作和写操作都只在D端进行，单元的读/写方向由WR非进行三态控制。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091670822518.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>在对存储单元进行写操作时，
+WR非为0，N3关断，反馈维持电路P2、N2失效；进行读操作时，WR非为1，N3打开，反馈管P2、N2起作用，驱动数据输出。与传统的6T、4TSRAM双端读写结构相比，这种存储单元结构采用的这种单端读写技术显着减少了位线数目，而且对应的读写端口逻辑也大大减少，有利于大规模寄存器文件设计面积的优化及功耗的降低。而且通过对读写进行三态控制，在对存储单元进行写操作时就不必克服反馈保持电路的影响，可以比较容易的将数据写入，而且写操作驱动电路的尺寸也可因此做的相对较小，有利于提高集成度，降低电路面积和功耗；另外，存储元中的反馈管P2、N2并没有按照传统设计思想设计为弱管，而是将其设计为正常尺寸，十分有利于提高存储单元的抗干扰能力及输出驱动能力，加快数据的读出速度。电路中的晶体管尺寸的设计结合读写控制逻辑进行，以保证良好的可读写性。</p>
+<h1 id="第三章读写逻辑设计">第三章：读写逻辑设计</h1>
+<h2 id="读出逻辑电路"><strong>读出逻辑电路</strong></h2>
+<p>在大型存储器部件中，<strong>译码逻辑的延迟对整体存储器部件的读写延迟有重要的影响</strong>。随着存储器部件规模的增大，译码逻辑产生的字线的负载越来越大，而字线本身的走线负载也很大，这在超深亚微米设计下更为明显。为有效减小译码字线的延时，最直接的方法就是<strong>减少字线的负载单元以及自身走线长度</strong>，分开字线结构（Divided
+Word-Line
+Structure，DWL）就采用了这一思想。在大型存储器部件设计中，将存储体阵列分为左右两半，<strong>把行译码器及其驱动放置在阵列的中间，字线产生后向左右两侧驱动</strong>，从而大大减小了走线长度，减小了字线延迟。减小走线延迟的另一个方法是采用低电阻/电容率的金属走线，即提高字线的走线层数。</p>
+<p>在存储器部件的读数据通路设计时通常采用<strong>低摆幅差分信号技术</strong>，但由于大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常<strong>采用大增益的差分敏感放大器对读出数据进行驱动</strong>。具体设计时需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。位线上的最大的非常规噪声之一是与相邻位线之间的电容耦合，在设计时通常采用<strong>“螺旋”位线结构</strong>，在位线的传输方向上阶段性的交换两者的位置，可有效平衡相邻位线的电平变化对本单元造成的耦合影响。</p>
+<h3 id="预充电路">预充电路</h3>
+<p>为提高存储器部件存储单元的读出速度，在读操作之前两个位线上的电压应平衡，防止内建偏压。原则上，<strong>应使两个位线在足够高的电压上平衡以防止读干扰</strong>，因为当字线有效时，如果两个位线同时为0，会造成破坏性读出，所以<strong>通常把两位线都预充到VDD以达到平衡</strong>。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091697426221.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图所示，预充可通过静态上拉和时钟电路两种方式实现。对于静态上拉预充，不必设立重负载的预充时钟信号，但预充管一直处于开启状态，所以设计时上拉管的尺寸不能太大，否则会影响正常的读出操作。而对于<strong>时钟控制预充</strong>，则可以把上拉管设计得比较大以使位线电压快速达到平衡，而且在两位线间增加一个传输管，进一步加快平衡速度，但这种方案会显著的加大时钟信号的负载和功耗，很难建立精确的预充时序关系。</p>
+<h3 id="敏感放大器">敏感放大器</h3>
+<p>由于阵列单元的尺寸很小，而且微处理器的时钟周期很短，在读访问时位线可能仅仅泻放了100～200mv的电压，将这一很小的电压差可靠有效的放大是存储部件设计中的一个关键技术。目前已提出了多种电路结构解决这一问题，包括电流差分放大、电流镜以及上面的电压差分放大等，所有这些方法的前提就是必须保证产生一个精确的电压偏差，以确保最终敏感放大电路的正确操作。在大型微处理器设计中，密集的电源及地栅格间的电平转换噪音使得产生并保证一个精确的参考电压非常困难。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091716062524.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图图所示是结合了时钟预充的位线差分放大电路。在大型存储器部件设计中，结合多体结构，读出位线也要进行层次化设计，采用级联分开位线策略实现，每一级都有各自的敏感放大电路。</p>
+<p>存储器部件的读出逻辑对于整个存储器部件的性能起着重要的作用，它是外部读出端口与内部存储单元之间的桥梁，这一部分电路的设计性能将直接关系到系统的性能。</p>
+<p>大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常采用大增益的差分敏感放大器对读出数据进行驱动，如下图所示。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091720695327.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>使用灵敏放大电路实现读出的过程有2步，首先是预充，然后是求值。</p>
+<figure>
+<img src="SRAM设计.assets/640-167091724717830.png" alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>如上图所示中(a)和(b)分别表示预充电路和灵敏放大电路，预充可通过静态上拉和时钟电路控制两种方式实现。</p>
+<p>但是要使差分敏感放大器工作良好需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除了总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。</p>
+<p>​
+寄存器文件设计中可以使用另一种方式来实现读出结构，该结构没有常规的差分敏感放大器。如果不使用传统的灵敏放大技术实现又要提高读出电路的性能，首先想到的就是使用动态电路来实现读出电路。由于在数据读取过程中，存储阵列只有一个单元的数据是可以输出的，其他单元的输出端口是关闭的，这也是灵敏放大技术中通过该单元使能位线，通过电压差灵敏放大求值。如果不使用灵敏放大技术，那就只能通过逻辑表达式的方法求出这个输出的值来。</p>
+<p>该结构在存储单元数据输出时需要进行与后级相关的预处理，该预处理电路是设计读出逻辑的必需部分，通过该电路完成一些必要的信号控制和转换功能。基于求值逻辑的读出电路，必须具有一定的逻辑特性才能进行求值读出。</p>
+<h2 id="写入逻辑电路"><strong>写入逻辑电路</strong></h2>
+<p>写通路电路的功能是将写位线数据写入阵列存储单元，更新存储单元的数据。</p>
+<p>最简单的写放大电路可以是一个<strong>反相器</strong>，要能够在指定时钟内将选定位线拉低至VSS，更新存储单元，完成写操作。写入逻辑设计的复杂性在于：写操作完成后，被拉低到VSS的位线必须能够在下次读之前恢复到VDD，这一操作的复杂性因所采用的预充方案的不同而有所区别：如果采用时钟信号预充，这一点可以自动完成；而如果采用静态预充，设计者必须根据阵列存储元的下拉管和传输管的尺寸来选择预充管的尺寸才能确保读操作的正确性。静态预充电路可能无法在下次读操作前将位线全摆幅恢复到VDD，这种情况下就可能需要写放大电路将选定位线恢复到VDD。</p>
+<p><a
+href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
+版图基本知识_江南小作坊的博客-CSDN博客_版图基础知识</a></p>
 ]]></content>
       <categories>
-        <category>基础课程</category>
+        <category>IC</category>
       </categories>
       <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
+        <tag>SRAM</tag>
+        <tag>存储器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2043,127 +2164,6 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SRAM设计</title>
-    <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p>静态随机存取存储器（Static Random-Access
-Memory，SRAM）是随机存取存储器的一种。静态是指这种存储器只要保持通电，里面储存的数据就可以恒常保持。相对之下，动态随机存取存储器（DRAM）里面所储存的数据就需要周期性地更新。然而，当电力供应停止时，SRAM储存的数据还是会丢失（被称为volatile
-memory）。</p>
-<p>SRAM具有较高的性能，但是SRAM的集成度较低，功耗较DRAM大
-，相同容量的DRAM内存可以设计为较小的体积，但是SRAM却需要很大的体积。同样面积的硅片可以做出更大容量的DRAM，因此SRAM显得更贵。SRAM的速度和功耗主要由外围电路决定,因此设计出速度快、功耗低的译码器至关重要。</p>
-<h1 id="第二章译码器设计">第二章：译码器设计</h1>
-<figure>
-<img src="SRAM设计.assets/640.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>上图为字线驱动能力的说明。译码器最后一级应该都是以2输入与门组成，因为<strong>多输入逻辑电路驱动能力同尺寸下驱动能力下降</strong>，由于最后一级译码器输出要作为驱动字线的信号源，字线负载比较大，要尽量减少插入buffer来合理驱动字线，所以2输入组成的逻辑为最优。如图可以看出译码器的地址为<strong>最小位负载最大，因为它不是关键路径，高位的地址译码速度远慢于低位的。</strong></p>
-<figure>
-<img src="SRAM设计.assets/640-16709157046853.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h1 id="第二章存储单元设计">第二章：存储单元设计</h1>
-<p>存储单元应该具有良好的可读写性及一定的驱动能力。存储单元尺寸应当越小越好，以达到较高的密度，同时让字线和位线的负载降低到最低。</p>
-<h2 id="传统6管单元结构">传统6管单元结构</h2>
-<p>一对交叉耦合的反相器组成，写操作采用互拉方式的6管单元。对于大规模的存储器部件，单个的位线结构可有效减小系统的面积与功耗，所以<strong>写操作采用单端输入，局部反向对偶写入方式</strong>，如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161472316.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如下图a所示为读操作，字线WL有效为1，此时保存在里面的值为Q＝1，M1、M4管导通，Q的值通过M6出现在位线BL上。对读操作，一般取<span
-class="math inline">\(W1&gt;1.2×W5\)</span>。</p>
-<p>如下图b所示为写操作，假设Q＝1，WL有效为1，要写入0值，即BL＝0，强制Q、Q非实现电平翻转。对写操作,一般取<span
-class="math inline">\(W4&lt;1.8×W6\)</span>。</p>
-<figure>
-<img src="SRAM设计.assets/640-16709161753489.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>存储体位单元用来保存存储器部件的数据或状态信息，对存储部件的读/写归根结底是对存储体位单元的读/写。存储部件的存储单元应该具有良好的可读写性及一定的驱动能力。存储体位单元版图如下图所示</p>
-<figure>
-<img src="SRAM设计.assets/640-167091654628112.jpeg" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<h2
-id="基于sram的改进型三态存体"><strong>基于SRAM的改进型三态存体</strong></h2>
-<p>基于SRAM的改进型三态存体（加入了N23管），如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091668263415.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在数据写入时，读写信号为0，关断存储体，在需要写入的数据稳定后，读写信号受控变为1，存储体存值。比如，若存储体数据原端存值为0，在进行写入操作的时候，存储体被关断，这样存储的这个0也就没有任何竞争力了，这就消除了写入弱1时可能产生的竞争，而且在写入弱1时，P8、P9和N18三个管子，还起到了对这个弱1的反馈加强作用；若存储体数据原端存值为1（DaIn=1），在进行写入操作的时候，存储体被关断，虽然此时P管和N三个管子对这个1有保持作用，但是写入的是强0，可以很容易的通过增大写入管尺寸增大0的竞争力，把0写入存储体。</p>
-<p><strong>GR存储单元</strong></p>
-<p>下图所示为一种存储单元CMOS电路图（GR存储单元），采用单端读写技术，并由一个方向信号WR非通过一个NMOS传输管N3对存储元的读写进行三态控制。这里所谓单端读写指的是读操作和写操作都只在D端进行，单元的读/写方向由WR非进行三态控制。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091670822518.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>在对存储单元进行写操作时，
-WR非为0，N3关断，反馈维持电路P2、N2失效；进行读操作时，WR非为1，N3打开，反馈管P2、N2起作用，驱动数据输出。与传统的6T、4TSRAM双端读写结构相比，这种存储单元结构采用的这种单端读写技术显着减少了位线数目，而且对应的读写端口逻辑也大大减少，有利于大规模寄存器文件设计面积的优化及功耗的降低。而且通过对读写进行三态控制，在对存储单元进行写操作时就不必克服反馈保持电路的影响，可以比较容易的将数据写入，而且写操作驱动电路的尺寸也可因此做的相对较小，有利于提高集成度，降低电路面积和功耗；另外，存储元中的反馈管P2、N2并没有按照传统设计思想设计为弱管，而是将其设计为正常尺寸，十分有利于提高存储单元的抗干扰能力及输出驱动能力，加快数据的读出速度。电路中的晶体管尺寸的设计结合读写控制逻辑进行，以保证良好的可读写性。</p>
-<h1 id="第三章读写逻辑设计">第三章：读写逻辑设计</h1>
-<h2 id="读出逻辑电路"><strong>读出逻辑电路</strong></h2>
-<p>在大型存储器部件中，<strong>译码逻辑的延迟对整体存储器部件的读写延迟有重要的影响</strong>。随着存储器部件规模的增大，译码逻辑产生的字线的负载越来越大，而字线本身的走线负载也很大，这在超深亚微米设计下更为明显。为有效减小译码字线的延时，最直接的方法就是<strong>减少字线的负载单元以及自身走线长度</strong>，分开字线结构（Divided
-Word-Line
-Structure，DWL）就采用了这一思想。在大型存储器部件设计中，将存储体阵列分为左右两半，<strong>把行译码器及其驱动放置在阵列的中间，字线产生后向左右两侧驱动</strong>，从而大大减小了走线长度，减小了字线延迟。减小走线延迟的另一个方法是采用低电阻/电容率的金属走线，即提高字线的走线层数。</p>
-<p>在存储器部件的读数据通路设计时通常采用<strong>低摆幅差分信号技术</strong>，但由于大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常<strong>采用大增益的差分敏感放大器对读出数据进行驱动</strong>。具体设计时需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。位线上的最大的非常规噪声之一是与相邻位线之间的电容耦合，在设计时通常采用<strong>“螺旋”位线结构</strong>，在位线的传输方向上阶段性的交换两者的位置，可有效平衡相邻位线的电平变化对本单元造成的耦合影响。</p>
-<h3 id="预充电路">预充电路</h3>
-<p>为提高存储器部件存储单元的读出速度，在读操作之前两个位线上的电压应平衡，防止内建偏压。原则上，<strong>应使两个位线在足够高的电压上平衡以防止读干扰</strong>，因为当字线有效时，如果两个位线同时为0，会造成破坏性读出，所以<strong>通常把两位线都预充到VDD以达到平衡</strong>。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091697426221.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示，预充可通过静态上拉和时钟电路两种方式实现。对于静态上拉预充，不必设立重负载的预充时钟信号，但预充管一直处于开启状态，所以设计时上拉管的尺寸不能太大，否则会影响正常的读出操作。而对于<strong>时钟控制预充</strong>，则可以把上拉管设计得比较大以使位线电压快速达到平衡，而且在两位线间增加一个传输管，进一步加快平衡速度，但这种方案会显著的加大时钟信号的负载和功耗，很难建立精确的预充时序关系。</p>
-<h3 id="敏感放大器">敏感放大器</h3>
-<p>由于阵列单元的尺寸很小，而且微处理器的时钟周期很短，在读访问时位线可能仅仅泻放了100～200mv的电压，将这一很小的电压差可靠有效的放大是存储部件设计中的一个关键技术。目前已提出了多种电路结构解决这一问题，包括电流差分放大、电流镜以及上面的电压差分放大等，所有这些方法的前提就是必须保证产生一个精确的电压偏差，以确保最终敏感放大电路的正确操作。在大型微处理器设计中，密集的电源及地栅格间的电平转换噪音使得产生并保证一个精确的参考电压非常困难。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091716062524.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图图所示是结合了时钟预充的位线差分放大电路。在大型存储器部件设计中，结合多体结构，读出位线也要进行层次化设计，采用级联分开位线策略实现，每一级都有各自的敏感放大电路。</p>
-<p>存储器部件的读出逻辑对于整个存储器部件的性能起着重要的作用，它是外部读出端口与内部存储单元之间的桥梁，这一部分电路的设计性能将直接关系到系统的性能。</p>
-<p>大规模存储器部件的存储单元晶体管尺寸一般很小，走线负载也比较大，再加上各种噪声干扰，位线上的数据信号通常都比较弱，为了确保读出数据的正确性并提高读出速度，需要对读位线进行放大，设计中通常采用大增益的差分敏感放大器对读出数据进行驱动，如下图所示。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091720695327.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>使用灵敏放大电路实现读出的过程有2步，首先是预充，然后是求值。</p>
-<figure>
-<img src="SRAM设计.assets/640-167091724717830.png" alt="图片" />
-<figcaption aria-hidden="true">图片</figcaption>
-</figure>
-<p>如上图所示中(a)和(b)分别表示预充电路和灵敏放大电路，预充可通过静态上拉和时钟电路控制两种方式实现。</p>
-<p>但是要使差分敏感放大器工作良好需要仔细设计位线的长度和负载以保证存在足够的电压差来获得可靠的敏感放大，在两个位线上建立起有效电压差的时间对阵列的读出速度有重要的影响；除了总的位线负载外，设计实现时还必须提防非常规噪声源，它们也会减小敏感放大器上的电压差。</p>
-<p>​
-寄存器文件设计中可以使用另一种方式来实现读出结构，该结构没有常规的差分敏感放大器。如果不使用传统的灵敏放大技术实现又要提高读出电路的性能，首先想到的就是使用动态电路来实现读出电路。由于在数据读取过程中，存储阵列只有一个单元的数据是可以输出的，其他单元的输出端口是关闭的，这也是灵敏放大技术中通过该单元使能位线，通过电压差灵敏放大求值。如果不使用灵敏放大技术，那就只能通过逻辑表达式的方法求出这个输出的值来。</p>
-<p>该结构在存储单元数据输出时需要进行与后级相关的预处理，该预处理电路是设计读出逻辑的必需部分，通过该电路完成一些必要的信号控制和转换功能。基于求值逻辑的读出电路，必须具有一定的逻辑特性才能进行求值读出。</p>
-<h2 id="写入逻辑电路"><strong>写入逻辑电路</strong></h2>
-<p>写通路电路的功能是将写位线数据写入阵列存储单元，更新存储单元的数据。</p>
-<p>最简单的写放大电路可以是一个<strong>反相器</strong>，要能够在指定时钟内将选定位线拉低至VSS，更新存储单元，完成写操作。写入逻辑设计的复杂性在于：写操作完成后，被拉低到VSS的位线必须能够在下次读之前恢复到VDD，这一操作的复杂性因所采用的预充方案的不同而有所区别：如果采用时钟信号预充，这一点可以自动完成；而如果采用静态预充，设计者必须根据阵列存储元的下拉管和传输管的尺寸来选择预充管的尺寸才能确保读操作的正确性。静态预充电路可能无法在下次读操作前将位线全摆幅恢复到VDD，这种情况下就可能需要写放大电路将选定位线恢复到VDD。</p>
-<p><a
-href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
-版图基本知识_江南小作坊的博客-CSDN博客_版图基础知识</a></p>
-]]></content>
-      <categories>
-        <category>IC</category>
-      </categories>
-      <tags>
-        <tag>SRAM</tag>
-        <tag>存储器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2626,6 +2626,112 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img src="Transformer.assets/self-attention.png" alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
+<span id="more"></span>
+<p>​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/1.png" alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img src="Transformer.assets/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img src="Transformer.assets/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img src="Transformer.assets/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="Transformer.assets/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+<h1 id="梅森螺旋">梅森螺旋</h1>
+<p><a
+href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
+Twister: A random number generator (since 1997/10)</a></p>
+<p>Mersenne
+Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
+Twister MT19937和Mersenne Twister MT19937-64。</p>
+<p>Mersenne Twister算法的原理：Mersenne
+Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
+<p>一个n位的LFSR在重复之前最多产生<span
+class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
+class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
+class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
+<p>Mersenne
+Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
+<p><strong>其他随机数产生器性能对比</strong></p>
+<h1 id="verilog实现">Verilog实现</h1>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Understanding Matrix Multiplication on a Weight-Stationary Systolic Architecture</title>
     <url>/2023/03/10/Understanding%20Matrix%20Multiplication%20on%20a%20Weight-Stationary%20Systolic%20Architecture/</url>
     <content><![CDATA[<p>原文链接：<a
@@ -2816,112 +2922,6 @@ flipping”</a>。赛灵思的深度学习加速器也实现了流水线式的�
         <tag>Systolic arrays</tag>
         <tag>Matrix Multiplication</tag>
         <tag>Computer Architecture</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-<span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -4647,6 +4647,27 @@ alt="img" />
       </tags>
   </entry>
   <entry>
+    <title>版图</title>
+    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="bb">bb</h1>
+<h1 id="mos管结构">MOS管结构</h1>
+<figure>
+<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>NWELL：</strong>N阱</p>
+<p><strong>GT：</strong>poly，多晶硅栅</p>
+<p><strong>SP：</strong>P+，</p>
+<p><strong>SN：</strong>N+</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>版图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>梅森旋转算法</title>
     <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="背景知识">背景知识</h1>
@@ -4698,27 +4719,6 @@ alt="img" />
       <tags>
         <tag>梅森素数</tag>
         <tag>伪随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>版图</title>
-    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
-    <content><![CDATA[<h1 id="bb">bb</h1>
-<h1 id="mos管结构">MOS管结构</h1>
-<figure>
-<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>NWELL：</strong>N阱</p>
-<p><strong>GT：</strong>poly，多晶硅栅</p>
-<p><strong>SP：</strong>P+，</p>
-<p><strong>SN：</strong>N+</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>版图</tag>
       </tags>
   </entry>
   <entry>
