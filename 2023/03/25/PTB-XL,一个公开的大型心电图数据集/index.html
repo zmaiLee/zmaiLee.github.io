@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>PTB-XL,一个公开的大型心电图数据集 | Mai's blog</title><meta name="author" content="zmaiLee"><meta name="copyright" content="zmaiLee"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PTB-XL, a large publicly available electrocardiography dataset v1.0.3 (physionet.org) 摘要 PTB-XL心电图数据集是一个大型数据集，包括来自18869名患者的21799份临床12导联心电图，长度为10秒。原始波形数据由多达两名心脏病专家注释，他们为每条记录分配了可能多个ECG语句。总共71种不同的心电图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTB-XL,一个公开的大型心电图数据集">
+<meta property="og:url" content="https://zmailee.github.io/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="Mai&#39;s blog">
+<meta property="og:description" content="PTB-XL, a large publicly available electrocardiography dataset v1.0.3 (physionet.org) 摘要 PTB-XL心电图数据集是一个大型数据集，包括来自18869名患者的21799份临床12导联心电图，长度为10秒。原始波形数据由多达两名心脏病专家注释，他们为每条记录分配了可能多个ECG语句。总共71种不同的心电图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-03-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T16:00:00.000Z">
+<meta property="article:author" content="zmaiLee">
+<meta property="article:tag" content="dataset">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmailee.github.io/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PTB-XL,一个公开的大型心电图数据集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-25 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" /><link rel="alternate" href="/atom.xml" title="Mai's blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Mai's blog"><span class="site-name">Mai's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PTB-XL,一个公开的大型心电图数据集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-24T16:00:00.000Z" title="发表于 2023-03-25 00:00:00">2023-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-24T16:00:00.000Z" title="更新于 2023-03-25 00:00:00">2023-03-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PTB-XL,一个公开的大型心电图数据集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL, a large
+publicly available electrocardiography dataset v1.0.3
+(physionet.org)</a></p>
+<h1 id="摘要">摘要</h1>
+<p>PTB-XL心电图数据集是一个大型数据集，包括来自18869名患者的21799份临床12导联心电图，长度为10秒。原始波形数据由多达两名心脏病专家注释，他们为每条记录分配了可能多个ECG语句。总共71种不同的心电图陈述符合SCP-ECG标准，涵盖诊断、形式和节律陈述。为了确保在数据集上训练的机器学习算法的可比性，我们提供了建议的拆分为训练集和测试集。结合广泛的注释，这将数据集变成训练和评估自动ECG解释算法的丰富资源。该数据集由有关人口统计学、梗死特征、诊断心电图陈述的可能性以及带注释的信号属性的广泛元数据补充。</p>
+<h1 id="方法">方法</h1>
+<h2 id="数据采集">数据采集</h2>
+<ul>
+<li>原始信号数据被记录并以专有的压缩格式存储。对于所有的信号，我们提供一套标准的12个导联（I、II、III、AVL、AVR、AVF、V1、...、V6），参考电极在右臂上。</li>
+<li>相应的一般元数据（如年龄、性别、体重和身高）被收集在一个数据库中。</li>
+<li>每条记录都有报告字符串的注释（由心脏病专家生成或由心电图设备自动解读），并被转换为一套标准化的SCP-ECG语句（scp_codes）。对于大多数记录，还提取了心轴（heart_axis）和梗死场farction_stadium1和infarction_stadium2，如果存在）。</li>
+<li>一大部分的记录由另一位心脏病专家验证。</li>
+<li>所有记录由一位技术专家验证，主要集中在信号特征上。</li>
+</ul>
+<h2 id="数据处理">数据处理</h2>
+<p>心电图和患者由唯一的标识符（ecg_id和patient_id）来识别。元数据中的个人信息，如验证心内科医生、护士和记录地点（医院等）的名字被化名。出生日期只作为心电图记录时的年龄，其中超过89岁的年龄出现在300岁的范围内，符合HIPAA标准。此外，每个病人的所有心电图记录日期都被随机偏移了。用于注释记录的心电图语句遵循SCP-ECG标准[3]。</p>
+<p>该数据集包括21799条临床12导联心电图记录，长度为10秒，来自18869名患者，其中52%为男性，48%为女性，年龄涵盖了从0到95岁的整个范围（中位数为62，间位数为22）。该数据集的价值来自于对许多不同的共患病症的全面收集，但也有很大比例的健康对照样本。诊断的分布情况如下，为简单起见，我们限制在诊断语句汇总成的superclasses（注意：由于每条记录可能有多个标签，所以语句的总和超过了记录的数量）：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">#Records</th>
+<th style="text-align: left;">Superclass</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9514</td>
+<td style="text-align: left;">NORM</td>
+<td style="text-align: left;">Normal ECG</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5469</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: left;">Myocardial Infarction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5235</td>
+<td style="text-align: left;">STTC</td>
+<td style="text-align: left;">ST/T Change</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4898</td>
+<td style="text-align: left;">CD</td>
+<td style="text-align: left;">Conduction Disturbance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2649</td>
+<td style="text-align: left;">HYP</td>
+<td style="text-align: left;">Hypertrophy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>波形文件以WaveForm
+DataBase（WFDB）格式存储，精度为16比特，分辨率为1μV/LSB，采样频率为500Hz（records500/）。</strong>为了方便用户，我们还发布了采样频率为100Hz的降采样版本的波形数据（records100/）。</p>
+<p>所有相关的元数据都存储在<code>ptbxl_database.csv</code>中，每条记录有一行，由<code>ecg_id</code>标识。它包含28个列，可分为：</p>
+<ol type="1">
+<li><strong>Identifiers</strong>:
+每条记录都由一个唯一的<code>ecg_id</code>来识别。相应的病人是通过<code>patient_id</code>编码的。原始记录（500Hz）和降频版记录（100Hz）的路径存储在filename_hr和filename_lr中。</li>
+<li><strong>General Metadata</strong>:
+人口统计和记录元数据，如<em>age</em>, <em>sex</em>, <em>height</em>,
+<em>weight</em>, <em>nurse</em>, <em>site</em>, <em>device</em> and
+<em>recording_date</em></li>
+<li><strong>ECG statements</strong>: core components are
+<code>scp_codes</code> (SCP-ECG statements as a dictionary with entries
+of the form <code>statement: likelihood</code>, where likelihood is set
+to 0 if unknown) and <em>report</em> (report string). Additional fields
+are <code>heart_axis</code>, <code>infarction_stadium1</code>,
+<code>infarction_stadium2</code>, <code>validated_by</code>,
+<code>second_opinion</code>, <code>initial_autogenerated_report</code>
+and <code>validated_by_human</code>.</li>
+<li><strong>Signal Metadata</strong>:
+信号质量，如噪音(<code>static_noise</code> and
+<code>burst_noise</code>), 基线漂移(<code>baseline_drift</code>)
+和其artifacts如<code>electrodes_problems</code>.
+我们还提供<code>extra_beats</code>用于计算额外的收缩期，而pacemaker用于显示活跃的起搏器的信号模式。</li>
+<li><strong>Cross-validation Folds</strong>: 推荐 10-fold train-test
+拆分 (<code>strat_fold</code>) obtained via stratified sampling while
+respecting patient assignments, i.e. all records of a particular patient
+were assigned to the same fold. Records in fold 9 and 10 underwent at
+least one human evaluation and are therefore of a particularly high
+label quality. We therefore propose to use folds 1-8 as training set,
+fold 9 as validation set and fold 10 as test set.</li>
+</ol>
+<p>All information related to the used annotation scheme is stored in a
+dedicated <code>scp_statements.csv</code> that was enriched with
+mappings to other annotation standards such as AHA, aECGREFID, CDISC and
+DICOM. We provide additional side-information such as the category each
+statement can be assigned to (diagnostic, form and/or rhythm). For
+diagnostic statements, we also provide a proposed hierarchical
+organization into <code>diagnostic_class</code> and
+<code>diagnostic_subclass</code>.</p>
+<h1 id="使用说明">使用说明</h1>
+<p>在<code>example_physionet.py</code>中，我们提供了一个最小的使用例子，显示了如何利用提议的训练-测试分割加载波形数据（numpy-arrays
+<code>X_train</code>和<code>X_test</code>）和标签（<code>y_train</code>和<code>y_test</code>）。为了演示，我们根据<code>scp_statements.csv</code>中的赋值，使用诊断子类声明作为标签。数据集的基准测试程序在[4]中描述。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zmailee.github.io">zmaiLee</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zmailee.github.io/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/">https://zmailee.github.io/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zmailee.github.io" target="_blank">Mai's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/dataset/">dataset</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/20/MLPerf/" title="MLPerf"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MLPerf</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">zmaiLee</div><div class="author-info__description">HUSTer19. ICdesign & Computer Architecture</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zmaiLee"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zmaiLee" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_45631071" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="mailto:z_mai_li@petalmail.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86"><span class="toc-number">2.1.</span> <span class="toc-text">数据采集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">数据处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">使用说明</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/" title="PTB-XL,一个公开的大型心电图数据集"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PTB-XL,一个公开的大型心电图数据集"/></a><div class="content"><a class="title" href="/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/" title="PTB-XL,一个公开的大型心电图数据集">PTB-XL,一个公开的大型心电图数据集</a><time datetime="2023-03-24T16:00:00.000Z" title="发表于 2023-03-25 00:00:00">2023-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/20/MLPerf/" title="MLPerf"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MLPerf"/></a><div class="content"><a class="title" href="/2023/03/20/MLPerf/" title="MLPerf">MLPerf</a><time datetime="2023-03-19T16:00:00.000Z" title="发表于 2023-03-20 00:00:00">2023-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/09/In-Datacenter%20Performance%20Analysis%20of%20a%20Tensor%20Processing%20Unit%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记"/></a><div class="content"><a class="title" href="/2023/03/09/In-Datacenter%20Performance%20Analysis%20of%20a%20Tensor%20Processing%20Unit%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记">In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记</a><time datetime="2023-03-08T16:00:00.000Z" title="发表于 2023-03-09 00:00:00">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/09/Understanding%20Matrix%20Multiplication%20on%20a%20Weight-Stationary%20Systolic%20Architecture/" title="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记"/></a><div class="content"><a class="title" href="/2023/03/09/Understanding%20Matrix%20Multiplication%20on%20a%20Weight-Stationary%20Systolic%20Architecture/" title="In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记">In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记</a><time datetime="2023-03-08T16:00:00.000Z" title="发表于 2023-03-09 00:00:00">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/" title="3D堆叠"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3D堆叠"/></a><div class="content"><a class="title" href="/2023/03/03/3D%E5%A0%86%E5%8F%A0/" title="3D堆叠">3D堆叠</a><time datetime="2023-03-03T07:17:23.252Z" title="发表于 2023-03-03 15:17:23">2023-03-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By zmaiLee</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script></body></html>

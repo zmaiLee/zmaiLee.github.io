@@ -228,11 +228,14 @@ manager界面选中仿真原理图cell后，点击file——new——cellview。
 实现半加器的功能，通过外加逻辑门（模拟电路） 实现整体的全加器功能。</p>
 <h2 id="建立数字模块">1、建立数字模块</h2>
 <figure>
-<img src="CadenceEDA.assets/20200508220432143.png" alt="img" />
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/20200508220432143.png"
+alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
 <figure>
-<img src="CadenceEDA.assets/20200508220513691.png"
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/20200508220513691.png"
 alt="20200508220513691" />
 <figcaption aria-hidden="true">20200508220513691</figcaption>
 </figure>
@@ -246,6 +249,11 @@ alt="20200508220513691" />
 Documentation (verilogams.com)</a>
 Verilog-AMS是一种硬件描述语言，可以对模拟和数字系统进行建模。Verilog-AMS语言的官方描述包含在Verilog-AMS语言参考手册中。本网站旨在成为你的Verilog-A和Verilog-AMS的快速参考指南。在这一点上，参考资料还不完整，但仍然很有用。随着时间的推移，参考材料应该填写并补充有用的应用注释和注释模型，这将帮助您学习更有效地使用Verilog-A/MS。重点是模拟和混合信号建模。</p>
 <p>如果您正在寻找关于综合或Verilog语言的模糊角落的信息，您必须到别处寻找。我们的目标是使www.VerilogAMS.com成为您关于Verilog-A/MS的日常信息来源。请四处看看，并告诉你的朋友和同事。如果你有关于Verilog-AMS的问题，请在designers-guide.org的论坛上问他们。</p>
+<h1 id="pcell与pycell">Pcell与Pycell</h1>
+<p>在高层次上Pycells是用Python语言编写的参数化单元，这些需要Ciranova（现在属于Synopsys）的技术，Cadence不支持，而PCells是用SKILL（或面向对象的SKILL，称为SKILL++）编写的，Cadence支持。
+PCells在Cadence工具和工具流中得到了很好的测试，Pycells是第三方软件。</p>
+<p>Cadecen不支持Python写的cell，若在cadence中使用了Pycell，会报错</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">The usage of non-SKILL Pcells in Virtuoso is not a supported feature.<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>工具</category>
@@ -837,51 +845,8 @@ shortreal。）如果混合使用2值或者4值逻辑，它们将在内存布局
       </categories>
   </entry>
   <entry>
-    <title>IC后端</title>
-    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
-<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
-<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
-Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
-<span id="more"></span>
-<h2 id="pvt">PVT</h2>
-<p>Process、Voltage、Temperature</p>
-<h2 id="multi-channel-library">multi-channel library</h2>
-<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
-SVTmax，性能增加20%，静态功耗增加80%。</p>
-<h2 id="t9t12t">7T/9T/12T</h2>
-<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
-<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
-blocks）、high-density（for highest density in GPU
-blocks）、high-speed（for highest performance in CPU blocks）。</p>
-<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
-pitch=minSpacing+minWidth。</p>
-<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
-<figure>
-<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
-<figcaption aria-hidden="true">这里写图片描述</figcaption>
-</figure>
-<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
-<p><img src="IC后端.assets/SouthEast-16679659616183.png"
-alt="img" /><strong>HLP</strong>，high performance low power；
-<strong>HPC</strong>，high performace compact。
-28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
-<figure>
-<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记</title>
-    <url>/2023/03/09/In-Datacenter%20Performance%20Analysis%20of%20a%20Tensor%20Processing%20Unit%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20-%20%E5%89%AF%E6%9C%AC/</url>
+    <url>/2023/03/09/In-Datacenter%20Performance%20Analysis%20of%20a%20Tensor%20Processing%20Unit%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="摘要">摘要</h1>
 <p>许多架构师认为，成本-能源-性能的主要改进现在必须来自特定领域的硬件。本文评估了自2015年以来部署在数据中心的一种定制ASIC--称为张量处理单元（TPU），它可以加速神经网络（NN）的推理阶段。TPU的核心是一个65536个8位MAC矩阵乘法单元，峰值吞吐量为92
 TeraOps/秒（TOPS），并具有大容量（28
@@ -996,6 +961,167 @@ alt="image-20230309152745995" />
       </tags>
   </entry>
   <entry>
+    <title>IC后端</title>
+    <url>/2022/11/09/IC%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<h1 id="第一章标准单元库">第一章：标准单元库</h1>
+<h2 id="hvtsvtlvt">HVT/SVT/LVT</h2>
+<p>High Vt、Standard Vt（也有称为Regular Vt，即RVT)、Low
+Vt。Vt阈值电压越低，因为饱和电流变小，所以速度性能越高；但是因为漏电流会变大，因此功耗会变差。</p>
+<span id="more"></span>
+<h2 id="pvt">PVT</h2>
+<p>Process、Voltage、Temperature</p>
+<h2 id="multi-channel-library">multi-channel library</h2>
+<p>对应不同的gate-length，即沟道长度。例如，UMC28nm的SVTmin 相对
+SVTmax，性能增加20%，静态功耗增加80%。</p>
+<h2 id="t9t12t">7T/9T/12T</h2>
+<p>T，代表track，是单元库的版图规则，作为一个计量单位。</p>
+<p>7T/9T/12T分别对应ultra-high-density（for lowest power in SOC
+blocks）、high-density（for highest density in GPU
+blocks）、high-speed（for highest performance in CPU blocks）。</p>
+<p>标准单元库的单元高度，基本都是固定的，方便版图的布局；高度，通常以track作为计量单位
+pitch=minSpacing+minWidth。</p>
+<p>grid是单元库里，与工艺制造精度相关的名称。一般pin都放置在grid上，工艺在版图上的最小精度。</p>
+<figure>
+<img src="IC后端.assets/SouthEast.png" alt="这里写图片描述" />
+<figcaption aria-hidden="true">这里写图片描述</figcaption>
+</figure>
+<h2 id="推荐的单元库选择方法">推荐的单元库选择方法</h2>
+<p><img src="IC后端.assets/SouthEast-16679659616183.png"
+alt="img" /><strong>HLP</strong>，high performance low power；
+<strong>HPC</strong>，high performace compact。
+28nmHLP的core电压，是1.05V；HPC的core电压，则是0.9V。</p>
+<figure>
+<img src="IC后端.assets/SouthEast-16679660832146.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PTB-XL,一个公开的大型心电图数据集</title>
+    <url>/2023/03/25/PTB-XL,%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%80%E7%9A%84%E5%A4%A7%E5%9E%8B%E5%BF%83%E7%94%B5%E5%9B%BE%E6%95%B0%E6%8D%AE%E9%9B%86/</url>
+    <content><![CDATA[<p><a href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL, a large
+publicly available electrocardiography dataset v1.0.3
+(physionet.org)</a></p>
+<h1 id="摘要">摘要</h1>
+<p>PTB-XL心电图数据集是一个大型数据集，包括来自18869名患者的21799份临床12导联心电图，长度为10秒。原始波形数据由多达两名心脏病专家注释，他们为每条记录分配了可能多个ECG语句。总共71种不同的心电图陈述符合SCP-ECG标准，涵盖诊断、形式和节律陈述。为了确保在数据集上训练的机器学习算法的可比性，我们提供了建议的拆分为训练集和测试集。结合广泛的注释，这将数据集变成训练和评估自动ECG解释算法的丰富资源。该数据集由有关人口统计学、梗死特征、诊断心电图陈述的可能性以及带注释的信号属性的广泛元数据补充。</p>
+<h1 id="方法">方法</h1>
+<h2 id="数据采集">数据采集</h2>
+<ul>
+<li>原始信号数据被记录并以专有的压缩格式存储。对于所有的信号，我们提供一套标准的12个导联（I、II、III、AVL、AVR、AVF、V1、...、V6），参考电极在右臂上。</li>
+<li>相应的一般元数据（如年龄、性别、体重和身高）被收集在一个数据库中。</li>
+<li>每条记录都有报告字符串的注释（由心脏病专家生成或由心电图设备自动解读），并被转换为一套标准化的SCP-ECG语句（scp_codes）。对于大多数记录，还提取了心轴（heart_axis）和梗死场farction_stadium1和infarction_stadium2，如果存在）。</li>
+<li>一大部分的记录由另一位心脏病专家验证。</li>
+<li>所有记录由一位技术专家验证，主要集中在信号特征上。</li>
+</ul>
+<h2 id="数据处理">数据处理</h2>
+<p>心电图和患者由唯一的标识符（ecg_id和patient_id）来识别。元数据中的个人信息，如验证心内科医生、护士和记录地点（医院等）的名字被化名。出生日期只作为心电图记录时的年龄，其中超过89岁的年龄出现在300岁的范围内，符合HIPAA标准。此外，每个病人的所有心电图记录日期都被随机偏移了。用于注释记录的心电图语句遵循SCP-ECG标准[3]。</p>
+<p>该数据集包括21799条临床12导联心电图记录，长度为10秒，来自18869名患者，其中52%为男性，48%为女性，年龄涵盖了从0到95岁的整个范围（中位数为62，间位数为22）。该数据集的价值来自于对许多不同的共患病症的全面收集，但也有很大比例的健康对照样本。诊断的分布情况如下，为简单起见，我们限制在诊断语句汇总成的superclasses（注意：由于每条记录可能有多个标签，所以语句的总和超过了记录的数量）：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">#Records</th>
+<th style="text-align: left;">Superclass</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9514</td>
+<td style="text-align: left;">NORM</td>
+<td style="text-align: left;">Normal ECG</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5469</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: left;">Myocardial Infarction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5235</td>
+<td style="text-align: left;">STTC</td>
+<td style="text-align: left;">ST/T Change</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4898</td>
+<td style="text-align: left;">CD</td>
+<td style="text-align: left;">Conduction Disturbance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2649</td>
+<td style="text-align: left;">HYP</td>
+<td style="text-align: left;">Hypertrophy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>波形文件以WaveForm
+DataBase（WFDB）格式存储，精度为16比特，分辨率为1μV/LSB，采样频率为500Hz（records500/）。</strong>为了方便用户，我们还发布了采样频率为100Hz的降采样版本的波形数据（records100/）。</p>
+<p>所有相关的元数据都存储在<code>ptbxl_database.csv</code>中，每条记录有一行，由<code>ecg_id</code>标识。它包含28个列，可分为：</p>
+<ol type="1">
+<li><strong>Identifiers</strong>:
+每条记录都由一个唯一的<code>ecg_id</code>来识别。相应的病人是通过<code>patient_id</code>编码的。原始记录（500Hz）和降频版记录（100Hz）的路径存储在filename_hr和filename_lr中。</li>
+<li><strong>General Metadata</strong>:
+人口统计和记录元数据，如<em>age</em>, <em>sex</em>, <em>height</em>,
+<em>weight</em>, <em>nurse</em>, <em>site</em>, <em>device</em> and
+<em>recording_date</em></li>
+<li><strong>ECG statements</strong>: core components are
+<code>scp_codes</code> (SCP-ECG statements as a dictionary with entries
+of the form <code>statement: likelihood</code>, where likelihood is set
+to 0 if unknown) and <em>report</em> (report string). Additional fields
+are <code>heart_axis</code>, <code>infarction_stadium1</code>,
+<code>infarction_stadium2</code>, <code>validated_by</code>,
+<code>second_opinion</code>, <code>initial_autogenerated_report</code>
+and <code>validated_by_human</code>.</li>
+<li><strong>Signal Metadata</strong>:
+信号质量，如噪音(<code>static_noise</code> and
+<code>burst_noise</code>), 基线漂移(<code>baseline_drift</code>)
+和其artifacts如<code>electrodes_problems</code>.
+我们还提供<code>extra_beats</code>用于计算额外的收缩期，而pacemaker用于显示活跃的起搏器的信号模式。</li>
+<li><strong>Cross-validation Folds</strong>: 推荐 10-fold train-test
+拆分 (<code>strat_fold</code>) obtained via stratified sampling while
+respecting patient assignments, i.e. all records of a particular patient
+were assigned to the same fold. Records in fold 9 and 10 underwent at
+least one human evaluation and are therefore of a particularly high
+label quality. We therefore propose to use folds 1-8 as training set,
+fold 9 as validation set and fold 10 as test set.</li>
+</ol>
+<p>All information related to the used annotation scheme is stored in a
+dedicated <code>scp_statements.csv</code> that was enriched with
+mappings to other annotation standards such as AHA, aECGREFID, CDISC and
+DICOM. We provide additional side-information such as the category each
+statement can be assigned to (diagnostic, form and/or rhythm). For
+diagnostic statements, we also provide a proposed hierarchical
+organization into <code>diagnostic_class</code> and
+<code>diagnostic_subclass</code>.</p>
+<h1 id="使用说明">使用说明</h1>
+<p>在<code>example_physionet.py</code>中，我们提供了一个最小的使用例子，显示了如何利用提议的训练-测试分割加载波形数据（numpy-arrays
+<code>X_train</code>和<code>X_test</code>）和标签（<code>y_train</code>和<code>y_test</code>）。为了演示，我们根据<code>scp_statements.csv</code>中的赋值，使用诊断子类声明作为标签。数据集的基准测试程序在[4]中描述。</p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>dataset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MLPerf</title>
+    <url>/2023/03/20/MLPerf/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Benchmark</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SRAM设计</title>
     <url>/2022/12/12/SRAM%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
@@ -1100,20 +1226,6 @@ href="https://blog.csdn.net/Cherish1ove/article/details/117718180">(6条消息)
       <tags>
         <tag>SRAM</tag>
         <tag>存储器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Skew Number System</title>
-    <url>/2022/11/27/Skew%20Number%20System/</url>
-    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
-<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
-)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Skew Number</tag>
       </tags>
   </entry>
   <entry>
@@ -2164,6 +2276,122 @@ $@ $</em>.o $(RM) $*.o</p>
       </tags>
   </entry>
   <entry>
+    <title>Transformer</title>
+    <url>/2023/03/02/Transformer/</url>
+    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/self-attention.png"
+alt="self-attention" />
+<figcaption aria-hidden="true">self-attention</figcaption>
+</figure>
+<p>​
+为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
+<h2 id="权重如何计算">权重如何计算？</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302134556.png"
+alt="微信截图_20230302134556" />
+<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
+</figure>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/1.png"
+alt="2023030213457" />
+<figcaption aria-hidden="true">2023030213457</figcaption>
+</figure>
+<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
+class="math inline">\(X_i\)</span>与<span
+class="math inline">\(X_j\)</span>的关系可以通过<span
+class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302143353.png"
+alt="微信截图_20230302143353" />
+<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
+</figure>
+<h2 id="multi-headed机制">Multi-Headed机制</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302152054.png"
+alt="微信截图_20230302152054" />
+<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
+</figure>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302152255.png"
+alt="微信截图_20230302152255" />
+<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
+</figure>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302152505.png"
+alt="微信截图_20230302152505" />
+<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
+</figure>
+<p>一般用8个head</p>
+<ul>
+<li>不同的注意力结果</li>
+<li>得到的特征向量表达也不相同</li>
+</ul>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302155945.png"
+alt="微信截图_20230302155945" />
+<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
+</figure>
+<h2 id="位置信息表达">位置信息表达</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302160219.png"
+alt="微信截图_20230302160219" />
+<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
+</figure>
+<h2 id="连接与层归一化">连接与层归一化</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302164104.png"
+alt="微信截图_20230302164104" />
+<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
+</figure>
+<h2 id="decoder">Decoder</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302164316.png"
+alt="微信截图_20230302164316" />
+<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
+</figure>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/微信截图_20230302205235.png"
+alt="微信截图_20230302205235" />
+<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Skew Number System</title>
+    <url>/2022/11/27/Skew%20Number%20System/</url>
+    <content><![CDATA[<h1 id="偏斜二进制系统">偏斜二进制系统</h1>
+<p><span class="math inline">\(N=(a_{n-1}…a_1 a_0
+)_{skew}=∑_(i=0)^(n-1)▒〖(2^(i+1)-1)∗a_i 〗\)</span></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Skew Number</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SynopsysEDA</title>
     <url>/2022/11/10/SynopsysEDA/</url>
     <content><![CDATA[<ul>
@@ -2626,118 +2854,11 @@ for the nets in the design.</li>
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2023/03/02/Transformer/</url>
-    <content><![CDATA[<h1 id="self-attention自注意力机制">Self-Attention自注意力机制</h1>
-<figure>
-<img src="Transformer.assets/self-attention.png" alt="self-attention" />
-<figcaption aria-hidden="true">self-attention</figcaption>
-</figure>
-<span id="more"></span>
-<p>​
-为了将单词融入到语境中，可以用权重来描述某个单词与其他单词之间的关系</p>
-<h2 id="权重如何计算">权重如何计算？</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302134556.png"
-alt="微信截图_20230302134556" />
-<figcaption aria-hidden="true">微信截图_20230302134556</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/1.png" alt="1" />
-<figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>每个词都有一个编码后的词向量，以及用来<strong>询问</strong>其他词的Q向量，和用来回答的K向量。<span
-class="math inline">\(X_i\)</span>与<span
-class="math inline">\(X_j\)</span>的关系可以通过<span
-class="math inline">\(Q_i·K_j\)</span>得到，内积值即score，再经过<strong>softmax</strong>就是权值，权值用于对value进行加权求和，得到当前词的特征表达。</p>
-<figure>
-<img src="Transformer.assets/微信截图_20230302143353.png"
-alt="微信截图_20230302143353" />
-<figcaption aria-hidden="true">微信截图_20230302143353</figcaption>
-</figure>
-<h2 id="multi-headed机制">Multi-Headed机制</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152054.png"
-alt="微信截图_20230302152054" />
-<figcaption aria-hidden="true">微信截图_20230302152054</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152255.png"
-alt="微信截图_20230302152255" />
-<figcaption aria-hidden="true">微信截图_20230302152255</figcaption>
-</figure>
-<figure>
-<img src="Transformer.assets/微信截图_20230302152505.png"
-alt="微信截图_20230302152505" />
-<figcaption aria-hidden="true">微信截图_20230302152505</figcaption>
-</figure>
-<p>一般用8个head</p>
-<ul>
-<li>不同的注意力结果</li>
-<li>得到的特征向量表达也不相同</li>
-</ul>
-<figure>
-<img src="Transformer.assets/微信截图_20230302155945.png"
-alt="微信截图_20230302155945" />
-<figcaption aria-hidden="true">微信截图_20230302155945</figcaption>
-</figure>
-<h2 id="位置信息表达">位置信息表达</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302160219.png"
-alt="微信截图_20230302160219" />
-<figcaption aria-hidden="true">微信截图_20230302160219</figcaption>
-</figure>
-<h2 id="连接与层归一化">连接与层归一化</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164104.png"
-alt="微信截图_20230302164104" />
-<figcaption aria-hidden="true">微信截图_20230302164104</figcaption>
-</figure>
-<h2 id="decoder">Decoder</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302164316.png"
-alt="微信截图_20230302164316" />
-<figcaption aria-hidden="true">微信截图_20230302164316</figcaption>
-</figure>
-<h2 id="整体架构">整体架构</h2>
-<figure>
-<img src="Transformer.assets/微信截图_20230302205235.png"
-alt="微信截图_20230302205235" />
-<figcaption aria-hidden="true">微信截图_20230302205235</figcaption>
-</figure>
-<h1 id="梅森螺旋">梅森螺旋</h1>
-<p><a
-href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/emt.html">Mersenne
-Twister: A random number generator (since 1997/10)</a></p>
-<p>Mersenne
-Twister这个名字来自周期长度通常取Mersenne素数这样一个事实。常见的有两个变种Mersenne
-Twister MT19937和Mersenne Twister MT19937-64。</p>
-<p>Mersenne Twister算法的原理：Mersenne
-Twister算法是利用线性反馈移位寄存器(LFSR)产生随机数的，LFSR的反馈函数是寄存器中某些位的简单异或。</p>
-<p>一个n位的LFSR在重复之前最多产生<span
-class="math inline">\(2^n-1\)</span>位的伪随机序列。只有具有一定抽头序列的LFSR才能产生<span
-class="math inline">\(2^n-1\)</span>位长的伪随机序列。为了使LFSR成为最大周期的LFSR，由抽头序列加上常数1形成的多项式必须是本原多项式。例如(32,7,5,3,2,1,0)是指本原多项式<span
-class="math inline">\(x^{32}+x^7+x^5+x^3+x^2+x+1\)</span>，把它转化为最大周期LFSR就是在LFSR的第32，7，5，2，1位抽头。利用上述两种方法产生周期为m的伪随机序列后，只需要将产生的伪随机序列除以序列的周期，就可以得到(0，1)上均匀分布的伪随机序列了。</p>
-<p>Mersenne
-Twister优点：随机性好，在计算机上容易实现，占用内存较少(MT19937的C代码执行仅需624个字的工作区域)，与其它已使用的伪随机数发生器相比，产生随机数的速度快、周期长，可达到2^19937-1，且具有623维均匀分布的性质，序列关联比较小，能通过很多随机性测试。</p>
-<p><strong>其他随机数产生器性能对比</strong></p>
-<h1 id="verilog实现">Verilog实现</h1>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Understanding Matrix Multiplication on a Weight-Stationary Systolic Architecture</title>
-    <url>/2023/03/10/Understanding%20Matrix%20Multiplication%20on%20a%20Weight-Stationary%20Systolic%20Architecture/</url>
-    <content><![CDATA[<p>原文链接：<a
-href="https://www.telesens.co/2018/07/30/systolic-architectures/">Understanding
-Matrix Multiplication on a Weight-Stationary Systolic Architecture |
-Telesens</a></p>
+    <title>In-Datacenter Performance Analysis of a Tensor Processing Unit阅读笔记</title>
+    <url>/2023/03/09/Understanding%20Matrix%20Multiplication%20on%20a%20Weight-Stationary%20Systolic%20Architecture/</url>
+    <content><![CDATA[<h1
+id="understanding-matrix-multiplication-on-a-weight-stationary-systolic-architecture">Understanding
+Matrix Multiplication on a Weight-Stationary Systolic Architecture</h1>
 <p>通过<strong>确定应用中涉及的关键数学运算</strong>，并将数学运算分解为一连串简单的计算，如乘法和累加运算，可以设计出专门的硬件，并行地执行大量的这些简单计算。在这篇文章中，我们将研究如何应用这一想法来加速深度学习应用。我们将首先确定深度学习系统的这一关键数学运算是什么，然后看看如何使用systolic
 arrays有效地实现它。</p>
 <figure>
@@ -2774,18 +2895,13 @@ src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/img_5ba82
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
+<p>img</p>
 <p>脉动系统与流水线系统相似，但在一些方面有所不同。脉动阵列可以是二维的，数据流可以在不同方向以多种速度流动。输入和结果都可以在收缩阵列中流动，而在流水线系统中只有结果流动。脉动阵列中的有节奏的数据流使控制逻辑简单，但也意味着单个PE不能停滞--如果带宽不足，整个阵列需要停滞。</p>
 <p>为了使这些想法更加具体，我们来用含3个PE的脉动阵列实现以下一维卷积运算，输出通过权重向量与时移输入向量的点乘来计算。让我们计算一下这个操作的算术强度。
-<span class="math display">\[
-y_i = w_1x_i + w_2x_{i+1} + w_3x_{i+2}
-\]</span></p>
-<p><span class="math display">\[
-y_1 = w_1x_1 + w_2x_{2} + w_3x_{3}
-\]</span></p>
-<p><span class="math display">\[
-y_2 = w_1x_2 + w_2x_{3} + w_3x_{4}
-\]</span></p>
-<p><strong>操作数量：</strong> 3 MULs和2 ADDs</p>
+$$ y_i = w_1x_i + w_2x_{i+1} + w_3x_{i+2}\</p>
+<p>y_1 = w_1x_1 + w_2x_{2} + w_3x_{3}\</p>
+<p>y_2 = w_1x_2 + w_2x_{3} + w_3x_{4} $$ <strong>操作数量：</strong> 3
+MULs和2 ADDs</p>
 <p><strong>I/O：</strong> 一个输入被读，一个输出被写回</p>
 <p>因此，AI是5/2. 对k维输入来说, AI是(2k-1)/2. 高AI是因为高数据复用 –
 输出向量的每个元素都重复使用已经读过的两个数据点。高算术强度的操作是Systolic
@@ -2799,8 +2915,7 @@ alt="img" />
 </figure>
 <p>PE数组的每个元素（除了最左边的）都存储一个权重值，将其与输入相乘，并将结果加到前一个元素计算的部分和上。在第二个时间周期之后，每个时钟周期计算输出向量的一个元素，并读取一个输入元素。我们正在以最小的所需带宽获得最大可能的吞吐量，并利用所有可用的数据重用。这个设计是一个<strong>weight
 stationary</strong>设计的例子，因为权重保持静止，而输入是流进的。</p>
-<p>在这个设计中，每一个<span
-class="math inline">\(x_i\)</span>都被broadcast给所有的PE。另一种方法是在PE中按顺序循环，并使用加法器对部分和进行求和。</p>
+<p>在这个设计中，每一个\(x_i\)都被broadcast给所有的PE。另一种方法是在PE中按顺序循环，并使用加法器对部分和进行求和。</p>
 <figure>
 <img
 src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/img_5ba7b57ed9c7d.png"
@@ -2817,8 +2932,8 @@ src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/img_5ba83
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
-<p>虽然这种设计解决了全局总线的问题，但它的缺点是每个PE<strong>只有一半的时间在做有用的工作</strong>（如红点所示）。额外的逻辑也是必要的，以便在一个PE完成计算<span
-class="math inline">\(y_i\)</span>后重置累加器。 Kung的<a
+<p>虽然这种设计解决了全局总线的问题，但它的缺点是每个PE<strong>只有一半的时间在做有用的工作</strong>（如红点所示）。额外的逻辑也是必要的，以便在一个PE完成计算\(y_i\)后重置累加器。
+Kung的<a
 href="http://www.eecs.harvard.edu/~htk/publication/1982-kung-why-systolic-architecture.pdf">paper</a>提供了一些其他的变化，做出了不同的设计选择，比如以不同的速度移动权重和输入，并在每个PE中增加额外的存储。下面是这些选择的摘要。</p>
 <figure>
 <img
@@ -2919,9 +3034,7 @@ flipping”</a>。赛灵思的深度学习加速器也实现了流水线式的�
         <category>阅读笔记</category>
       </categories>
       <tags>
-        <tag>Systolic arrays</tag>
-        <tag>Matrix Multiplication</tag>
-        <tag>Computer Architecture</tag>
+        <tag>Systolic</tag>
       </tags>
   </entry>
   <entry>
@@ -4616,58 +4729,6 @@ alt="img" />
       </tags>
   </entry>
   <entry>
-    <title>智能计算系统</title>
-    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
-<p><strong>智能计算系统是智能的物质载体</strong></p>
-<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
-<h2 id="人工智能三个流派">人工智能三个流派</h2>
-<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
-<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
-<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
-<span id="more"></span>
-<h2 id="深度学习的局限性">深度学习的局限性</h2>
-<p>深度学习是一把梯子，而不是火箭</p>
-<ul>
-<li>泛化能力有限</li>
-<li>缺乏推理能力</li>
-<li>缺乏可解释性</li>
-<li>鲁棒性欠佳</li>
-</ul>
-<h2 id="异构智能计算系统">异构智能计算系统</h2>
-<p>满足智能计算的算力增长需求，降低能耗比</p>
-<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
-]]></content>
-      <categories>
-        <category>基础课程</category>
-      </categories>
-      <tags>
-        <tag>人工智能</tag>
-        <tag>计算机体系结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>版图</title>
-    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
-    <content><![CDATA[<h1 id="bb">bb</h1>
-<h1 id="mos管结构">MOS管结构</h1>
-<figure>
-<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
-<p><strong>NWELL：</strong>N阱</p>
-<p><strong>GT：</strong>poly，多晶硅栅</p>
-<p><strong>SP：</strong>P+，</p>
-<p><strong>SN：</strong>N+</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>版图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>梅森旋转算法</title>
     <url>/2022/11/11/%E6%A2%85%E6%A3%AE%E8%9E%BA%E6%97%8B%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="背景知识">背景知识</h1>
@@ -4719,6 +4780,197 @@ alt="img" />
       <tags>
         <tag>梅森素数</tag>
         <tag>伪随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能计算系统</title>
+    <url>/2022/10/19/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="第一章概述">第一章：概述</h1>
+<p><strong>智能计算系统是智能的物质载体</strong></p>
+<p>学习目标：学习人工智能系统的设计与研究，掌握对智能计算的完整软硬件技术栈。</p>
+<h2 id="人工智能三个流派">人工智能三个流派</h2>
+<p><strong>行为主义</strong>：基于控制论，构建感知-动作型控制系统
+<strong>符号主义</strong>：基于符号逻辑的方法，用逻辑表示知识和求解问题
+<strong>连接主义</strong>：基于大脑中神经元细胞连接的计算模型，用<strong>人工神经网络</strong>来<strong>拟合</strong>智能行为</p>
+<span id="more"></span>
+<h2 id="深度学习的局限性">深度学习的局限性</h2>
+<p>深度学习是一把梯子，而不是火箭</p>
+<ul>
+<li>泛化能力有限</li>
+<li>缺乏推理能力</li>
+<li>缺乏可解释性</li>
+<li>鲁棒性欠佳</li>
+</ul>
+<h2 id="异构智能计算系统">异构智能计算系统</h2>
+<p>满足智能计算的算力增长需求，降低能耗比</p>
+<h1 id="第二章神经网络基础">第二章：神经网络基础</h1>
+]]></content>
+      <categories>
+        <category>基础课程</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习FPGA加速器设计</title>
+    <url>/2022/07/11/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0FPGA%E5%8A%A0%E9%80%9F%E5%99%A8%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="fpga加速器设计一">FPGA加速器设计（一）</h1>
+<p>北大CECA实验室的原文链接：<a
+href="https://mp.weixin.qq.com/s?__biz=Mzg4MzE0MTEyNA==&amp;mid=2247483694&amp;idx=1&amp;sn=3d893b118e5d26f652fc1f717b4defd5&amp;chksm=cf4abe45f83d3753ab184808b173844c746d280c4593caf547a452d8836622e2cc58b1f05447&amp;scene=21#wechat_redirect">3天上手，30天精通！——
+深度学习FPGA加速器设计</a></p>
+<p>案例：加速CNN前向传播的<strong>卷积运算</strong></p>
+<h4 id="什么是卷积运算">什么是卷积运算？</h4>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640.jpeg" alt="图片" style="zoom: 80%;" /></p>
+<p>输入是<span class="math inline">\(CH_{in}\)</span>张输入特征图</p>
+<p>输出是<span
+class="math inline">\(CH_{out}\)</span>张输出特征图，每张输出特征图的大小为<span
+class="math inline">\(R×C\)</span>。</p>
+<p>每个“输入-输出”特征图对都有一个特定的卷积核用于卷积计算，所以总共有<span
+class="math inline">\(CH_{out}×CH_{in}\)</span>个卷积核，每个卷积核的大小为<span
+class="math inline">\(K×K\)</span>。</p>
+<p>在进行卷积计算的过程中，每个卷积核滑过各自的输入特征图，并使用当前滑过的窗口中的输入特征与卷积核内的权重完成卷积计算(对应位置相乘，所有乘积累加)，<strong>卷积的结果会累加到对应位置的输出特征上</strong>。卷积计算的算法流程如下式所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576840005812.png" alt="图片" style="zoom: 80%;" /></p>
+<p>卷积层前向计算的软件版本代码如下所示，本质上来说，卷积层前向计算就是一个嵌套的6重循环，而在循环的最内层进行的是乘累加运算。</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576840182864.png" alt="图片" style="zoom: 80%;" /></p>
+<p>数据类型为float，用如下代码放入HLS工具中进行综合分析：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576852133096.png" alt="图片" style="zoom: 80%;" /></p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576853320688.png" alt="图片" style="zoom: 80%;" /></p>
+<p>尝试对该代码进行硬件并行优化，这里用一个简单的加速设计来理解HLS的优化方法。从上面的卷积流程分析，我们不难发现：卷积计算过程中，不同通道的输入/输出特征图在参与计算的过程中没有数据依赖关系，因而是可以并行处理的。在我们这个简单的小例子中，我们计划将输入通道和输出通道这两个维度进行并行加速优化。因此，我们想要实现的加速器核心模块示意图如下：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165768913949310.jpeg" alt="图片" style="zoom: 80%;" /></p>
+<p>使用<span
+class="math inline">\(CH_{in}\)</span>个并行的乘法器来<strong>并行处理不同通道的输入特征与其对应权重的乘法</strong>，这些并行乘法的乘积累加到一起，即为一个输出通道的的卷积结果，这里，我们把该模块称为一个处理单元(<strong>P</strong>rocessing
+<strong>E</strong>lement)。一个PE只负责一个输出通道的卷积计算，我们可以把PE复制多份，形成上图的结构，来并行处理所有输出通道的卷积计算。总结来说，这个加速器调用一次可以并行处理包含CHin个输入特征点和CHout个输出特征点的卷积计算。要完成整个卷积层6重循环的计算，我们需要重复多次调用这个加速器。</p>
+<p>使用HLS来将上文设计的加速器描述出来，主要进行的代码改动包括以下三部分：</p>
+<p><strong><em>循环重构</em></strong>：由于我们的加速器是在输入通道和输出通道两个维度进行并行化，完成卷积计算需重复调用加速器多次，因此，我们需要<strong>将输入通道循环和输出通道循环放在最内层循环中</strong>。由于最内层的乘累加操作满足结合律，卷积的6重循环的顺序可以直接调整，而无需其它改动。</p>
+<p><strong>数组划分</strong>：从上面加速器设计我们可以看出，我们需要并行地访问输入特征(In)、输出特征(Out)和权重(W)，而对应的并行度分别为CHin、CHout和CHout×CHin。因此，在FPGA实现的时候，我们需要<strong>将这些数据划分到多个RAM块中以满足并行访问的需求</strong>。我们可以使用Array
+Partition来完成数组划分，该pragma的具体语法请参考Xilinx官方文档。</p>
+<p><strong>循环展开</strong>：为了描述出我们的加速器在输入通道和输出通道两个维度进行了并行优化，我们需要使用pragma
+UNROLL来将这两个循环完全展开，pragma
+UNROLL的具体语法请参考Xilinx官方文档。</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769181377612.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>在HLS工具中重新综合，我们可以发现延迟降到了36876个时钟周期(具体数字可能略有差异)，有了6.82倍的加速效果。但当我们仔细看HLS的综合报告时可以发现，虽然我们实现了一个并行加速器，可是这个加速器调用并没有流水化起来：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769182851014.png" alt="图片" style="zoom:80%;" /></p>
+<p>因此，我们可以尝试进一步优化提升性能：<strong>使用pragma
+PIPELINE将加速器设计流水化起来</strong>，该pragma的具体语法请参考Xilinx官方文档。在使用pragma
+PIPELINE以后，之前的pragma
+UNROLL可以去掉以精简代码，这是由于HLS工具会自动将需要流水化的循环内部的所有子循环展开，这个优化会在HLS工具的Console里显示。因此，我们的代码调整如下：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769184389516.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>在HLS工具中重新综合，发现延迟降到了29993个时钟周期，性能进一步提升了22.95%。HLS的综合报告里也显示加速器调用也已经流水化了：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769185467118.png" alt="图片" style="zoom:80%;" /></p>
+<p>从上面的综合报告我们可以发现一个细节，虽然整个循环已经流水化了，但是Initiation
+Interval却仍然不是理想情况的1，即：<strong>不能做到每个周期都开始一个新的Iteration的计算</strong>。那么说明两个Iteration间存在数据冲突，中间插入了bubble。</p>
+<p>通过分析代码和HLS工具的Warning我们可以发现，问题出在Out这个数组上。在我们的实现中，Out数组在内层循环的一个Iteration中参与了自加运算(+=)，即：先被读，后被写。如下图所示，在执行<strong>Iteration
+0</strong>的时候(r=c=kr=kc=0)，Out[0][0][0]先被读，然后被写；然而在接下来执行计算<strong>Iteration
+1</strong>(r=c=kr=0,
+kc=1)的时候，仍然是Out[0][0][0]先被读，然后被写。因此，如果我们使用<strong>pragma
+PIPELINE</strong>进行性能优化，相邻的这两个Iteration都需要操作Out[0][0][0]这个位置的数据，从而产生<strong>写后读(RAW)</strong>的数据依赖，即：程序必须等待<strong>Iteration
+0</strong>对Out[0][0][0]的写操作完成后，才能开始执行<strong>Iteration
+1</strong>。为了保证程序结果的正确性，HLS工具不会将这部分循环完全流水化，进而导致性能的下降。</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769209143220.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>通过观察我们可以发现：Out数组的在程序中的访问位置，<strong>只和r、c这两个循环变量相关，而和kr、kc无关</strong>。我们可以利用这一点解决RAW数据依赖的问题。为了能将内层循环的计算完全流水化，我们决定将Kernel
+Row和Kernel
+Column两重循环移到外层。如下图所示，将循环流水化时，相邻Iteration所访问的Out数组的数据位置是不同的，不存在数据依赖，可以流水执行；而有RAW数据依赖的Iteration将在很远的时间点发生(R×C个Iteration之后)，此时对于该位置的写操作早已完成，读操作可以正常进行。这样一来，我们实现了一个完全流水化的硬件架构，提升了加速器的整体处理性能。</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769210587422.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>按照上述优化调整后的代码如下：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769211580024.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>HLS的综合报告里显示加速器调用也已经完全流水化了：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769213732726.png" alt="图片" style="zoom:80%;" /></p>
+<p>总结，使用HLS设计FPGA加速器的一般化设计流程如下：</p>
+<ul>
+<li><p>熟悉并理解目标算法，通过软件运行目标算法，<strong>分析性能瓶颈所在</strong></p></li>
+<li><p>实现加速目标的软件版本，分析其中可以<strong>并行、流水化</strong>的部分，并构想可行的硬件架构</p></li>
+<li><p>通过代码重构，<strong>加pragma等方法在HLS工具中描述目标架构</strong>，此过程需注意保证改写的代码功能性上与原代码严格保持一致</p></li>
+<li><p>调整硬件参数配置，<strong>最大化利用硬件资源</strong>(计算资源如DSP、存储资源如BRAM)来最大化加速器的性能</p></li>
+</ul>
+<h1 id="fpga加速器设计二">FPGA加速器设计（二）</h1>
+<p>在入门篇中，我们在两个维度对循环进行了完全展开，实现了并行度为<span
+class="math inline">\(CH_{in}×CH_{out}\)</span>(4*4)的卷积运算加速器。这个设计离实用还有相当远的一段距离。这里面主要涉及两方面的问题：一方面，现阶段实际应用的<strong>CNN往往都是由多个卷积层级联而成的</strong>，而每一个卷积层所处理的图像通道数、图像大小也各不相同，如何<strong>为不同配置的CNN模型设计加速器</strong>呢？另一方面，无论我们采用什么FPGA芯片，片上的计算资源(DSP等)和存储资源(BRAM等)都是有限的，而CNN的规模、图像的大小理论上是可以无限增长的，那么如何在资源限制下让加速器实现对大规模CNN模型的支持呢？</p>
+<p>为了解决上面提到的两个问题，一个最简单、有效的方式就是在<strong>最大化硬件资源利用率</strong>的条件下实现一个<strong>固定的</strong>卷积计算加速器。这样一来，在处理CNN中不同配置、不同规模的卷积层计算的时候，我们都是调用这个加速器进行计算，而对于不同的层，执行时的区别也就只体现在调用次数的不同。对应到HLS实现中，需要用到<strong>循环分块</strong>。</p>
+<p>现在，假定并行度为4×4的卷积运算加速器已经将FPGA片上的<strong>计算资源和存储资源</strong>完全耗尽了，我们考虑利用该加速器对一个如下配置的卷积层(记为CONV2)进行加速处理：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640.png" alt="图片" style="zoom:80%;" /></p>
+<p><strong>进行循环分块以达成对更大规模的卷积层的支持</strong>：将新的卷积层在<span
+class="math inline">\(CH_{in}\)</span>和<span
+class="math inline">\(CH_{out}\)</span>两个维度进行循环分块，每块的大小为4。这样一来，我们的加速器的并行度仍为4×4，没有超出片上资源限制，而CONV2的计算<strong>总共需要重复调用这个加速器4次</strong>。</p>
+<p>鉴于我们的加速器也将<strong>片上存储资源</strong>消耗一空，我们就不得不<strong>利用容量更大的片下DRAM</strong>来存储卷积层运算所需的全部数据，并让加速器和DRAM进行数据交换。由于目前<strong>片上存储资源仅能容纳1个输入数据块(In数组)，1个输出数据块(Out数组)和1个权重数据块(W数组)</strong>，我们在每次需要切换数据块的时候，都需要和片下DRAM的对应位置进行数据交互。在HLS中，<strong>DRAM的数据口以指针形式表示</strong>，具体使用规则请参考Xilinx官方文档。循环分块后的HLS示意代码如下：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576977274652.jpeg" alt="图片" style="zoom: 67%;" /></p>
+<h4 id="粗粒度流水">粗粒度流水</h4>
+<p>根据上文的描述，4×4卷积加速器对于CONV2的处理时序大致如下图所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576978203164.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>该加速器的处理还存在进一步优化的空间，即：<strong>粗粒度流水</strong>。由于数据搬运过程与卷积运算过程是在不同的硬件模块中实现的，原理上我们可以将这两个过程做一个粗粒度的流水优化，从而进一步提升加速器的处理效率，而对应方法就是一个硬件架构设计中常见的方法：<strong>Double-buffering</strong>或者<strong>Ping-pong
+Buffer</strong>。具体而言，我们将所有片上数据Buffer(In, Out,
+W)都实现为同样大小的两组(统一记为Buffer0和Buffer1)。在卷积运算模块处理Buffer0中的数据的时候，Buffer1可以同DRAM进行数据搬运操作；而当卷积运算模块处理完Buffer0中的数据以后，卷积运算模块就切换到处理Buffer1中的数据，而Buffer0则继续其数据搬运操作。这样一来，数据搬运和卷积运算就可以流水起来，降低处理延迟。优化后的加速器处理时序如下图所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576978638556.jpeg" alt="图片" style="zoom:80%;" /></p>
+<h1 id="fpga加速器设计三">FPGA加速器设计（三）</h1>
+<p>在上篇文章中，我们介绍了如何利用循环分块和粗粒度流水实现一个灵活、可扩展的深度学习加速器。根据这个基础的架构，我们可以扩大并行度，增加硬件资源的使用率，充分发挥一块FPGA的处理能力。然而随着硬件资源利用率的提升，我们往往会发现FPGA加速器的时序约束越来越难以满足，导致设计的加速器无法在一个很高的频率下运行。这样一来，资源开销的上升无法给加速器性能带来等比例的提升，甚至有可能导致性能的下降。</p>
+<p>造成这个现象的重要原因是硬件资源利用率的提升给FPGA布局布线带来了巨大的困难，加速器复杂庞大硬件逻辑的关键路径严重限制了加速器的运行频率。为了能够在充分利用FPGA片上硬件资源的同时保证较高的运行频率，许多深度学习加速器都采用脉动阵列(Systolic
+Array)来优化加速器架构设计。</p>
+<h4 id="什么是脉动阵列">什么是脉动阵列？</h4>
+<p>脉动阵列是一个十分经典的硬件架构，其本质上是将原本硬件设计中的长广播、多扇入/扇出的数据通路替换为深度流水化的微处理单元(PE)间的短数据通路。这里我们用一个经典的示例来介绍一下脉动阵列的基本工作原理：处理矩阵乘法(A×B=C)，两个输入矩阵的规模均为3×3，用9个并行的PE来处理，每个PE负责一个输出矩阵元素的计算，PE的一次调用可以实现一次乘累加计算(MAC)。一个简单直接的实现如下图所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-16576980337618.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>我们利用array
+partition把A中的元素按照行维度等分在3个片上Buffer中存储，把B中的元素按照列维度等分在3个片上Buffer中存储，以此保证PE阵列对于A和B中的数据的并行访问需求。每个片上Buffer和对应的PE相连，具体数据通路也在上图中展示。我们可以发现，这个加速器设计中有着大量的数据广播通路(A/B元素)，而每个片上Buffer都有着一定的扇入/扇出。如果我们扩大该加速器的并行处理规模，数据广播通路会变得更多更长，片上Buffer的扇入/扇出也会大量增加，从而导致更长的关键路径，降低整体的运行频率。</p>
+<p>利用脉动阵列实现上述矩阵乘法则可以有效地解决这个问题，具体架构如下图所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769804813610.jpeg" alt="图片" style="zoom:80%;" /></p>
+<p>9个PE被组织成一个3×3的阵列结构，原本需要广播给多个PE的数据转而在相关PE间传递，只有一个PE与对应的片上Buffer通信。例如：原架构中A0需要广播给PE00、PE01、PE02，在脉动阵列中它是在这3个PE间传递，而这三个PE也形成了一个流水线架构。以这种方式组织的PE阵列在扩大并行处理规模的时候仍然能维持很短的关键路径和较低的片上Buffer扇入/扇出，从而大大降低了布局布线的难度，提升了整体的运行频率。通过精细地控制数据流入脉动阵列的时间和顺序，我们可以实现整个矩阵乘法的计算，计算流程大致如下图所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769806472312.gif" alt="图片" style="zoom:80%;" /></p>
+<h4 id="卷积如何映射到脉动阵列">卷积如何映射到脉动阵列？</h4>
+<p>上面介绍了如何利用脉动阵列来完成矩阵乘法计算的加速，那么针对深度学习模型中最常见的算子——卷积，我们又应该如何应用脉动阵列来实现加速呢？</p>
+<p>一个最直接的方式是利用im2col将卷积计算转化为矩阵乘法，然后应用上面介绍的映射方法来加速矩阵乘法计算，从而实现脉动阵列对卷积运算加速的支持。im2col的原理如下图所示：</p>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769809168414.jpeg"
+alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>在im2col的处理过程中，每一个input
+patch被展平为输入矩阵的一行，而与之对应的filter则被展平为权重矩阵的一列，两个向量做内积则得到了输出矩阵的一个元素。值得注意的一点是，卷积核是以一定的步长扫过输入特征图来完成卷积计算的，而这个步长往往是小于卷积核的大小的，因而会导致相邻的卷积窗口是有数据重叠。这些重叠的数据在im2col操作中会被重复存储，也就是说这种映射方法会造成一定程度的存储或访存上的额外开销。</p>
+<p>那么有没有方法可以避免上述弊端来将卷积计算映射到脉动阵列上呢？我们再观察一下脉动阵列的架构设计，我们可以发现，脉动阵列本质上实现了三个维度的并行：沿着PE阵列的行维度(PD_row)、沿着PE阵列的列维度(PD_col)和PE内部的并行处理维度(PD_intra)，对应到我们上面提到的矩阵乘法的例子可知PD_row
+= PD_col = 3，PD_intra =
+1。我们之前的文章中提到过，所谓的并行对应着程序代码中的循环展开，由此我们可以总结，应用脉动阵列加速某一算法的时候，我们最多可以同时展开该算法中的3重循环(对应3个并行处理维度)，而其中两个输入维度要有数据复用的机会(对应PE间沿行方向和列方向的数据通路)。</p>
+<p>回顾一下，我们曾提到过，卷积运算的本质是一个6层嵌套循环(若考虑batch执行则为7层)的乘累加运算。与上面总结的方法相结合，将卷积计算映射到一个二维脉动阵列上的过程就可以简化为：在卷积计算的多层嵌套循环中挑3层满足条件的循环展开到脉动阵列的三个并行维度中，实现并行加速；而其余的循环则仍保留，通过对脉动阵列的循环多次调用完成完整的卷积功能。一个可行的映射方式如下图所示：</p>
+<figure>
+<img
+src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769811163316.jpeg"
+alt="图片" />
+<figcaption aria-hidden="true">图片</figcaption>
+</figure>
+<p>参考论文：Automated Systolic Array Architecture Synthesis for High
+Throughput CNN Inference on FPGAs. (DAC 2017)</p>
+<p>我们将卷积运算中的3重循环——Row, Output_Channel,
+Input_Channel分别映射到脉动阵列的行并行、列并行和PE内并行三个并行维度中。在上图的示例中，该脉动阵列的行维度和列维度的并行度均为3，处理单元内的并行度则是输入通道数。为了在HLS中实现脉动阵列的结构，我们需要使用到两个重要的pragma：dataflow和stream，具体语法请参考Xilinx官方技术文档。一个利用脉动阵列加速卷积计算的HLS实现思路则如下所示：</p>
+<p><img src="https://typora-picture-lzm.oss-cn-beijing.aliyuncs.com/img/typora/640-165769815689718.jpeg" alt="图片" style="zoom:80%;" /></p>
+<h4 id="结语">结语</h4>
+<p>本文简要介绍了利用脉动阵列提升深度学习加速器的运行频率的相关设计方法。作为一种经典的硬件架构，脉动阵列除了本文介绍的二维矩阵形以外，还有各种各样其它的设计(如：三角形脉动阵列、沿对角线传播脉动阵列、三维脉动阵列等)被广泛使用于不同的应用中。</p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>FPGA</tag>
+        <tag>Accelerator</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>版图</title>
+    <url>/2022/12/11/%E7%89%88%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="bb">bb</h1>
+<h1 id="mos管结构">MOS管结构</h1>
+<figure>
+<img src="版图.assets/152627yr8abtq6dp6q8pbq.png" alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p><strong>NWELL：</strong>N阱</p>
+<p><strong>GT：</strong>poly，多晶硅栅</p>
+<p><strong>SP：</strong>P+，</p>
+<p><strong>SN：</strong>N+</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>版图</tag>
       </tags>
   </entry>
   <entry>
